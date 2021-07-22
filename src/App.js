@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import MyMap from './components/MyMap'
+import MapView from './components/MapView'
 
 
 function App() {
@@ -8,7 +8,7 @@ function App() {
     <div className="App">
 
       <Switch>
-      <MyMap/>
+        <MapView/>
             
       </Switch>
     </div>
