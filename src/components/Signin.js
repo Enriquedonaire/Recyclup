@@ -11,7 +11,7 @@ function SignIn(props) {
 
     return (
         <div>
-            <form onSubmit={props.onSignIn}>
+            <form onSubmit={(event) => {props.onSignIn(event, email,password)}}>
             <div className="form-group">
                 <label htmlFor="InputEmail">Email address</label>
                 <input onChange={(event)=>{updateEmail(event.target.value)}} type="email" className="form-control" id="InputEmail" name="email" />
