@@ -27,7 +27,7 @@ function SignIn(props) {
                 ) : ''
             }
             {
-                 props.error && <p>{props.error}</p>
+                    props.error && <p>{props.error}</p>
             }
         </form>
             
