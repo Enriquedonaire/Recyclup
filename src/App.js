@@ -7,7 +7,8 @@ import SignUp from "./components/Signup";
 import Navbar from "./components/Navbar";
 import Landing from './components/Landing';
 // import dotenv from 'dotenv'
-import API_URL from './config'
+import {API_URL} from './config'
+import MapView from './components/MapView'
 
 // import Material
 
@@ -87,7 +88,8 @@ function App() {
         }}/>
         <Route  path="/signup"  render={(routeProps) => {
         return  <SignUp onSignUp={handleSignUp} {...routeProps}/>
-        }}/>      
+        }}/> 
+        <MapView />
       </Switch>
     </div>
   );
