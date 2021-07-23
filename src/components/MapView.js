@@ -4,6 +4,7 @@ import {MapContainer, TileLayer, Marker, Popup, Pinpoint} from  'react-leaflet'
 import  'leaflet/dist/leaflet.css'
 
 
+
 function MyMap() {
     //Some random co-ordinate
 	const position = [51.505, -0.09]
