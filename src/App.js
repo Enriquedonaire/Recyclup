@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import axios from 'axios'
 import SignIn from './components/Signin'
 import SignUp from "./components/Signup";
-import Navbar from "./components/Navbar";
+import NavBar from "./components/Navbar";
 import Landing from './components/Landing';
 // import dotenv from 'dotenv'
 import {API_URL} from './config'
@@ -26,7 +26,7 @@ function App() {
       updateUser(response.data)
     }  
     catch(err){
-      console.log('Todo fetch failed', err)
+      console.log('user fetch failed', err)
     }
   }, [])
  
@@ -46,6 +46,7 @@ function App() {
     try{
       let response = await axios.post(`${API_URL}/API/signin`, myUser, {withCredentials: true})
       console.log('user info passed')
+      updateUser(response.data)
     }
     catch(err){
       console.log('failed to fetch user')
@@ -75,7 +76,7 @@ function App() {
   return (
     
     <div className="App">
-      <Navbar/>
+      <NavBar/>
       <Switch>
         <Route  path="/signin"  render={(routeProps) => {
         return  <SignIn  onSignIn={handleSignIn} {...routeProps}/>
