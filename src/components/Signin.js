@@ -4,17 +4,17 @@ import axios from 'axios'
 
 function SignIn(props) {
     
-    const [email, updateEmail] = useState(null)
+    const [username, updateUsername] = useState(null)
     const [password, updatePassword] = useState(null)
-    console.log('email', email)
+    console.log('username', username)
     console.log('password', password)
 
     return (
         <div>
-            <form onSubmit={(event) => {props.onSignIn(event, email,password)}}>
+            <form onSubmit={(event) => {props.onSignIn(event, username,password)}}>
             <div className="form-group">
-                <label htmlFor="InputEmail">Email address</label>
-                <input onChange={(event)=>{updateEmail(event.target.value)}} type="email" className="form-control" id="InputEmail" name="email" />
+                <label htmlFor="InputEmail">Username</label>
+                <input onChange={(event)=>{updateUsername(event.target.value)}} type="email" className="form-control" id="InputEmail" name="email" />
             </div>
             <div className="form-group">
                 <label htmlFor="InputPassword">Password</label>
