@@ -1,11 +1,7 @@
 import React, {useState, useEffect} from "react";
 import { Switch, Route } from "react-router-dom";
-import HomePage from "./pages/HomePage";
-import * as PATHS from "./utils/paths";
-
 // import from '@material-ui/core'
 import axios from 'axios'
-
 import SignIn from './components/Signin'
 import SignUp from "./components/Signup";
 import Navbar from "./components/Navbar";
@@ -68,6 +64,7 @@ function App() {
     try{
       let response = await axios.post(`${API_URL}/API/signup`, myUser, {withCredentials: true})
       console.log()
+      updateUser(response.data)
     }
     catch(err) {
       console.log('failed to send ')
