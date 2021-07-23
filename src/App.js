@@ -23,23 +23,16 @@ function App() {
   console.log(user, updateUser)
 
   
-  useEffect(async (email,password) => {
+  useEffect(async () => {
     try {
-      let myUser = {
-        email: email,
-        password: password
-      }
-      let response = await axios.get(`${API_URL}/API/signin`, myUser, {withCredentials: true})
+      let response = await axios.get(`${API_URL}/api/user`, {withCredentials: true})
       updateUser(response.data)
     }  
     catch(err){
       console.log('Todo fetch failed', err)
     }
   }, [])
-
-  // useEffect(() => {
-  //   props.history.push('/')
-  // }, [user])  
+ 
   
   const handleSignIn = async(event, email, password) => {
 
@@ -62,7 +55,7 @@ function App() {
     }
   }
 
-  const handleSignUp = async(event,username, email, password) => {
+  const handleSignUp = async(event, username, email, password) => {
     event.preventDefault()
 
     let myUser = {
