@@ -31,17 +31,17 @@ function App() {
   }, [])
  
   
-  const handleSignIn = async(event, email, password) => {
+  const handleSignIn = async(event, username, password) => {
 
     
     event.preventDefault()
 
     let myUser = {
-      email: email,
+      username: username,
       password: password
     }
     
-    console.log(email, password)
+    console.log(username, password)
     
     try{
       let response = await axios.post(`${API_URL}/API/signin`, myUser, {withCredentials: true})
@@ -49,7 +49,7 @@ function App() {
       updateUser(response.data)
     }
     catch(err){
-      console.log('failed to fetch user')
+      console.log('failed to send user')
     }
   }
 
