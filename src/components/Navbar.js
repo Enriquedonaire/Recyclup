@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import SignUp from './Signup';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,7 +36,7 @@ function NavBar() {
                 <Typography variant="h6" className={classes.title}>
                 RECYLUP
                 </Typography>
-                <Button color="inherit">Sign in</Button>
+                <Button color="inherit"> Sign in</Button>   
                 <Button color="inherit">Sign up</Button>
                 </Toolbar>
             </AppBar>
