@@ -12,6 +12,8 @@ import MapView from './components/MapView'
 
 // import Material
 
+
+
 function App(props) {
 
 
@@ -30,22 +32,22 @@ function App(props) {
     }
   }, [])
 
-  /*
+  
 
- const [items,updateItems] = useState([])
-
-  // fetch all the initial items to show on the home page
+  const [items,updateItems] = useState([])
+  console.log(items, updateItems)
+// fetch all the initial items to show on the home page
  useEffect(async () => {          //works as componentDidMount, make api/items request here. 
     try {
       let itemResponse = await axios.get(`${API_URL}/api/items`)    //for the landing page
-      updateItems(response.data)
+      updateItems(itemResponse.data)
     }  
     catch(err){
       console.log('item fetch failed', err)
     }
   }, [])
 
-  */
+  
 
 
  
@@ -93,7 +95,7 @@ function App(props) {
   };
 
   //__________________ADD ITEM__________________________
-  const handleAddItem = async (event) => {
+  const handleAddItem = async (event, items) => {
 
     event.preventDefault()
 
@@ -101,10 +103,11 @@ function App(props) {
       let newItem = {
         name: event.target.name.value,
         description: event.target.description.value,
-        available: false     //or set it to true by default??
+        available: false,     //or set it to true by default??
         picture: event.target.image.value
 
       }
+
       let response = await axios.post(`http://localhost:5005/api/create`, newItem)
       updateItems([response.data, ...items])
     }  
@@ -157,7 +160,6 @@ function App(props) {
   }
 
 
-
 //________________________________________________________-
 
   return (
@@ -166,7 +168,7 @@ function App(props) {
       <NavBar/>
       <Switch>
         <Route exact path= {"/"} render= {()=> {
-        return <Landing items = {items}/>
+        return <Landing items = {items} />
          }}/>
         <Route  path="/signin"  render={(routeProps) => {
         return  <SignIn  onSignIn={handleSignIn} {...routeProps}/>

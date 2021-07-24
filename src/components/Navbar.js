@@ -36,8 +36,12 @@ function NavBar() {
                 <Typography variant="h6" className={classes.title}>
                 RECYCLUP
                 </Typography>
-                <Button color="inherit"> Sign in</Button>   
+                <Link to = {'/signin'}>
+                <Button color="inherit"> Sign in</Button>
+                </Link>
+                <Link to = {'/signup'}>
                 <Button color="inherit">Sign up</Button>
+                </Link>
                 </Toolbar>
             </AppBar>
         </div>
