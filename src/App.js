@@ -101,7 +101,7 @@ function App(props) {
       let newItem = {
         name: event.target.name.value,
         description: event.target.description.value,
-        available: false     //or set it to true by default??
+        available: false,     //or set it to true by default??
         picture: event.target.image.value
 
       }
