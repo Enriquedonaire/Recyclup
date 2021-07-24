@@ -46,49 +46,76 @@ function App(props) {
   }, [])
 
   */
- 
-  
-  const handleSignIn = async(event, username, password) => {
 
-    
-    event.preventDefault()
+
+ 
+  //________________________SIGN IN_____________________________________
+  const handleSignIn = async (event, username, password) => {
+    event.preventDefault();
 
     let myUser = {
       username: username,
-      password: password
-    }
-    
-    console.log(username, password)
-    
-    try{
-      let response = await axios.post(`${API_URL}/API/signin`, myUser, {withCredentials: true})
-      console.log('user info passed')
-      updateUser(response.data)
-    }
-    catch(err){
-      console.log('failed to send user')
-    }
-  }
+      password: password,
+    };
 
-  const handleSignUp = async(event, username, email, password) => {
-    event.preventDefault()
+    console.log(username, password);
+
+    try {
+      let response = await axios.post(`${API_URL}/API/signin`, myUser, {
+        withCredentials: true,
+      });
+      console.log("user info passed");
+      updateUser(response.data);
+    } catch (err) {
+      console.log("failed to send user");
+    }
+  };
+
+ //________________________SIGN UP_____________________________________
+  const handleSignUp = async (event, username, email, password) => {
+    event.preventDefault();
 
     let myUser = {
       username: username,
       email: email,
-      password: password
-      
-    }
+      password: password,
+    };
 
-    try{
-      let response = await axios.post(`${API_URL}/API/signup`, myUser, {withCredentials: true})
-      console.log()
-      updateUser(response.data)
+    try {
+      let response = await axios.post(`${API_URL}/API/signup`, myUser, {
+        withCredentials: true,
+      });
+      console.log();
+      updateUser(response.data);
+    } catch (err) {
+      console.log("failed to send ");
     }
-    catch(err) {
-      console.log('failed to send ')
+  };
+
+  //__________________ADD ITEM__________________________
+  const handleAddItem = async (event) => {
+
+    event.preventDefault()
+
+    try {
+      let newItem = {
+        name: event.target.name.value,
+        description: event.target.description.value,
+        available: false     //or set it to true by default??
+        picture: event.target.image.value
+
+      }
+      let response = await axios.post(`http://localhost:5005/api/create`, newItem)
+      updateItems([response.data, ...items])
+    }  
+    catch(err){
+      console.log('Sorry- item fetch failed', err)
     }
+   
   }
+
+  //_______________________DELETE ITEM_________________________
+  
 
   return (
     
