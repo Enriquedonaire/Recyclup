@@ -11,16 +11,16 @@ function SignIn(props) {
 
     return (
         <div>
-            <form onSubmit={(event) => {props.onSignIn(event, username,password)}}>
+            <form onSubmit={(event) => {props.onSignIn(event, username, password)}}>
             <div className="form-group">
-                <label htmlFor="InputEmail">Username</label>
-                <input onChange={(event)=>{updateUsername(event.target.value)}} type="email" className="form-control" id="InputEmail" name="email" />
+                <label htmlFor="InputUsername">Username</label>
+                <input onChange={(event)=>{updateUsername(event.target.value)}} type="text" className="form-control" id="InputUsername" name="username" placeholder="Enter your username" />
             </div>
             <div className="form-group">
                 <label htmlFor="InputPassword">Password</label>
-                <input onChange={(event)=>{updatePassword(event.target.value)}} name="password" type="password" className="form-control" id="InputPassword" />
+                <input onChange={(event)=>{updatePassword(event.target.value)}} name="password" type="password" className="form-control" id="InputPassword" placeholder="Enter your password" />
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <button type="submit" className="btn btn-primary">Login</button>
             {
                 props.error ? (
                     <p>{props.error}</p>
