@@ -48,8 +48,7 @@ function App(props) {
   */
 
 
- 
-  //________________________SIGN IN_____________________________________
+   //________________________SIGN IN_____________________________________
   const handleSignIn = async (event, username, password) => {
     event.preventDefault();
 
@@ -61,7 +60,7 @@ function App(props) {
     console.log(username, password);
 
     try {
-      let response = await axios.post(`${API_URL}/API/signin`, myUser, {
+      let response = await axios.post(`${API_URL}/api/signin`, myUser, {
         withCredentials: true,
       });
       console.log("user info passed");
@@ -82,7 +81,7 @@ function App(props) {
     };
 
     try {
-      let response = await axios.post(`${API_URL}/API/signup`, myUser, {
+      let response = await axios.post(`${API_URL}/api/signup`, myUser, {
         withCredentials: true,
       });
       console.log();
@@ -91,9 +90,10 @@ function App(props) {
       console.log("failed to send ");
     }
   };
+  
 
   //__________________ADD ITEM__________________________
-  const handleAddItem = async (event) => {
+  /*const handleAddItem = async (event) => {
 
     event.preventDefault()
 
@@ -101,8 +101,8 @@ function App(props) {
       let newItem = {
         name: event.target.name.value,
         description: event.target.description.value,
-        available: false     //or set it to true by default??
-        picture: event.target.image.value
+        available: false,     //or set it to true by default??
+        picture: event.target.image.value,
 
       }
       let response = await axios.post(`http://localhost:5005/api/create`, newItem)
@@ -111,7 +111,7 @@ function App(props) {
     catch(err){
       console.log('Item fetch failed', err)
     }
-   
+  
   }
 
   //_______________________DELETE ITEM_________________________
@@ -155,7 +155,7 @@ function App(props) {
     }
 
   }
-
+*/
 
 
 //________________________________________________________-
@@ -165,17 +165,17 @@ function App(props) {
     <div className="App">
       <NavBar/>
       <Switch>
-        <Route exact path= {"/"} render= {()=> {
-        return <Landing items = {items}/>
-         }}/>
+        {/*<Route exact path= {"/"} render= {()=> {
+        return <Landing items = {items}/> 
+        }}/>*/}
         <Route  path="/signin"  render={(routeProps) => {
         return  <SignIn  onSignIn={handleSignIn} {...routeProps}/>
         }}/>
         <Route  path="/signup"  render={(routeProps) => {
         return  <SignUp onSignUp={handleSignUp} {...routeProps}/>         
         }}/> 
-
-        <MapView />
+        <Route path="/map"/>
+          <MapView />;
       </Switch>
     </div>
   );
