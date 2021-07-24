@@ -34,7 +34,7 @@ function App(props) {
 
  const [items,updateItems] = useState([])
 
-  // fetch all the initial todos to show on the home page
+  // fetch all the initial items to show on the home page
  useEffect(async () => {          //works as componentDidMount, make api/items request here. 
     try {
       let itemResponse = await axios.get(`${API_URL}/api/items`)    //for the landing page
@@ -109,13 +109,56 @@ function App(props) {
       updateItems([response.data, ...items])
     }  
     catch(err){
-      console.log('Sorry- item fetch failed', err)
+      console.log('Item fetch failed', err)
     }
    
   }
 
   //_______________________DELETE ITEM_________________________
-  
+  const handleDeleteItem = async (itemId) => {
+    try {
+      // delete the item from the DB
+      await axios.delete(`http://localhost:5005/api/items/${itemId}`)
+      // and then also filter and remove the item from the local state
+      let filteredItems = items.filter((item) => {
+        return item._id !== itemId
+      })
+      updateItems(filteredItems)
+
+    }  
+    catch(err){
+      console.log('Item fetch failed', err)
+    }
+    
+  }
+
+  //________________EDIT ITEM______________________________
+  const handleEditItem = async (event, item) => {
+    event.preventDefault()
+    try {
+      // pass a second parameter to the patch for sending info to your server inside req.body
+      await axios.patch(`http://localhost:5005/api/items/${item._id}`, item)
+      // and then also filter and remove the item from the local state
+      // also update your local state here and redirect to home page
+      // mapping over all the items and updating the one that was edited
+      let updatedItems = items.map((singleItem) => {
+        if (singleItem._id === item._id) {
+          singleItem.name = item.name
+          singleItem.description = item.description
+        } 
+        return singleItem
+      })
+      updateItems(updatedItems)
+    }  
+    catch(err){
+      console.log('Item fetch failed', err)
+    }
+
+  }
+
+
+
+//________________________________________________________-
 
   return (
     
