@@ -1,18 +1,18 @@
 import React, {useState, useEffect} from "react";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 // import from '@material-ui/core'
 import axios from 'axios'
 import SignIn from './components/Signin'
 import SignUp from "./components/Signup";
 import NavBar from "./components/Navbar";
-import Landing from './components/Landing';
+import Landing from './components/Landing'; 
 // import dotenv from 'dotenv'
 import {API_URL} from './config'
 import MapView from './components/MapView'
 
 // import Material
 
-function App() {
+function App(props) {
 
 
 
@@ -20,7 +20,7 @@ function App() {
   console.log(user, updateUser)
 
   
-  useEffect(async () => {
+  useEffect(async () => {          //works as componentDidMount, make api/items request here. why do you fetch user and not all items here?
     try {
       let response = await axios.get(`${API_URL}/api/user`, {withCredentials: true})
       updateUser(response.data)
@@ -29,6 +29,23 @@ function App() {
       console.log('user fetch failed', err)
     }
   }, [])
+
+  /*
+
+ const [items,updateItems] = useState([])
+
+  // fetch all the initial todos to show on the home page
+ useEffect(async () => {          //works as componentDidMount, make api/items request here. 
+    try {
+      let itemResponse = await axios.get(`${API_URL}/api/items`)    //for the landing page
+      updateItems(response.data)
+    }  
+    catch(err){
+      console.log('item fetch failed', err)
+    }
+  }, [])
+
+  */
  
   
   const handleSignIn = async(event, username, password) => {
@@ -78,19 +95,23 @@ function App() {
     <div className="App">
       <NavBar/>
       <Switch>
+        <Route exact path= {"/"} render= {()=> {
+        return <Landing items = {items}/>
+         }}/>
         <Route  path="/signin"  render={(routeProps) => {
         return  <SignIn  onSignIn={handleSignIn} {...routeProps}/>
         }}/>
         <Route  path="/signup"  render={(routeProps) => {
-        return  <SignUp onSignUp={handleSignUp} {...routeProps}/>
+        return  <SignUp onSignUp={handleSignUp} {...routeProps}/>         
         }}/> 
+
         <MapView />
       </Switch>
     </div>
   );
 }
 
-export default App;
+export default withRouter(App);   //so that App component- which is not handled in routes here- also gets props
 
 // gigi was here 
 //sin too
