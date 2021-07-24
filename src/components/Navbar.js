@@ -33,7 +33,7 @@ function NavBar() {
                     <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                RECYLUP
+                RECYCLUP
                 </Typography>
                 <Button color="inherit">Sign In</Button>
                 </Toolbar>
