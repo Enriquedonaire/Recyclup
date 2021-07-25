@@ -1,13 +1,11 @@
 import React from 'react'
 
-function AddItem(props) {
-
-
+function EditItem() {
     return (
         <div>
-                
+            
         </div>
     )
 }
 
-export default AddItem
+export default EditItem

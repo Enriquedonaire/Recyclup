@@ -1,16 +1,15 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import {Spinner} from 'react-bootstrap'
+import {API_URL} from './config'
 
 class ItemDetail extends Component {
     state = {
         itemDetail: null,
-
     }
 
     async componentDidMount() {
         try {
-
             let itemId = this.props.match.params.itemId
             let response = await axios.get(`${API_URL}/api/items/${itemId}`)
             this.setState({

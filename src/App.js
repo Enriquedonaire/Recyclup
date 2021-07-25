@@ -10,7 +10,13 @@ import Landing from './components/Landing';
 import {API_URL} from './config'
 import MapView from './components/MapView'
 
-// import Material
+import ProfileDetail from "./components/ProfileDetail";
+import ItemDetail from './components/ItemDetail'
+import EditProfile from './components/EditProfile'
+import AddItem from './components/AddItem'
+import EditItem from './components/EditItem';
+
+
 
 function App(props) {
 
@@ -18,6 +24,8 @@ function App(props) {
 
   const [user,updateUser] = useState(null)
   console.log(user, updateUser)
+  const [items, updateItems] = useState(null)
+  
 
   
   useEffect(async () => {          //works as componentDidMount, make api/items request here. why do you fetch user and not all items here?
@@ -92,8 +100,22 @@ function App(props) {
     }
   };
 
+  const handleItem = async(event) => {
+    try {
+      let response = await axios.get(`http://localhost:5005/api/item`,)
+      updateItems(response.data)
+    }  
+    catch(err){
+      console.log('Item fetch failed', err)
+    }
+
+  }
+
+
   //__________________ADD ITEM__________________________
   const handleAddItem = async (event) => {
+
+    
 
     event.preventDefault()
 
@@ -101,7 +123,7 @@ function App(props) {
       let newItem = {
         name: event.target.name.value,
         description: event.target.description.value,
-        available: false     //or set it to true by default??
+        available: false,     //or set it to true by default??
         picture: event.target.image.value
 
       }
@@ -156,6 +178,37 @@ function App(props) {
 
   }
 
+  // ====== PROFILE DETAIL AND PROFILE EDIT ========
+
+  const handleProfileDetail = async(event, profile) =>{
+
+    event.preventDefault()
+    
+    try{
+      await axios.get(`http://localhost:5005/api/user/${user._id}`, profile)
+    }
+    catch(err){
+      console.log('failed to fetch profle', err)
+    }
+  }
+
+  const handleEditProfileDetail = async (event, profile) => {
+    event.preventDefault()
+    try {
+      // pass a second parameter to the patch for sending info to your server inside req.body
+      await axios.patch(`http://localhost:5005/api/user/${user._id}`, profile)
+      // and then also filter and remove the todo from the local state
+      // also update your local state here and redirect to home page
+      // mapping over all the todos and updating the one that was edited
+   
+      
+    }  
+    catch(err){
+      console.log('profile update failed', err)
+    }
+
+  }
+
 
 
 //________________________________________________________-
@@ -173,8 +226,22 @@ function App(props) {
         }}/>
         <Route  path="/signup"  render={(routeProps) => {
         return  <SignUp onSignUp={handleSignUp} {...routeProps}/>         
-        }}/> 
-
+        }}/>
+        <Route path={'/profile/:profileId'}  render={(routeProps) => {
+        return <ProfileDetail {...routeProps}  onEdit={handleProfileDetail} />
+        }} />
+        <Route path={'/profile/:profileId/edit'}  render={(routeProps) => {
+        return <EditProfile {...routeProps}  onEdit={handleEditProfileDetail} />
+        }} />
+        <Route path={'/items/:itemId'}  render={(routeProps) => {
+        return <ItemDetail {...routeProps}  onAdd={handleItem} />
+        }} />
+        <Route path={'/items/newitem'}  render={(routeProps) => {
+        return <AddItem {...routeProps}  onAdd={handleAddItem} />
+        }} />
+        <Route path={'/items/:itemId/edit'}  render={(routeProps) => {
+        return <EditItem {...routeProps}  onAdd={handleEditItem} />
+        }} />
         <MapView />
       </Switch>
     </div>

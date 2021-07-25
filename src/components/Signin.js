@@ -22,11 +22,6 @@ function SignIn(props) {
             </div>
             <button type="submit" className="btn btn-primary">Login</button>
             {
-                props.error ? (
-                    <p>{props.error}</p>
-                ) : ''
-            }
-            {
                     props.error && <p>{props.error}</p>
             }
         </form>

@@ -10,8 +10,7 @@ function Landing()  {
     
     return (
         <div>
-          <NavBar/>
-        
+          <NavBar/>        
         </div>
     )
     
