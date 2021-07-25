@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import {Spinner} from 'react-bootstrap'
-import {API_URL} from './config'
+import {API_URL} from '../config'
+import {Redirect} from 'react'
 
 class ItemDetail extends Component {
     state = {

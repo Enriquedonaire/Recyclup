@@ -2,18 +2,21 @@ import React from 'react'
 import {useState, useEffect} from 'react'
 // import {itemDetail} from './components/ItemDetail'
 import axios from 'axios'
+import {API_URL} from '../config'
+import {Link} from 'react-dom'
+ 
 
 function ProfileDetail() {
 
     const [profileDetail, updateProfileDetail] = useState(null)
-    const [items, updateItems] = usestate()
-    const [itemList, updateItemList] = useState()
+    // const [items, updateItems] = usestate(null)
+    // const [itemList, updateItemList] = useState(null)
     
     
     useEffect(async () => {          //works as componentDidMount, get items
         try {
             let response = await axios.get(`${API_URL}/api/user`, {withCredentials: true})
-            updateUser(response.data)
+            updateProfileDetail(response.data)
         }  
         catch(err){
             console.log('user fetch failed', err)
