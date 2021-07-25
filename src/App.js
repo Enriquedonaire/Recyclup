@@ -7,27 +7,24 @@ import SignUp from "./components/Signup";
 import NavBar from "./components/Navbar";
 import Landing from './components/Landing'; 
 
-import {API_URL} from './config'
-import MapView from './components/MapView'
-
 import ProfileDetail from "./components/ProfileDetail";
 import ItemDetail from './components/ItemDetail'
 import EditProfile from './components/EditProfile'
 import AddItem from './components/AddItem'
 import EditItem from './components/EditItem';
-// import Lottie from './components/LottieControl'
+import LottieControl from './components/LottieControl'
 import NotFound from "./components/NotFound";
 
-import {API_URL} from './config'
+import {API_URL} from './config.js';
 import "./App.css";
 import MapView from "./components/MapView";
 
 
-function App () {
+class App extends Component {
 
-  const [user,updateUser] = useState(null)
-  console.log(user, updateUser)
-  const [items, updateItems] = useState(null)
+  // const [user,updateUser] = useState(null)
+  // console.log(user, updateUser)
+  // const [items, updateItems] = useState(null)
   
   state = {
     items: [],
@@ -107,23 +104,27 @@ function App () {
 
   }
 
-  handleDeleteitem = (itemId) => {
-    // delete the item from the DB
-    axios.delete(`${API_URL}/api/items/${itemId}`, {withCredentials: true})
-      .then(() => {
-        // and then also filter and remove the item from the local state
-        let filtereditems = this.state.items.filter((item) => {
-          return item._id !== itemId
-        })
+  // handleDeleteitem = (itemId) => {
+  //   // delete the item from the DB
+  //   axios.delete(`${API_URL}/api/items/${itemId}`, {withCredentials: true})
+  //     .then(() => {
+  //       // and then also filter and remove the item from the local state
+  //       let filtereditems = this.state.items.filter((item) => {
+  //         return item._id !== itemId
+  //       })
+  //       //update the state and redirect synchronously
+  //       this.setState({
+  //         items: filtereditems
+  //       } , () => {
+  //         this.props.history.push('/')
+  //       })
+  //     }
+  //     .catch(() => {
+  //       console.log(error, 'error')
+  //     })
+  // }
 
-        //update the state and redirect synchronously
-        this.setState({
-          items: filtereditems
-        } , () => {
-          this.props.history.push('/')
-        })
-
-  const handleItem = async(event) => {
+  handleItem = async(event) => {
     try {
       let response = await axios.get(`http://localhost:5005/api/item`,)
       updateItems(response.data)
@@ -136,7 +137,7 @@ function App () {
 
 
   //__________________ADD ITEM__________________________
-  const handleAddItem = async (event) => {
+  handleAddItem = async (event) => {
 
     
 
@@ -148,7 +149,6 @@ function App () {
         description: event.target.description.value,
         available: false,     //or set it to true by default??
         picture: event.target.image.value
-
       }
       let response = await axios.post(`http://localhost:5005/api/create`, newItem)
       updateItems([response.data, ...items])
@@ -156,11 +156,6 @@ function App () {
     catch(err){
       console.log('Item fetch failed', err)
     }
-   
-      })
-      .catch(() => {
-        console.log('Delete failed')
-      })
   }
 
   handleEdititem = (event, item) => {
@@ -259,88 +254,86 @@ function App () {
     }
   }
 
-<<<<<<< HEAD
-  // ====== PROFILE DETAIL AND PROFILE EDIT ========
+  // // ====== PROFILE DETAIL AND PROFILE EDIT ========
 
-  const handleProfileDetail = async(event, profile) =>{
+  // const handleProfileDetail = async(event, profile) =>{
 
-    event.preventDefault()
+  //   event.preventDefault()
     
-    try{
-      await axios.get(`http://localhost:5005/api/user/${user._id}`, profile)
-    }
-    catch(err){
-      console.log('failed to fetch profle', err)
-    }
-  }
+  //   try{
+  //     await axios.get(`http://localhost:5005/api/user/${user._id}`, profile)
+  //   }
+  //   catch(err){
+  //     console.log('failed to fetch profle', err)
+  //   }
+  // }
 
-  const handleEditProfileDetail = async (event, profile) => {
-    event.preventDefault()
-    try {
-      // pass a second parameter to the patch for sending info to your server inside req.body
-      await axios.patch(`http://localhost:5005/api/user/${user._id}`, profile)
-      // and then also filter and remove the todo from the local state
-      // also update your local state here and redirect to home page
-      // mapping over all the todos and updating the one that was edited
+  // const handleEditProfileDetail = async (event, profile) => {
+  //   event.preventDefault()
+  //   try {
+  //     // pass a second parameter to the patch for sending info to your server inside req.body
+  //     await axios.patch(`http://localhost:5005/api/user/${user._id}`, profile)
+  //     // and then also filter and remove the todo from the local state
+  //     // also update your local state here and redirect to home page
+  //     // mapping over all the todos and updating the one that was edited
    
       
-    }  
-    catch(err){
-      console.log('profile update failed', err)
-    }
+  //   }  
+  //   catch(err){
+  //     console.log('profile update failed', err)
+  //   }
 
-  }
+  // }
 
 
 
 //________________________________________________________-
 
-  return (
+  // return (
     
-    <div className="App">
-      <NavBar/>
-      <Switch>
-        <Route exact path= {"/"} render= {()=> {
-        return <Landing items = {items}/>
-         }}/>
-        <Route  path="/signin"  render={(routeProps) => {
-        return  <SignIn  onSignIn={handleSignIn} {...routeProps}/>
-        }}/>
-        <Route  path="/signup"  render={(routeProps) => {
-        return  <SignUp onSignUp={handleSignUp} {...routeProps}/>         
-        }}/>
-        <Route path={'/profile/:profileId'}  render={(routeProps) => {
-        return <ProfileDetail {...routeProps}  onEdit={handleProfileDetail} />
-        }} />
-        <Route path={'/profile/:profileId/edit'}  render={(routeProps) => {
-        return <EditProfile {...routeProps}  onEdit={handleEditProfileDetail} />
-        }} />
-        <Route path={'/items/:itemId'}  render={(routeProps) => {
-        return <ItemDetail {...routeProps}  onAdd={handleItem} />
-        }} />
-        <Route path={'/items/newitem'}  render={(routeProps) => {
-        return <AddItem {...routeProps}  onAdd={handleAddItem} />
-        }} />
-        <Route path={'/items/:itemId/edit'}  render={(routeProps) => {
-        return <EditItem {...routeProps}  onAdd={handleEditItem} />
-        }} />
-        <MapView />
-      </Switch>
-    </div>
-  );
-=======
-  render() {
-    console.log('App props', this.props)
+  //   <div className="App">
+  //     <NavBar/>
+  //     <Switch>
+  //       <Route exact path= {"/"} render= {()=> {
+  //       return <Landing items = {items}/>
+  //        }}/>
+  //       <Route  path="/signin"  render={(routeProps) => {
+  //       return  <SignIn  onSignIn={handleSignIn} {...routeProps}/>
+  //       }}/>
+  //       <Route  path="/signup"  render={(routeProps) => {
+  //       return  <SignUp onSignUp={handleSignUp} {...routeProps}/>         
+  //       }}/>
+  //       <Route path={'/profile/:profileId'}  render={(routeProps) => {
+  //       return <ProfileDetail {...routeProps}  onEdit={handleProfileDetail} />
+  //       }} />
+  //       <Route path={'/profile/:profileId/edit'}  render={(routeProps) => {
+  //       return <EditProfile {...routeProps}  onEdit={handleEditProfileDetail} />
+  //       }} />
+  //       <Route path={'/items/:itemId'}  render={(routeProps) => {
+  //       return <ItemDetail {...routeProps}  onAdd={handleItem} />
+  //       }} />
+  //       <Route path={'/items/newitem'}  render={(routeProps) => {
+  //       return <AddItem {...routeProps}  onAdd={handleAddItem} />
+  //       }} />
+  //       <Route path={'/items/:itemId/edit'}  render={(routeProps) => {
+  //       return <EditItem {...routeProps}  onAdd={handleEditItem} />
+  //       }} />
+  //      <Route component= {NotFound} />
+  //       <MapView />
+  //     </Switch>
+  //   </div>
+  // );
   
-    if (this.state.fetchingUser) {
-      return <p>Loading . . . </p>
-    }
-
+  render(){
+  console.log('App props', this.props)
+  
+  if (this.state.fetchingUser) {
+    return <p>Loading . . . </p>
+  }
+  
 
     return (
-      <div >
-      
-        
+      <div >        
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} />
           <Switch>
               <Route exact path={'/'}  render={() => {
@@ -359,9 +352,8 @@ function App () {
               <MapView />
             </Switch>
       </div>
-    );
+    )
   }
->>>>>>> 56a6e9844e2cce1fc2b329739cb385a0698d0ad6
 }
 
-export default withRouter(App);
+export default withRouter(App)

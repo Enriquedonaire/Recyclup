@@ -1,11 +1,10 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import {Spinner} from 'react-bootstrap'
-import {API_URL} from '../config'
+
 import {Redirect} from 'react'
 import { Link } from 'react-router-dom'
 import {API_URL} from '../config'
-import {Redirect} from 'react-router-dom'
 import {Button} from  'react-bootstrap'
 
 
