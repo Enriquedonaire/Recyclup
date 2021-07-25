@@ -32,7 +32,7 @@ function App(props) {
 
   /*
 
- const [items,updateItems] = useState([])
+const [items,updateItems] = useState([])
 
   // fetch all the initial items to show on the home page
  useEffect(async () => {          //works as componentDidMount, make api/items request here. 
