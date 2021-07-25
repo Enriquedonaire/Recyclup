@@ -1,33 +1,28 @@
-import React, {useState} from 'react'
-import axios from 'axios'
+import React from 'react';
 
-
-function SignIn(props) {
-    
-    const [username, updateUsername] = useState(null)
-    const [password, updatePassword] = useState(null)
-    console.log('username', username)
-    console.log('password', password)
-
+function Signin(props){
     return (
-        <div>
-            <form onSubmit={(event) => {props.onSignIn(event, username, password)}}>
+        <form onSubmit={props.onSignin}>
             <div className="form-group">
-                <label htmlFor="InputUsername">Username</label>
-                <input onChange={(event)=>{updateUsername(event.target.value)}} type="text" className="form-control" id="InputUsername" name="username" placeholder="Enter your username" />
+                <label htmlFor="InputEmail">Email address</label>
+                <input type="email" className="form-control" id="InputEmail" name="email" />
             </div>
             <div className="form-group">
                 <label htmlFor="InputPassword">Password</label>
-                <input onChange={(event)=>{updatePassword(event.target.value)}} name="password" type="password" className="form-control" id="InputPassword" placeholder="Enter your password" />
+                <input name="password" type="password" className="form-control" id="InputPassword" />
             </div>
-            <button type="submit" className="btn btn-primary">Login</button>
-            {
-                    props.error && <p>{props.error}</p>
-            }
+            <br></br>
+            <button type="submit" className="btn btn-primary">Submit</button>
+            {/* {
+                props.error && <p>{props.error}</p>
+
+                props.error ? (
+                    <p>{props.error}</p>
+                ) : ''
+            } */}
+
         </form>
-            
-        </div>
     )
 }
 
-export default SignIn
+export default Signin;
