@@ -1,3 +1,4 @@
+/*
 import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
@@ -55,6 +56,8 @@ const useStyles = makeStyles((theme) => ({
 //make them clickable --> wrap link to around?? if user loggedIn, redirect to /map, else: redirect /signin
 
 
+
+/*
 function TitlebarImageList() {
   const classes = useStyles();
 
@@ -81,7 +84,8 @@ function TitlebarImageList() {
       </ImageList>
     </div>
   );
-}
+}   
 
 
-export default TitlebarImageList;
+export default TitlebarImageList;    */
+

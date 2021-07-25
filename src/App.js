@@ -9,6 +9,7 @@ import Landing from './components/Landing';
 // import dotenv from 'dotenv'
 import {API_URL} from './config'
 import MapView from './components/MapView'
+import NotFound from "./components/NotFound";
 
 // import Material
 
@@ -176,6 +177,8 @@ function App(props) {
         <Route  path="/signup"  render={(routeProps) => {
         return  <SignUp onSignUp={handleSignUp} {...routeProps}/>         
         }}/> 
+
+        <Route component= {NotFound} />
 
         <MapView />
       </Switch>
