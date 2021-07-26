@@ -83,7 +83,7 @@ class App extends Component {
       })
 
   }
-
+//this is just check
   handleDeleteItem = (itemId) => {
     axios.delete(`${API_URL}/api/items/${itemId}`, {withCredentials: true})
       .then(() => {
