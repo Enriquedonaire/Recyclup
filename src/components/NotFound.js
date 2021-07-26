@@ -16,13 +16,13 @@ class NotFound extends Component {
             <div>
                  {/*  put 'go back' button below?  */}
                 <LottieControl 
-                     
-                   width = {1000}
-                   height= {600}
-                   animation = {wineError}      
+                        
+                    width = {1000}
+                    height= {600}
+                    animation = {wineError}      
 
 
-                         
+                            
                 />
             </div>
         )

@@ -53,8 +53,14 @@ const useStyles = makeStyles((theme) => ({
 
 //TODO: show 12 random items with no doubles. avoid having less than 12
 
-//do for loop 20 times inside useEffect [] (?), then push only unique elements to initially empty randomelements array(if !randomArr.includes(randomelem)-> push, else break?) (create 2 arrays first?)
-// then slice that new randomelements array to 12 elements
+
+//ON SERVER SIDE:
+//1. do for loop 20 times inside useEffect [] (?), then push only unique elements to initially empty randomelements array(if !randomArr.includes(randomelem)-> push, else break?) (create 2 arrays first?)
+//nach Manish: NO for loop in useEffect, stattdessen auf server seite bei der route nur 20 items fetchen
+
+//2.  then slice that new randomelements array to 12 elements //also server side
+
+//ON CLient side (here)
 //map over 12 elems & render properties
 //make them clickable --> wrap link to around?? if user loggedIn, redirect to /map, else: redirect /signin
 
@@ -91,5 +97,5 @@ function TitlebarImageList() {
 }   
 
 
-export default TitlebarImageList;    
-    */
+export default TitlebarImageList;    */
+
