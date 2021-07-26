@@ -1,6 +1,5 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';     //kann we put all of those imports in 1 line??
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -23,25 +22,38 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 function Navbar() {
+
     const classes = useStyles()
 
+    
     return (
+
         <div className={classes.root}>
             <AppBar position="static">
                 <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                    <MenuIcon />
+                  <MenuIcon />
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
                 RECYCLUP
                 </Typography>
-                <Link to = {'/signin'}>
-                <Button color="inherit"> Sign in</Button>
-                </Link>
-                <Link to = {'/signup'}>
-                <Button color="inherit">Sign up</Button>
-                </Link>
-                </Toolbar>
+                {
+                  this.props.user ? (
+                    <Link  style={{marginLeft: '10px'}}  to="/profile/:userId">My Profile</Link> 
+                    &&
+                    <button onClick={this.props.onLogOut}>Logout</button>
+
+                    ) : (
+
+                    <Link to = {'/signin'}>
+                      <Button color="inherit"> Sign in</Button>
+                    </Link> 
+                    &&
+                    <Link to = {'/signup'}>
+                      <Button color="inherit">Sign up</Button>
+                    </Link>
+                )}
+              </Toolbar>
             </AppBar>
         </div>
     )  

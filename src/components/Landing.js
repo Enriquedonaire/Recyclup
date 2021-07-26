@@ -58,6 +58,10 @@ const useStyles = makeStyles((theme) => ({
 /*
 function TitlebarImageList() {
   const classes = useStyles();
+
+/*
+function TitlebarImageList() {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
       <ImageList rowHeight={180} className={classes.imageList}>
@@ -82,4 +86,7 @@ function TitlebarImageList() {
     </div>
   );
 }   
+
+
 export default TitlebarImageList;    */
+

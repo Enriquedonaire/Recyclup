@@ -2,13 +2,13 @@ import React from 'react';
 
 function Signup(props){
     
-    
+    const {onSignup} = props 
 
     return (
-        <form onSubmit={props.onSignup}>
+        <form onSubmit={onSignup}>
             <div className="form-group">
-                <label htmlFor="InputUsername">Username</label>
-                <input type="text" className="form-control" id="InputUsername" name="username" />
+                <label htmlFor="InputName">Name</label>
+                <input type="text" className="form-control" id="InputName" name="name" />
             </div>
             <div className="form-group">
                 <label htmlFor="InputEmail">Email address</label>

@@ -1,13 +1,25 @@
 import React from 'react'
+import Component from 'react'
+import {API_URL} from '../config'
 
-function AddItem(props) {
+
+class AddItem extends Component {
 
 
-    return (
-        <div>
-                
-        </div>
-    )
+
+    render() {
+
+        return (
+            
+            <form onSubmit={this.props.handleAddItem}>
+            <input  name="name"  type="text"  placeholder="Enter your item"/>
+            <input  name="username"  type="text"  placeholder="what is your username?"/>
+            <input  name="description"  type="text"  placeholder="describe your item"/>
+            <input  name="image"  type="text"  placeholder="upload picture"/>
+            <button  type="submit"  >Submit</button>
+            </form>
+        )
+    }
 }
 
 export default AddItem
