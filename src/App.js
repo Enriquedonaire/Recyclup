@@ -204,8 +204,6 @@ class App extends Component {
 
     return (
       <div >
-
-
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} />
           <Switch>
               <Route exact path={'/'}  render={() => {
