@@ -4,7 +4,6 @@ import Navbar from './components/Navbar'
 import axios from 'axios'
 import ItemList from "./components/ItemList";
 import ItemDetail from "./components/ItemDetail";
-
 import Signin from './components/Signin'
 import Signup from './components/Signup'
 import {API_URL} from './config'
@@ -16,18 +15,21 @@ class App extends Component {
 
   state = {
     items: [],
-    user: null,
+    name: [],
     myError: null,
     fetchingUser: true, 
   }
 
+
   async componentDidMount(){
     try {
+
         let response = await axios.get(`${API_URL}/api/items`, {withCredentials: true})
         console.log(response.data)
         this.setState({
           items: response.data
         })
+
 
 
         let userResponse = await axios.get(`${API_URL}/api/user`, {withCredentials: true})
@@ -49,10 +51,7 @@ class App extends Component {
 
     event.preventDefault()
 
-    //First upload the image to cloudinary
-    // then send the image url to our /api/create request
-    
-    // How to grab the image from our input 
+
     console.log(event.target.myImage.files[0] )
 
     let formData = new FormData()
@@ -65,24 +64,17 @@ class App extends Component {
     let newItem = {
       name: event.target.name.value,
       description: event.target.description.value,
-      completed: false,
+      available: false,
       image: imgResponse.data.image
     }
 
-    // Pass the data in POST requests as the second parameter
-    // create the item in the DB
     axios.post(`${API_URL}/api/create`, newItem, {withCredentials: true})
       .then((response) => {
-          // Also update the state locally
-          // use the newly created to from your DB and not the local item that we created above.
 
           this.setState({
             items: [response.data, ...this.state.items]
           }, () => {
-              // to do something synchronous with the setState
-
-              // redirects the app to a certain url
-              // we're using the history push method to redirect it to any url we want
+        
               this.props.history.push('/')
           })
       })
@@ -92,16 +84,13 @@ class App extends Component {
 
   }
 
-  handleDeleteitem = (itemId) => {
-    // delete the item from the DB
+  handleDeleteItem = (itemId) => {
     axios.delete(`${API_URL}/api/items/${itemId}`, {withCredentials: true})
       .then(() => {
-        // and then also filter and remove the item from the local state
         let filtereditems = this.state.items.filter((item) => {
           return item._id !== itemId
         })
 
-        //update the state and redirect synchronously
         this.setState({
           items: filtereditems
         } , () => {
@@ -114,14 +103,11 @@ class App extends Component {
       })
   }
 
-  handleEdititem = (event, item) => {
+  handleEditItem = (event, item) => {
     event.preventDefault()
 
-    // pass a second parameter to the patch for sending info to your server inside req.body
     axios.patch(`${API_URL}/api/items/${item._id}`, item, {withCredentials: true})
       .then(() => {
-          // also update your local state here and redirect to home page
-          // mapping over all the items and updating the one that was edited
           let updateditems = this.state.items.map((singleitem) => {
               if (singleitem._id === item._id) {
                 singleitem.name = item.name
@@ -143,19 +129,16 @@ class App extends Component {
 
   handleSignup = async (event) => {
     event.preventDefault()
-    
-    const {username, email, password} = event.target
+    const {name, email, password} = event.target
 
     let newUser = {
-      username: username.value,
+      name: name.value,
       email: email.value,
       password: password.value
     }
-      console.log(newUser)
-    // make a POST signup request to the server
+
     try {
       await axios.post(`${API_URL}/api/signup`, newUser, {withCredentials: true})
-    
       this.props.history.push('/signin')
     }
     catch(err) {
@@ -165,10 +148,9 @@ class App extends Component {
 
   handleSignin = async (event) => {
     event.preventDefault()
-    console.log('Sign in works!!!! Yippeeee')
+    console.log('Sign in works!!')
       const { email, password} = event.target
 
-      // our new user info
       let myUser = {
         email: email.value,
         password: password.value
@@ -198,6 +180,7 @@ class App extends Component {
     try {
 
       await axios.post(`${API_URL}/api/logout`, {}, {withCredentials: true})
+
       this.setState({
         user: null
       } , () => {
@@ -211,7 +194,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('App props', this.props)
   
     if (this.state.fetchingUser) {
       return <p>Loading . . . </p>
@@ -220,8 +202,8 @@ class App extends Component {
 
     return (
       <div >
-      
-        
+
+
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} />
           <Switch>
               <Route exact path={'/'}  render={() => {
@@ -230,15 +212,14 @@ class App extends Component {
               <Route exact path={'/item/:itemId'} render={(routeProps) => {
                 return <ItemDetail user={this.state.user} {...routeProps} onDelete={this.handleDeleteItem} />
               }} />
-        
-              <Route  path="/signin"  render={(routeProps) => {
-                return  <Signin  error={this.state.myError} onSignin={this.handleSignin} {...routeProps}  /> 
-              }}/>
               <Route  path="/signup"  render={(routeProps) => {
                 return  <Signup onSignup={this.handleSignup} {...routeProps}  />
               }}/>
-              <MapView />
-            </Switch>
+              <Route  path="/signin"  render={(routeProps) => {
+                return  <Signin  error={this.state.myError} onSignin={this.handleSignin} {...routeProps}  /> 
+              }}/>
+            <MapView />
+          </Switch>
       </div>
     );
   }
