@@ -1,3 +1,5 @@
+/*
+
 
 import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
@@ -29,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
-}));
+}));    */
 
 /**
  * The example data is structured as follows:
@@ -58,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-
+/*
 function TitlebarImageList() {
   const classes = useStyles();
 
@@ -90,4 +92,4 @@ function TitlebarImageList() {
 
 
 export default TitlebarImageList;    
-
+    */
