@@ -1,7 +1,7 @@
 import React from 'react'
-import Lottie from 'react-lottie';
+import LottieControl from 'react-lottie';
 
-function LottieControl(props) {
+function Lottie(props) {
 
 	const { height, width, animation } = props
 	
@@ -23,4 +23,4 @@ function LottieControl(props) {
 		</div>
 	)
 }
-export default LottieControl
+export default Lottie

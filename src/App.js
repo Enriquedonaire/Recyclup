@@ -12,7 +12,7 @@ import ItemDetail from './components/ItemDetail'
 import EditProfile from './components/EditProfile'
 import AddItem from './components/AddItem'
 import EditItem from './components/EditItem';
-import LottieControl from './components/LottieControl'
+import Lottie from './components/LottieControl'
 import NotFound from "./components/NotFound";
 
 import {API_URL} from './config.js';
