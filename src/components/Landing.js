@@ -1,4 +1,4 @@
-/*
+
 import React, {useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
@@ -11,6 +11,7 @@ import InfoIcon from '@material-ui/icons/Info';
 import items from './itemData';    
 import axios from 'axios'
 import NavBar from './Navbar'
+import ItemList from './ItemList';
 //und: https://material-ui.com/components/popover/     für das About us Popup. 
 
 const useStyles = makeStyles((theme) => ({
@@ -57,12 +58,13 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-/*
+
 function TitlebarImageList() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
+      <ItemList/>
       <ImageList rowHeight={180} className={classes.imageList}>
         <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">Find items in your neighbourhood!</ListSubheader>
@@ -87,5 +89,5 @@ function TitlebarImageList() {
 }   
 
 
-export default TitlebarImageList;    */
+export default TitlebarImageList;    
 
