@@ -9,7 +9,9 @@ import {API_URL} from './config'
 import "./App.css";
 import MapView from './components/MapView'
 import  Navbar  from './components/Navbar'
-
+import Landing from './components/Landing'; 
+import NotFound from './components/NotFound'
+// import dotenv from 'dotenv'??
 
 class App extends Component {
 
@@ -218,7 +220,9 @@ class App extends Component {
               <Route  path="/signin"  render={(routeProps) => {
                 return  <Signin  error={this.state.myError} onSignin={this.handleSignin} {...routeProps}  /> 
               }}/>
+              <Route component= {NotFound} />
             <MapView />
+            
           </Switch>
       </div>
     );
