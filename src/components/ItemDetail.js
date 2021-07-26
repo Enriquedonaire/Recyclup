@@ -7,12 +7,11 @@ import { Link } from 'react-router-dom'
 import {API_URL} from '../config'
 import {Button} from  'react-bootstrap'
 
+const itemDetail = ItemDetail
 
 class ItemDetail extends Component {
-    
     state = {
         myItemDetail: null,
-
     }
 
     async componentDidMount() {

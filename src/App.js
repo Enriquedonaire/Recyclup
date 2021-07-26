@@ -2,13 +2,14 @@ import { Switch, Route, withRouter } from "react-router-dom";
 import React, { Component } from 'react'
 
 import axios from 'axios'
-import SignIn from './components/Signin'
-import SignUp from "./components/Signup";
-import NavBar from "./components/Navbar";
-import Landing from './components/Landing'; 
+import Signin from './components/Signin'
+import Signup from "./components/Signup";
+import Navbar from "./components/Navbar";
+// import Landing from './components/Landing'; 
 
 import ProfileDetail from "./components/ProfileDetail";
 import ItemDetail from './components/ItemDetail'
+import ItemList from './components/ItemList'
 import EditProfile from './components/EditProfile'
 import AddItem from './components/AddItem'
 import EditItem from './components/EditItem';
@@ -127,7 +128,9 @@ class App extends Component {
   handleItem = async(event) => {
     try {
       let response = await axios.get(`http://localhost:5005/api/item`,)
-      updateItems(response.data)
+      this.setState({ 
+        item: response.data
+      })
     }  
     catch(err){
       console.log('Item fetch failed', err)
@@ -137,53 +140,54 @@ class App extends Component {
 
 
   //__________________ADD ITEM__________________________
-  handleAddItem = async (event) => {
+  // handleAddItem = (event) => {
 
-    
+  //   event.preventDefault()
+  //     let newItem = {
+  //       name: event.target.name.value,
+  //       description: event.target.description.value,
+  //       available: false,     //or set it to true by default??
+  //       picture: event.target.image.value
+  //     }
+  //      axios.post(`http://${API_URL}/api/additem`, newItem)
+  //     .then((response) =>{
+  //       this.setState({ 
+  //         items:[response.data, ...items]
+  //       }, () => {
+  //         this.props.history.push('/profile/:profileId')
+  //       })
+  //     })
+  //     .catch((err) => {
+  //     console.log('Item fetch failed', err)
+  //     })
+  //   }
 
-    event.preventDefault()
+  // handleEdititem = (event, item) => {
+  //   event.preventDefault()
 
-    try {
-      let newItem = {
-        name: event.target.name.value,
-        description: event.target.description.value,
-        available: false,     //or set it to true by default??
-        picture: event.target.image.value
-      }
-      let response = await axios.post(`http://localhost:5005/api/create`, newItem)
-      updateItems([response.data, ...items])
-    }  
-    catch(err){
-      console.log('Item fetch failed', err)
-    }
-  }
+  //   // pass a second parameter to the patch for sending info to your server inside req.body
+  //   axios.patch(`${API_URL}/api/items/${item._id}`, item, {withCredentials: true})
+  //     .then(() => {
+  //         // also update your local state here and redirect to home page
+  //         // mapping over all the items and updating the one that was edited
+  //         let updateditems = this.state.items.map((singleitem) => {
+  //             if (singleitem._id === item._id) {
+  //               singleitem.name = item.name
+  //               singleitem.description = item.description
+  //             } 
+  //           return singleitem
+  //         })
 
-  handleEdititem = (event, item) => {
-    event.preventDefault()
-
-    // pass a second parameter to the patch for sending info to your server inside req.body
-    axios.patch(`${API_URL}/api/items/${item._id}`, item, {withCredentials: true})
-      .then(() => {
-          // also update your local state here and redirect to home page
-          // mapping over all the items and updating the one that was edited
-          let updateditems = this.state.items.map((singleitem) => {
-              if (singleitem._id === item._id) {
-                singleitem.name = item.name
-                singleitem.description = item.description
-              } 
-            return singleitem
-          })
-
-          this.setState({
-            items: updateditems
-          }, () => {
-              this.props.history.push('/')
-          })
-      })
-      .catch(() => {
-          console.log('Edit failed')
-      })
-  }
+  //         this.setState({
+  //           items: updateditems
+  //         }, () => {
+  //             this.props.history.push('/')
+  //         })
+  //     })
+  //     .catch(() => {
+  //         console.log('Edit failed')
+  //     })
+  // }
 
   handleSignup = async (event) => {
     event.preventDefault()
@@ -355,5 +359,6 @@ class App extends Component {
     )
   }
 }
+
 
 export default withRouter(App)
