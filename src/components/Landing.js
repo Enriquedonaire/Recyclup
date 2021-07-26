@@ -1,4 +1,6 @@
-
+/*
+import React, {useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
 import ImageListItem from '@material-ui/core/ImageListItem';
@@ -6,9 +8,10 @@ import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-import ItemList from './ItemsList';
+import items from './itemData';    
 import axios from 'axios'
-import NavBar from './NavBar'
+import NavBar from './Navbar'
+//und: https://material-ui.com/components/popover/     für das About us Popup. 
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,11 +36,11 @@ const useStyles = makeStyles((theme) => ({
  * import image from 'path/to/image.jpg';
  * [etc...]
  *
- * const itemData = [
+ * const items = [
  *   {
- *     img: image,
- *     title: 'Image',
- *     author: 'author',
+ *     image: image,
+ *     name: '',
+ *     username: '',
  *   },
  *   {
  *     [etc...]
@@ -45,12 +48,17 @@ const useStyles = makeStyles((theme) => ({
  * ];
  */
 
-//TODO: show 12 random items with no doubles. 
-//do for loop 15 times inside useEffect [] (?), then push only unique elements to randomelements array? 
-// then slice that new randomelements array 
+//TODO: show 12 random items with no doubles. avoid having less than 12
+
+//do for loop 20 times inside useEffect [] (?), then push only unique elements to initially empty randomelements array(if !randomArr.includes(randomelem)-> push, else break?) (create 2 arrays first?)
+// then slice that new randomelements array to 12 elements
+//map over 12 elems & render properties
+//make them clickable --> wrap link to around?? if user loggedIn, redirect to /map, else: redirect /signin
 
 
-export default function TitlebarImageList() {
+
+/*
+function TitlebarImageList() {
   const classes = useStyles();
 
   return (
@@ -58,16 +66,16 @@ export default function TitlebarImageList() {
       <ItemList/>
       <ImageList rowHeight={180} className={classes.imageList}>
         <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
-          <ListSubheader component="div">December</ListSubheader>
+          <ListSubheader component="div">Find items in your neighbourhood!</ListSubheader>
         </ImageListItem>
-        {itemData.map((item) => (
-          <ImageListItem key={item.img}>
-            <img src={item.img} alt={item.title} />
+        {items.map((item) => (
+          <ImageListItem key={item.image}>
+            <img src={item.image} alt={item.title} />
             <ImageListItemBar
               title={item.title}
-              subtitle={<span>by: {item.author}</span>}
+              subtitle={<span>by: {item.username}</span>}
               actionIcon={
-                <IconButton aria-label={`info about ${item.title}`} className={classes.icon}>
+                <IconButton aria-label={`info about ${item.name}`} className={classes.icon}>
                   <InfoIcon />
                 </IconButton>
               }
@@ -77,4 +85,8 @@ export default function TitlebarImageList() {
       </ImageList>
     </div>
   );
-} 
+}   
+
+
+export default TitlebarImageList;    */
+
