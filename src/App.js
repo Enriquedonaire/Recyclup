@@ -131,12 +131,13 @@ class App extends Component {
 
   handleSignup = async (event) => {
     event.preventDefault()
-    const {name, email, password} = event.target
+    const {name, username, email, password} = event.target
 
     let newUser = {
       name: name.value,
       email: email.value,
-      password: password.value
+      password: password.value,
+      username: username.value
     }
 
     try {
