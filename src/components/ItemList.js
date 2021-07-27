@@ -9,10 +9,14 @@ class ItemList extends Component {
         const {items} = this.props
         return (
             <div>
+                <h1>
+                    Items 
+
+                </h1>
                 {
                     items.map((item, i) => {
                         return <p key={i}>
-                            <Link to={`/mapview/${item._id}`}>{item.name}</Link>
+                            <Link to={`/items/${item._id}`}>{item.name}</Link>
                             </p>
                     })
                 }

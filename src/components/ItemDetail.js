@@ -7,12 +7,12 @@ import {Redirect} from 'react-router-dom'
 import {Button} from  'react-bootstrap'
 
 
-const itemDetail =  ItemDetail 
+
 
 class ItemDetail extends Component {
     
     state = {
-        myItemDetail: null,
+        itemDetail: null,
 
     }
 
@@ -40,9 +40,12 @@ class ItemDetail extends Component {
         if (!this.state.itemDetail) {
             return <Spinner animation="border" variant="primary" />
         } 
-
+        const {itemDetail} = this.state
         return (
             <div>
+                <h4>
+                    Username: {itemDetail.username}
+                </h4>
                 <h4>
                     Name: {itemDetail.name}
                 </h4>

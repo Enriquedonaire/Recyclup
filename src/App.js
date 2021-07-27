@@ -9,13 +9,13 @@ import Signup from './components/Signup'
 import {API_URL} from './config'
 import "./App.css";
 import MapView from "./components/MapView";
-
+import ProfileDetail from  "./components/Profile"
 
 class App extends Component {
 
   state = {
     items: [],
-    name: [],
+    user: [],
     myError: null,
     fetchingUser: true, 
   }
@@ -62,9 +62,10 @@ class App extends Component {
 
 
     let newItem = {
+      username: event.target.value.username.value,
       name: event.target.name.value,
       description: event.target.description.value,
-      available: false,
+      available: true,
       image: imgResponse.data.image
     }
 
@@ -206,10 +207,10 @@ class App extends Component {
 
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} />
           <Switch>
-              <Route exact path={'/'}  render={() => {
+              <Route exact path={'/items'}  render={() => {
                 return <ItemList  items={this.state.items} />
               }} />
-              <Route exact path={'/item/:itemId'} render={(routeProps) => {
+              <Route exact path={'/items/:itemId'} render={(routeProps) => {
                 return <ItemDetail user={this.state.user} {...routeProps} onDelete={this.handleDeleteItem} />
               }} />
               <Route  path="/signup"  render={(routeProps) => {
