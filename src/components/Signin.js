@@ -13,14 +13,14 @@ function Signin(props){
             </div>
             <br></br>
             <button type="submit" className="btn btn-primary">Submit</button>
-            {
+            {/* {
+                props.error && <p>{props.error}</p>
+
                 props.error ? (
                     <p>{props.error}</p>
                 ) : ''
-            }
-            {
-                props.error && <p>{props.error}</p>
-            }
+            } */}
+
         </form>
     )
 }

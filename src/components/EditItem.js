@@ -1,6 +1,6 @@
 import React from 'react'
 
-function EditProfile() {
+function EditItem() {
     return (
         <div>
             
@@ -8,4 +8,4 @@ function EditProfile() {
     )
 }
 
-export default EditProfile
+export default EditItem

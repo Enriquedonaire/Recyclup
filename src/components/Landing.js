@@ -12,7 +12,6 @@ import items from './itemData';
 import axios from 'axios'
 import NavBar from './Navbar'
 //und: https://material-ui.com/components/popover/     für das About us Popup. 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -29,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
     color: 'rgba(255, 255, 255, 0.54)',
   },
 }));
-
 /**
  * The example data is structured as follows:
  *
@@ -61,9 +59,11 @@ const useStyles = makeStyles((theme) => ({
 function TitlebarImageList() {
   const classes = useStyles();
 
+/*
+function TitlebarImageList() {
+  const classes = useStyles();
   return (
     <div className={classes.root}>
-      <ItemList/>
       <ImageList rowHeight={180} className={classes.imageList}>
         <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">Find items in your neighbourhood!</ListSubheader>

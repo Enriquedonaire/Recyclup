@@ -1,34 +1,27 @@
-import React, { Component } from  'react'
-import {Button} from  'react-bootstrap'
-import {Redirect} from 'react-router-dom'
+import React from 'react'
+import {Component} from 'react'
+import {API_URL} from '../config'
+import {Link} from 'react-router-dom'
+
 
 class AddItem extends Component {
 
-    // my props will look like this
-    /*
-        this.props = {
-            onAdd : func,
-			user: OBject
-        }
 
-    */
-    
-	render() {
 
-		if (!this.props.user) {
-			//redirect to signin page 
-			return <Redirect to={'/signin'} />
-		}
+    render() {
 
-		return (
-			<form onSubmit={this.props.onAdd} encType="multipart/form-data" >
-				<input  name="name"  type="text"  placeholder="Enter name"/>
-				<input  name="description"  type="text"  placeholder="Enter desc"/>
-				<input type="file" name="myImage" accept="image/png, image/jpg"></input>
-				<Button  type="submit" >Submit</Button>
-			</form>
-		)
-	}
+        return (
+            
+            <form onSubmit={this.props.onClick}>
+                
+            <input  name="name"  type="text"  placeholder="Enter your item"/>
+            <input  name="username"  type="text"  placeholder="what is your username?"/>
+            <input  name="description"  type="text"  placeholder="describe your item"/>
+            <input  name="image"  type="text"  placeholder="upload picture"/>
+            <button  type="submit"  >Submit</button>
+            </form>
+        )
+    }
 }
 
-export  default AddItem
+export default AddItem
