@@ -1,6 +1,7 @@
 import React from 'react'
-import Component from 'react'
+import {Component} from 'react'
 import {API_URL} from '../config'
+import {Link} from 'react-router-dom'
 
 
 class AddItem extends Component {
@@ -11,7 +12,8 @@ class AddItem extends Component {
 
         return (
             
-            <form onSubmit={this.props.handleAddItem}>
+            <form onSubmit={this.props.onClick}>
+                
             <input  name="name"  type="text"  placeholder="Enter your item"/>
             <input  name="username"  type="text"  placeholder="what is your username?"/>
             <input  name="description"  type="text"  placeholder="describe your item"/>

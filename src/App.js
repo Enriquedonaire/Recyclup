@@ -195,8 +195,8 @@ class App extends Component {
 
 
   handleLogOut = async () => {
-    try {
 
+    try {
       await axios.post(`${API_URL}/api/logout`, {}, {withCredentials: true})
 
       this.setState({
@@ -204,7 +204,7 @@ class App extends Component {
       } , () => {
         this.props.history.push('/')
       })
-
+      console.log('logout successful')
     }
     catch(err) {
       console.log('Logout failed', err)
@@ -214,19 +214,22 @@ class App extends Component {
   
   
   
-// handleProfileDetail = async(event) =>{
+handleProfile= async(event) =>{
+console.log('hello handleprofile')
 
-//   event.preventDefault()
-
-//   const {name, description, image} = event.target
-
-//   try{
-//     await axios.get(`http://${API_URL}/api/user/${user._id}`)
-//   }
-//   catch(err){
-//     console.log('failed to fetch profle', err)
-//   }
-// }
+  try{
+    let response = await axios.get(`${API_URL}/api/profile`, {withCredentials:true})
+    console.log(response, 'profile response')
+    this.setState({
+      user: response.data
+    }, () => {
+      this.props.history.push(`/profile`)
+    })
+  }
+  catch(err){
+    console.log('failed to fetch profile', err)
+  }
+}
 
 // handleEditProfileDetail = async (event) => {
 //   event.preventDefault()
@@ -292,7 +295,7 @@ class App extends Component {
 
     return (
       <div >        
-        <Navbar user={this.state.user} onLogOut={this.handleLogOut} />
+        <Navbar user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />
           <Switch>
             <Route  path="/signup"  render={(routeProps) => {
               return  <Signup onSignup={this.handleSignup} {...routeProps}  />
@@ -306,10 +309,10 @@ class App extends Component {
             <Route exact path={'/item/:itemId'} render={(routeProps) => {
               return <ItemDetail user={this.state.user} {...routeProps} />
             }} />
-            <Route path={'/myprofile'}  render={(routeProps) => {
-            return <MyProfile user={this.state.user} {...routeProps}/>
+            <Route path={'/profile'}  render={(routeProps) => {
+            return <MyProfile user={this.state.user}  {...routeProps}/>
             }} />
-            <Route path={'/myprofile/createitem'}  render={(routeProps) => {
+            <Route path={'/profile/:userId/createitem'}  render={(routeProps) => {
             return <AddItem {...routeProps} user={this.state.user}  onClick={this.handleAddItem} />
             }} />
             <MapView />

@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
 
-function Navbar() {
+function Navbar(props) {
 
     const classes = useStyles()
 
@@ -30,7 +30,7 @@ function Navbar() {
 
         <div className={classes.root}>
             <AppBar position="static">
-                <Toolbar>
+              <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                   <MenuIcon />
                 </IconButton>
@@ -38,20 +38,21 @@ function Navbar() {
                 RECYCLUP
                 </Typography>
                 {
-                  this.props.user ? (
-                    <Link  style={{marginLeft: '10px'}}  to="/profile/:userId">My Profile</Link> 
-                    &&
-                    <button onClick={this.props.onLogOut}>Logout</button>
-
+                  props.user ? (
+                    <>
+                      <button onClick={props.onHandleProfile}>My Profile</button>
+                      <button onClick={props.onLogOut}>Logout</button>
+                    </>
                     ) : (
-
-                    <Link to = {'/signin'}>
-                      <Button color="inherit"> Sign in</Button>
-                    </Link> 
-                    &&
-                    <Link to = {'/signup'}>
-                      <Button color="inherit">Sign up</Button>
-                    </Link>
+                    <>
+                      <Link to = {'/signin'}>
+                        <Button color="inherit"> Sign in</Button>
+                      </Link> 
+                      
+                      <Link to = {'/signup'}>
+                        <Button color="inherit">Sign up</Button>
+                      </Link>
+                    </>
                 )}
               </Toolbar>
             </AppBar>

@@ -10,25 +10,24 @@ import {API_URL} from '../config'
 class MyProfile extends Component {
 
     state = {
-        user: [],
-        items: []
+        user: this.props.user,
+        items: this.props.user.itemsId
     }
 
-
-    async componentDidMount(){
-        try {
-            //check the `<Routes>` in App.js. That's where the params `todoId` comes from
+    // async componentDidMount(){
+    //     try {
+    //         //check the `<Routes>` in App.js. That's where the params `todoId` comes from
             
-            let userId = this.props.match.params._id
-            let response = await axios.get(`http://${API_URL}/api/profile/${userId}`)
-            this.setState({
-                user: response.data
-            })
-        }  
-        catch(err){
-            console.log('Todo fetch failed', err)
-        }
-    }
+    //         let userId = this.props.match.params._id
+    //         let response = await axios.get(`http://${API_URL}/api/profile/${userId}`)
+    //         this.setState({
+    //             user: response.data
+    //         })
+    //     }  
+    //     catch(err){
+    //         console.log('Todo fetch failed', err)
+    //     }
+    // }
 
 
 
