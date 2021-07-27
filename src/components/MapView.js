@@ -1,5 +1,6 @@
 import React from  'react'
 import {MapContainer, TileLayer, Marker, Popup} from  'react-leaflet'
+import {useState} from 'react-dom'
 import { Link } from 'react-router-dom'
 import  'leaflet/dist/leaflet.css'
 import L from 'leaflet';
@@ -11,8 +12,7 @@ const MyIcon = L.icon({
 	iconUrl: 'https://img.icons8.com/pastel-glyph/64/000000/marker.png',
 	iconSize: [25, 41],
 	iconAnchor: [12.5, 41 ],
-	popupAnchor: [0, -41],
-	
+	popupAnchor: [0, -41],	
 })
 
 
@@ -43,8 +43,7 @@ function MapView() {
                     <Button className="btn btn-primary" >
                     Item Details
                     </Button>
-				</Popup>
-        
+			</Popup>        
 			</Marker>
 			<Marker  position={positionTwo} icon={MyIcon}  >
             <Popup>

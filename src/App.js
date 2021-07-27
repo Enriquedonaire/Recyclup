@@ -68,21 +68,21 @@ class App extends Component {
     console.log('hello handleADDITEM')
     event.preventDefault()
         
-    {/*console.log(event.target.myImage.files[0] )
+    // console.log(event.target.myImage.files[0] )
     
-    let formData = new FormData()
-    formData.append('imageUrl', event.target.myImage.files[0])
+    // let formData = new FormData()
+    // formData.append('imageUrl', event.target.myImage.files[0])
     
-    let imgResponse = await axios.post(`${API_URL}/api/upload`, formData)
-    console.log(imgResponse)*/}
+    // let imgResponse = await axios.post(`${API_URL}/api/upload`, formData)
+    // console.log(imgResponse)
     
     
     let newItem = {
       username: event.target.name.value,
       name: event.target.name.value,
       description: event.target.description.value,
-      available: true,
-      //image: imgResponse.data.image,
+      available: false,
+      // image: imgResponse.data.image,
     }
     console.log(newItem)
     axios.post(`${API_URL}/api/create`, newItem, {withCredentials: true})
@@ -300,9 +300,9 @@ handleProfile= async(event) =>{
         return <p>Loading . . . </p>
       }
 
-
-    return (
-      <div >        
+      
+      return (
+        <div >        
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />
           <Switch>
             <Route  path="/signup"  render={(routeProps) => {
@@ -318,14 +318,13 @@ handleProfile= async(event) =>{
               return <ItemDetail user={this.state.user} {...routeProps} />
             }} />
             <Route exact path={'/profile'}  render={(routeProps) => {
-            return <MyProfile user={this.state.user}  {...routeProps}/>
+              return <MyProfile user={this.state.user}  {...routeProps}/>
             }} />
             <Route exact path={'/profile/create'}  render={(routeProps) => {
-            return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />
+              return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />
             }} />
-              <MapView />
+            <MapView />
             <Route component= {NotFound} />
-          
             
           </Switch>
       </div>
