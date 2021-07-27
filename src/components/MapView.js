@@ -1,5 +1,6 @@
 import React from  'react'
 import {MapContainer, TileLayer, Marker, Popup} from  'react-leaflet'
+import {useState} from 'react-dom'
 import { Link } from 'react-router-dom'
 import  'leaflet/dist/leaflet.css'
 import L from 'leaflet';
@@ -12,8 +13,7 @@ const MyIcon = L.icon({
 	iconUrl: 'https://img.icons8.com/pastel-glyph/64/000000/marker.png',
 	iconSize: [25, 41],
 	iconAnchor: [12.5, 41 ],
-	popupAnchor: [0, -41],
-	
+	popupAnchor: [0, -41],	
 })
 
 // research click hook for leaflet
@@ -28,11 +28,15 @@ function MapView() {
 	const positionThree = [37.19642565106683, -3.635752072085296]
 	const positionFour = [37.18937597538319, -3.7195308903238926]
     
-	//Do not forget to set a width and height style to your map. Else it won't show up
-	return (
-		
 
-	
+	// get geolocalisation from browser
+	// let initialPosition = ['latitude', 'latitude']
+
+	// const [position, updatePosition] = useState(initialPosition)
+	//Do not forget to set a width and height style to your map. Else it won't show up
+
+	return (
+			
 		<MapContainer  
 			style={{width: '800px', height: '500px'}} 
 			center={position}  zoom={13}  
@@ -52,8 +56,7 @@ function MapView() {
                             <Link to={`/items`}>Item Details</Link>
                             
                     </Button>
-				</Popup>
-        
+			</Popup>        
 			</Marker>
 			<Marker  position={positionTwo} icon={MyIcon}  >
             <Popup>

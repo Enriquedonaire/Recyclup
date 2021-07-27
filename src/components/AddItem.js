@@ -16,8 +16,7 @@ class AddItem extends Component {
 
         return (
             
-            <form onClick={onAddItem}>
-                
+            <form onSubmit={onAddItem}>                
             <input  name="name"  type="text"  placeholder="Enter your item"/>
             <input  name="username"  type="text"  placeholder="what is your username?"/>
             <input  name="description"  type="text"  placeholder="describe your item"/>
