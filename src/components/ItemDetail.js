@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom'
 import {API_URL} from '../config'
 import {Button} from  'react-bootstrap'
 
-const itemDetail = ItemDetail
+
 
 class ItemDetail extends Component {
     state = {
-        myItemDetail: null,
+        itemDetail: null,
     }
 
     async componentDidMount() {
@@ -53,14 +53,14 @@ class ItemDetail extends Component {
                     Description: {itemDetail.description}
                 </h6>
                 <h6>Item holder profile </h6>
-                {/* <Link to={`/item/${itemDetail._id}/edit`}>
+                <Link to={`/item/${itemDetail._id}/edit`}>
                     <Button className="btn btn-primary" >
                         Edit 
                     </Button>
                 </Link>
                 <Button onClick={() => {  this.props.onDelete( itemDetail._id )   } } className="btn btn-primary">
                     Delete
-                </Button> */}
+                </Button> 
             </div>
         )
     }

@@ -16,7 +16,7 @@ class ItemList extends Component {
                 {
                     items.map((item, i) => {
                         return <p key={i}>
-                            <Link to={`/items/:itemId`}>{item.name}</Link>
+                            <Link to={`/items/${item._id}`}>{item.name}</Link>
                             </p>
                     })
                 }

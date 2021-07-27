@@ -305,6 +305,9 @@ handleProfile= async(event) =>{
         <div >        
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />
           <Switch>
+            <Route exact path='/' render={(routeProps) => { 
+                return <Landing items={this.state.items} />
+            }} />
             <Route  path="/signup"  render={(routeProps) => {
               return  <Signup onSignup={this.handleSignup} {...routeProps}  />
             }}/>
@@ -314,8 +317,8 @@ handleProfile= async(event) =>{
             <Route exact path={'/items'}  render={() => {
               return <ItemList  items={this.state.items} />
             }} />
-            <Route exact path={'/item/:itemId'} render={(routeProps) => {
-              return <ItemDetail user={this.state.user} {...routeProps} />
+            <Route exact path={'/items/:itemId'} render={(routeProps) => {
+              return <ItemDetail user={this.state.user} {...routeProps}  onDelete={this.handleDeleteItem}/>
             }} />
             <Route exact path={'/profile'}  render={(routeProps) => {
               return <MyProfile user={this.state.user}  {...routeProps}/>
