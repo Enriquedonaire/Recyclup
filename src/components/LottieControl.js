@@ -1,26 +1,26 @@
-// import React from 'react'
-// import LottieControl from 'react-lottie';
+import React from 'react'
+import Lottie from 'react-lottie'
 
-// function Lottie(props) {
+function myLottie(props) {
 
-// 	const { height, width, animation } = props
-	
-// 	const defaultOptions = {
-// 		loop: true,
-// 		autoplay: true,
-// 		animationData: animation,
-// 		rendererSettings: {
-// 			preserveAspectRatio: 'xMidYMid slice'
-// 		}
-// 	};
-// 	return (
-// 		<div>
-// 			<Lottie  
-// 				options={defaultOptions}  
-// 				height={height}  
-// 				width={width }
-// 			/>
-// 		</div>
-// 	)
-// }
-// export default Lottie
+	const { height, width, animation } = props
+        
+        const defaultOptions = {
+            loop: true,
+            autoplay: true,
+            animationData: animation,
+        rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice'
+            }
+        };
+        return (
+            <div>
+                <Lottie  
+                    options={defaultOptions}  
+                    height={height}  
+                    width={width }
+                />
+            </div>
+        )
+    }
+    export default myLottie

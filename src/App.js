@@ -17,8 +17,11 @@ import Lottie from './components/LottieControl'
 
 import {API_URL} from './config.js';
 import "./App.css";
-import MapView from "./components/MapView";
-import ProfileDetail from  "./components/Profile"
+import MapView from './components/MapView'
+import Landing from './components/Landing'; 
+import NotFound from './components/NotFound'
+import { responsiveFontSizes } from "@material-ui/core";
+// import dotenv from 'dotenv'??
 
 class App extends Component {
 
@@ -152,13 +155,14 @@ class App extends Component {
 
   handleSignup = async (event) => {
     event.preventDefault()
-    const {name, email, password} = event.target
+    const {username, name, email, password} = event.target
     console.log(event.target)
 
     let newUser = {
       name: name.value,
       email: email.value,
-      password: password.value
+      password: password.value,
+      username: username.value
     }
 
     try {
@@ -219,11 +223,11 @@ class App extends Component {
   
   
 handleProfile= async(event) =>{
-console.log('hello handleprofile')
+
 
   try{
     let response = await axios.get(`${API_URL}/api/profile`, {withCredentials:true})
-    console.log(response, 'profile response')
+    console.log(responsiveFontSizes)
     this.setState({
       user: response.data
     }, () => {
@@ -319,7 +323,9 @@ console.log('hello handleprofile')
             <Route exact path={'/profile/create'}  render={(routeProps) => {
             return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />
             }} />
+            <Route component= {NotFound} />
             <MapView />
+            
           </Switch>
       </div>
     )

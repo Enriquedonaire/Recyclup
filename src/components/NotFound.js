@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Lottie from 'react-lottie'
+
 import LottieControl from './LottieControl';
 
 
@@ -7,7 +7,7 @@ import LottieControl from './LottieControl';
 //that didnt work, but feel free to try out.
 //if you wanna use another one, just go to lottiefile, download free animation as json, copy code in src--> animations --> someAnimation.json & import here
 import sofaError from '../animations/notfound.json'   //save json locally!
-import TextAndButtonAndCable from '../animations/notFoundwithText.json'
+import TextAndButtonAndCable from '../animations/notFoundWithText.json'
 import wineError from '../animations/wineError.json'
 
 class NotFound extends Component {
