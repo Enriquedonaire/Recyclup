@@ -6,13 +6,17 @@ import {Link} from 'react-router-dom'
 
 class AddItem extends Component {
 
-
+    state = {
+        items: []
+    }
 
     render() {
+        const {onAddItem} = this.props
+        console.log('add iten props', this.props)
 
         return (
             
-            <form onSubmit={this.props.onClick}>
+            <form onClick={onAddItem}>
                 
             <input  name="name"  type="text"  placeholder="Enter your item"/>
             <input  name="username"  type="text"  placeholder="what is your username?"/>

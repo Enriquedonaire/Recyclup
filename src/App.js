@@ -61,9 +61,10 @@ class App extends Component {
   }
 
   handleAddItem = async (event) => {
+    
+    console.log('hello handleADDITEM')
     event.preventDefault()
-    
-    
+        
     console.log(event.target.myImage.files[0] )
     
     let formData = new FormData()
@@ -74,7 +75,7 @@ class App extends Component {
     
     
     let newItem = {
-      username: event.target.value.username.value,
+      username: event.target.name.value,
       name: event.target.name.value,
       description: event.target.description.value,
       available: false,
@@ -88,13 +89,15 @@ class App extends Component {
         items: [response.data, ...this.state.items]
       }, () => {
         
-        this.props.history.push('/')
+        this.props.history.push('/items')
       })
     })
     .catch(() => {
       console.log('Adding item failed')
     })
   }
+
+
 //this is just check
   handleDeleteItem = (itemId) => {
     axios.delete(`${API_URL}/api/items/${itemId}`, {withCredentials: true})
@@ -145,7 +148,7 @@ class App extends Component {
   //     })
   // }
 
- 
+
 
   handleSignup = async (event) => {
     event.preventDefault()
@@ -310,11 +313,11 @@ console.log('hello handleprofile')
             <Route exact path={'/item/:itemId'} render={(routeProps) => {
               return <ItemDetail user={this.state.user} {...routeProps} />
             }} />
-            <Route path={'/profile'}  render={(routeProps) => {
+            <Route exact path={'/profile'}  render={(routeProps) => {
             return <MyProfile user={this.state.user}  {...routeProps}/>
             }} />
-            <Route path={'/profile/create'}  render={(routeProps) => {
-            return <AddItem {...routeProps} user={this.state.user}  onClick={this.handleAddItem} />
+            <Route exact path={'/profile/create'}  render={(routeProps) => {
+            return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />
             }} />
             <MapView />
           </Switch>
