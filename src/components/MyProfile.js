@@ -11,7 +11,7 @@ class MyProfile extends Component {
 
     state = {
         user: this.props.user,
-        items: this.props.user.itemsId
+        // items: this.props.user.itemsId
     }
 
     // async componentDidMount(){
@@ -40,8 +40,8 @@ class MyProfile extends Component {
                 <Avatar alt="Remy Sharp" src="someImageUrl"/>
                 <div>Hey ! I am this user {user.username}</div>
                 <div> this is my profile pic</div>
-                <Link to="/profile/${userId}/createitem">
-                    <h3>post item to give away</h3>
+                <Link to={`/profile/create`}>
+                    <button>post item to give away</button>
                 </Link>
             </div>
         )
