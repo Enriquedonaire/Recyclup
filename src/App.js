@@ -300,8 +300,7 @@ handleProfile= async(event) =>{
       if (this.state.fetchingUser) {
         return <p>Loading . . . </p>
       }
-
-      
+            
       return (
         <div >        
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />

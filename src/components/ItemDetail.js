@@ -10,9 +10,11 @@ import {Button} from  'react-bootstrap'
 const itemDetail = ItemDetail
 
 class ItemDetail extends Component {
+
     state = {
-        myItemDetail: null,
+        itemDetail: null,
     }
+    
 
     async componentDidMount() {
         try {
@@ -20,7 +22,7 @@ class ItemDetail extends Component {
             let response = await axios.get(`${API_URL}/api/items/${itemId}`)
 
             console.log('item detail response data', response.data)
-            
+
             this.setState({
                 itemDetail: response.data
             })
