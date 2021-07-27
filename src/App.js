@@ -81,6 +81,7 @@ class App extends Component {
       username: event.target.name.value,
       name: event.target.name.value,
       description: event.target.description.value,
+      position: event.target.location.value,
       available: false,
       // image: imgResponse.data.image,
     }
@@ -299,8 +300,7 @@ handleProfile= async(event) =>{
       if (this.state.fetchingUser) {
         return <p>Loading . . . </p>
       }
-
-      
+            
       return (
         <div >        
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />

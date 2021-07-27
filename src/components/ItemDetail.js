@@ -10,9 +10,11 @@ import {Button} from  'react-bootstrap'
 
 
 class ItemDetail extends Component {
+
     state = {
         itemDetail: null,
     }
+    
 
     async componentDidMount() {
         try {
@@ -20,7 +22,7 @@ class ItemDetail extends Component {
             let response = await axios.get(`${API_URL}/api/items/${itemId}`)
 
             console.log('item detail response data', response.data)
-            
+
             this.setState({
                 itemDetail: response.data
             })
@@ -54,9 +56,6 @@ class ItemDetail extends Component {
                 </h6>
                 <h6>Item holder profile </h6>
                 <Link to={`/item/${itemDetail._id}/edit`}>
-                    <Button className="btn btn-primary" >
-                        Edit 
-                    </Button>
                 </Link>
                 <Button onClick={() => {  this.props.onDelete( itemDetail._id )   } } className="btn btn-primary">
                     Delete
