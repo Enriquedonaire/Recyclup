@@ -12,7 +12,7 @@ import axios from 'axios'
 class EditItem extends Component {
 
     state ={
-       item: null
+    item: null
     }
     
     componentDidMount() {
@@ -52,13 +52,13 @@ class EditItem extends Component {
     
         // pass a second parameter to the patch for sending info to your server inside req.body
         axios.patch(`${API_URL}/api/items/${this.state.item._id}`, editedItem, {withCredentials: true})
-          .then(() => {              
-              this.props.history.push('/profile')
-            })   
-          .catch((err) => {
-              console.log('Edit failed', err)
-          })
-      }
+            .then(() => {              
+                this.props.history.push('/')
+                })   
+            .catch((err) => {
+                console.log('Edit failed', err)
+            })
+}
     
     render() {
 
@@ -83,7 +83,7 @@ class EditItem extends Component {
                     <input name="description" type="text" placeholder={description}/>
                     <input name="image" type="text" placeholder={image}/>
                     <label>
-                         available? 
+                        available? 
                     </label>
                     <input name="available" type="checkbox" label="is this item still available ??"/>
                     {/* PUT CHECK BOX WITH YES AND NO  */}

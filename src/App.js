@@ -196,7 +196,7 @@ class App extends Component {
             this.setState({
               items: [updateItem, ...items]       
             }, () => {
-                this.props.history.push('/')
+                this.props.history.push('/items')
             })      
       })
 
@@ -296,6 +296,7 @@ handleProfile= async(event) =>{
 
 handleEditProfileDetail = async (event) => {
     event.preventDefault()
+    
     const {username, name, email, password} = event.target
 
       let userProfile = {
@@ -318,9 +319,7 @@ handleEditProfileDetail = async (event) => {
   catch(err){
     console.log('failed to fetch profile', err)
   }
-     // and then also filter and remove the todo from the local state
-     // also update your local state here and redirect to home page
-//     // mapping over all the todos and updating the one that was edited
+  
 
 }
 
