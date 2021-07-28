@@ -2,11 +2,11 @@ import React from 'react';
 import TitlebarImageList from './ImageListLanding'
 
 
-function Landing() {
+function Landing(props) {
     return (
         <div>
             {/*  */}
-         <TitlebarImageList />    
+         <TitlebarImageList user= {props.user}/>    
         </div>
     )
 }
