@@ -63,11 +63,13 @@ class App extends Component {
     }
   }
 
+  
+
   handleAddItem = async (event) => {
     
     console.log('hello handleADDITEM')
     event.preventDefault()
-        
+  
     // console.log(event.target.myImage.files[0] )
     
     // let formData = new FormData()
@@ -76,12 +78,11 @@ class App extends Component {
     // let imgResponse = await axios.post(`${API_URL}/api/upload`, formData)
     // console.log(imgResponse)
     
-    
     let newItem = {
       username: event.target.name.value,
       name: event.target.name.value,
       description: event.target.description.value,
-      position: event.target.location.value,
+      position: (locationMarker),
       available: false,
       // image: imgResponse.data.image,
     }

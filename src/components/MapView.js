@@ -42,6 +42,7 @@ function MapView() {
 			},
 			})
 			//call props here
+			useState(position)
 			console.log('here')
 			return position === null ? null : (
 			<Marker position={position}>
@@ -51,9 +52,7 @@ function MapView() {
 		}
 
 	return (
-		
-
-	
+			
 		<MapContainer  
 			style={{width: '800px', height: '500px'}} 
 			center={positionOne}  zoom={13}  
@@ -61,8 +60,7 @@ function MapView() {
 			<TileLayer 
 				attribution='&copy; <a href="http://osm.org/copyright">Recyclup-Map</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-			/>
-			
+			/>			    
 			<LocationMarker />
 		</MapContainer>
 	

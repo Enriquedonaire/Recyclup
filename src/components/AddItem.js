@@ -3,25 +3,29 @@ import {Component} from 'react'
 import {API_URL} from '../config'
 import {Link} from 'react-router-dom'
 import MapView from './MapView'
+import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leaflet'
+import  'leaflet/dist/leaflet.css'
+import L from 'leaflet';
 
 
 class AddItem extends Component {
 
-    state ={
-        position: null
-    }
+    // state ={
+    //     position: null
+    // }
 
+    
+    
     getLocation(){
         if (navigator.geolocation){
             navigator.geolocation.getCurrentPosition((position)=>{
-                this.setState({position: [position.coords.latitude, position.coords.longitude]})
+                // this.setState({position: [position.coords.latitude, position.coords.longitude]})
+                return `[${position.coords.latitude}, ${position.coords.longitude}]`
             })
         }
     }
 
     
-      
-   
     
     render() {
         const {onAddItem} = this.props
@@ -34,13 +38,10 @@ class AddItem extends Component {
                     <input name="username"  type="text"  placeholder="what is your username?"/>
                     <input name="description"  type="text"  placeholder="describe your item"/>
                     <input name="image"  type="text"  placeholder="upload picture"/>
-                    <input name="location" type="text" value={this.getLocation()}/>
+                    <input name="location" type="text" value={this.getLocation()} hidden/>
                     <button type="submit"  >Submit</button>
                 </form>            
-                <MapView />
-              
-                    
-                
+                <MapView />                 
             </>
             
         )
