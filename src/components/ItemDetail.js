@@ -43,6 +43,7 @@ class ItemDetail extends Component {
             return <Spinner animation="border" variant="primary" />
         } 
         const {itemDetail} = this.state
+        console.log('item detail props in this.state', itemDetail)
         return (
             <div>
                 <h4>
@@ -60,6 +61,9 @@ class ItemDetail extends Component {
                 <Button onClick={() => {  this.props.onDelete( itemDetail._id )   } } className="btn btn-primary">
                     Delete
                 </Button> 
+                <Button onClick={() => {  this.props.onEditItem( itemDetail._id )   } } className="btn btn-primary">
+                    <Link to={`/items/:itemId/edit`}/> Edit Item
+                </Button >
             </div>
         )
     }

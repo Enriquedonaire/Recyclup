@@ -34,26 +34,34 @@ class App extends Component {
     user: [],
     myError: null,
     fetchingUser: true, 
+    position: null,
   }
 
+  getLocation = ()=> {
+    let position = ''
+    if (navigator.geolocation){
+        position = navigator.geolocation.getCurrentPosition((position)=>{
+          // console.log([position.coords.latitude, position.coords.longitude])
+            //this.setState({position: [position.coords.latitude, position.coords.longitude]})
+          this.setState({position: [position.coords.latitude, position.coords.longitude]})
+        })
+    }
+    this.setState({position})
+}
 
   async componentDidMount(){
     try {
-
+        this.getLocation()
         let response = await axios.get(`${API_URL}/api/items`, {withCredentials: true})
         console.log(response.data)
         this.setState({
           items: response.data
         })
-
-
-
         let userResponse = await axios.get(`${API_URL}/api/user`, {withCredentials: true})
         this.setState({
           user: userResponse.data,
           fetchingUser: false,
         })
-
     }  
     catch(err){
       console.log('item fetch failed', err)
@@ -63,7 +71,6 @@ class App extends Component {
     }
   }
 
-  
 
   handleAddItem = async (event) => {
     
@@ -82,7 +89,7 @@ class App extends Component {
       username: event.target.name.value,
       name: event.target.name.value,
       description: event.target.description.value,
-      position: (locationMarker),
+      position: this.state.position,
       available: false,
       // image: imgResponse.data.image,
     }
@@ -126,32 +133,41 @@ class App extends Component {
   
 
 
-  // handleEdititem = (event, item) => {
-  //   event.preventDefault()
+  handleEditItem = (event, item) => {
+    console.log('handle edit item hello')
 
-  //   // pass a second parameter to the patch for sending info to your server inside req.body
-  //   axios.patch(`${API_URL}/api/items/${item._id}`, item, {withCredentials: true})
-  //     .then(() => {
-  //         // also update your local state here and redirect to home page
-  //         // mapping over all the items and updating the one that was edited
-  //         let updateditems = this.state.items.map((singleitem) => {
-  //             if (singleitem._id === item._id) {
-  //               singleitem.name = item.name
-  //               singleitem.description = item.description
-  //             } 
-  //           return singleitem
-  //         })
+    // event.preventDefault()
 
-  //         this.setState({
-  //           items: updateditems
-  //         }, () => {
-  //             this.props.history.push('/')
-  //         })
-  //     })
-  //     .catch(() => {
-  //         console.log('Edit failed')
-  //     })
-  // }
+    const [items] = this.state
+
+    // pass a second parameter to the patch for sending info to your server inside req.body
+    axios.patch(`${API_URL}/api/items/${item._id}`, item, {withCredentials: true})
+      .then(() => {
+          // also update your local state here and redirect to home page
+          // mapping over all the items and updating the one that was edited
+          let updateItem = this.state.items.map((singleitem) => {
+              if (singleitem._id === item._id) {
+                singleitem.name = item.name
+                singleitem.username = item.name
+                singleitem.description = item.description
+                singleitem.location = this.state.location
+                singleitem.image =item.image
+                singleitem.available=item.available
+              } 
+            return singleitem
+          })
+            
+            this.setState({
+              items: [updateItem, ...items]       
+            }, () => {
+                this.props.history.push('/')
+            })      
+      })
+
+      .catch(() => {
+          console.log('Edit failed')
+      })
+  }
 
 
 
@@ -319,13 +335,16 @@ handleProfile= async(event) =>{
               return <ItemList  items={this.state.items} />
             }} />
             <Route exact path={'/items/:itemId'} render={(routeProps) => {
-              return <ItemDetail user={this.state.user} {...routeProps}  onDelete={this.handleDeleteItem}/>
+              return <ItemDetail user={this.state.user} {...routeProps} onDelete={this.handleDeleteItem} onEditItem={this.handleEditItem}/>
             }} />
             <Route exact path={'/profile'}  render={(routeProps) => {
               return <MyProfile user={this.state.user}  {...routeProps}/>
             }} />
             <Route exact path={'/profile/create'}  render={(routeProps) => {
               return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />
+            }} />
+            <Route exact path={'/items/:itemId/edit'}  render={(routeProps) => {
+              return <EditItem {...routeProps} user={this.state.user}  onEditItem={this.handleEditItem} />
             }} />
             <MapView />
             <Route component= {NotFound} />

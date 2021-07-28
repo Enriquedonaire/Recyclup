@@ -10,26 +10,24 @@ import L from 'leaflet';
 
 class AddItem extends Component {
 
-    // state ={
-    //     position: null
+    //state ={
+       // position: null
+    
+
+    
+    // getLocation(){
+    //     if (navigator.geolocation){
+    //         navigator.geolocation.getCurrentPosition((position)=>{
+    //             //this.setState({position: [position.coords.latitude, position.coords.longitude]})
+    //             console.log( `[${position.coords.latitude}, ${position.coords.longitude}]`)
+    //         })
+    //     }
     // }
 
     
-    
-    getLocation(){
-        if (navigator.geolocation){
-            navigator.geolocation.getCurrentPosition((position)=>{
-                // this.setState({position: [position.coords.latitude, position.coords.longitude]})
-                return `[${position.coords.latitude}, ${position.coords.longitude}]`
-            })
-        }
-    }
-
-    
-    
     render() {
         const {onAddItem} = this.props
-        console.log('add ite props', this.props)
+        console.log('edit item props', this.props)
 
         return (
             <>            
@@ -38,10 +36,12 @@ class AddItem extends Component {
                     <input name="username"  type="text"  placeholder="what is your username?"/>
                     <input name="description"  type="text"  placeholder="describe your item"/>
                     <input name="image"  type="text"  placeholder="upload picture"/>
-                    <input name="location" type="text" value={this.getLocation()} hidden/>
                     <button type="submit"  >Submit</button>
                 </form>            
-                <MapView />                 
+                <MapView />
+            
+                    
+                
             </>
             
         )
