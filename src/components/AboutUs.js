@@ -23,8 +23,7 @@ function BasicPopover() {
     <div>
       
       <InfoIcon   aria-describedby={id} variant="contained" onClick={handleClick} />
-     
-     
+    
       <Popover
         id={id}
         open={open}
@@ -36,8 +35,8 @@ function BasicPopover() {
         }} 
         transformOrigin= {{
 
-           vertical: 'top',
-           horizontal: 'right'
+            vertical: 'top',
+            horizontal: 'right'
 
         }}
       >

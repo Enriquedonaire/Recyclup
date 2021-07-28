@@ -38,7 +38,7 @@ function Navbar(props) {
                 RECYCLUP
                 <BasicPopover />
                 </Typography>
-               
+              
                 {
                   props.user ? (
                     <>
