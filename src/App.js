@@ -22,6 +22,11 @@ import Landing from './components/Landing';
 import NotFound from './components/NotFound'
 import { responsiveFontSizes } from "@material-ui/core";
 // import dotenv from 'dotenv'??
+import CheckoutForm from "./components/CheckoutForm";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+import './App.css'
+
 
 class App extends Component {
 
@@ -296,13 +301,19 @@ handleProfile= async(event) =>{
                                 
   render(){
       console.log('App props', this.props)
+      const promise = loadStripe("pk_test_f3duw0VsAEM2TJFMtWQ90QAT");
       
       if (this.state.fetchingUser) {
         return <p>Loading . . . </p>
       }
             
       return (
-        <div >        
+        <div >  
+
+         <Elements stripe={promise}>
+              <CheckoutForm />
+            </Elements>     
+
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />
           <Switch>
             <Route exact path='/' render={(routeProps) => { 
@@ -326,8 +337,13 @@ handleProfile= async(event) =>{
             <Route exact path={'/profile/create'}  render={(routeProps) => {
               return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />
             }} />
+          
             <MapView />
+
+        
             <Route component= {NotFound} />
+             
+
             
           </Switch>
       </div>

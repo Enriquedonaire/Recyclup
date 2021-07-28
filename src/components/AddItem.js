@@ -35,7 +35,7 @@ class AddItem extends Component {
                     <input name="description"  type="text"  placeholder="describe your item"/>
                     <input type="file" name="imageUrl" accept="image/png, image/jpg" placeholder="Insert image URL"/>
                     <input name="location" type="text" value={this.getLocation()}/>
-                    <button type="submit"  >Submit</button>
+                    <button type="submit"  >Add</button>
                 </form>            
                 <MapView />
               
