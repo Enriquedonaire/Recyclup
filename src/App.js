@@ -67,14 +67,14 @@ class App extends Component {
     
     console.log('hello handleADDITEM')
     event.preventDefault()
-        
-    // console.log(event.target.myImage.files[0] )
+
+   
     
-    // let formData = new FormData()
-    // formData.append('imageUrl', event.target.myImage.files[0])
+    let formData = new FormData()
+    formData.append('imageUrl', event.target.imageUrl.files[0])
     
-    // let imgResponse = await axios.post(`${API_URL}/api/upload`, formData)
-    // console.log(imgResponse)
+    let imgResponse = await axios.post(`${API_URL}/api/upload`, formData)
+     console.log(imgResponse)
     
     
     let newItem = {
@@ -83,7 +83,7 @@ class App extends Component {
       description: event.target.description.value,
       position: event.target.location.value,
       available: false,
-      // image: imgResponse.data.image,
+      image: imgResponse.data.image,
     }
     console.log(newItem)
     axios.post(`${API_URL}/api/create`, newItem, {withCredentials: true})
