@@ -306,7 +306,7 @@ handleProfile= async(event) =>{
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />
           <Switch>
             <Route exact path='/' render={(routeProps) => { 
-                return <Landing items={this.state.items} />
+                return <Landing items={this.state.items} user= {this.state.user}/>
             }} />
             <Route  path="/signup"  render={(routeProps) => {
               return  <Signup onSignup={this.handleSignup} {...routeProps}  />

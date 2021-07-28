@@ -68,8 +68,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-function TitlebarImageList() {
-
+function TitlebarImageList(props) {
+  const {user} = props
   //useeffect with axios call to db
   //slice minus 12
 
@@ -96,9 +96,10 @@ console.log(items)
         <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">Find items in your neighbourhood!</ListSubheader>
         </ImageListItem>
-    {/* wrap Link around to mao view if not logged in: res.redirect/signin else: show map accordning to location */}
-        { items.map((item) => (
-          <Link to="/signin">                     {/*link here???? */}
+    {/* wrap Link around to map view if not logged in: res.redirect/signin else: show map accordning to location */}
+        { items.map((item) => {
+          return user ? (
+          <Link to={`/item/${item._id}`}>                     {/*link here???? */}
           <ImageListItem key={item.image}>
             <img src={item.image} alt='something' />
             <ImageListItemBar
@@ -111,8 +112,22 @@ console.log(items)
               }
             />
           </ImageListItem>
-          </Link>       
-        ))}
+          </Link>
+          ):(<Link to="/signin">                     {/*link here???? */}
+          <ImageListItem key={item.image}>
+            <img src={item.image} alt='something' />
+            <ImageListItemBar
+              title={item.name}
+              subtitle={<span>by: {item.username}</span>}
+              actionIcon={
+                <IconButton aria-label={`info about ${item.name}`} className={classes.icon}>
+                  <InfoIcon />
+                </IconButton>
+              }
+            />
+          </ImageListItem>
+          </Link> )    
+        })}
       </ImageList>
     </div>
   ) : <p> Loading...</p>
