@@ -96,8 +96,9 @@ console.log(items)
         <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">Find items in your neighbourhood!</ListSubheader>
         </ImageListItem>
-    
+    {/* wrap Link around to mao view if not logged in: res.redirect/signin else: show map accordning to location */}
         { items.map((item) => (
+          <Link to="/signin">                     {/*link here???? */}
           <ImageListItem key={item.image}>
             <img src={item.image} alt='something' />
             <ImageListItemBar
@@ -110,6 +111,7 @@ console.log(items)
               }
             />
           </ImageListItem>
+          </Link>       
         ))}
       </ImageList>
     </div>
