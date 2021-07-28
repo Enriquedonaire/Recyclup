@@ -3,6 +3,9 @@ import {Component} from 'react'
 import {API_URL} from '../config'
 import {Link} from 'react-router-dom'
 import MapView from './MapView'
+import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leaflet'
+import  'leaflet/dist/leaflet.css'
+import L from 'leaflet';
 
 
 class AddItem extends Component {
@@ -11,20 +14,20 @@ class AddItem extends Component {
        // position: null
     
 
-    getLocation(){
-        if (navigator.geolocation){
-            navigator.geolocation.getCurrentPosition((position)=>{
-                //this.setState({position: [position.coords.latitude, position.coords.longitude]})
-                console.log( `[${position.coords.latitude}, ${position.coords.longitude}]`)
-            })
-        }
-    }
+    
+    // getLocation(){
+    //     if (navigator.geolocation){
+    //         navigator.geolocation.getCurrentPosition((position)=>{
+    //             //this.setState({position: [position.coords.latitude, position.coords.longitude]})
+    //             console.log( `[${position.coords.latitude}, ${position.coords.longitude}]`)
+    //         })
+    //     }
+    // }
 
     
-
     render() {
         const {onAddItem} = this.props
-        console.log('add ite props', this.props)
+        console.log('add item props', this.props)
 
         return (
             <>            

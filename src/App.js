@@ -37,6 +37,42 @@ class App extends Component {
     position: null,
   }
 
+  // handleEditItem = (event, item) => {
+  //   console.log('handle edit item hello')
+
+  //   // event.preventDefault()
+
+  //   const [items] = this.state
+
+  //   // pass a second parameter to the patch for sending info to your server inside req.body
+  //   axios.patch(`${API_URL}/api/items/${item._id}`, item, {withCredentials: true})
+  //     .then(() => {
+  //         // also update your local state here and redirect to home page
+  //         // mapping over all the items and updating the one that was edited
+  //         let updateItem = this.state.items.map((singleitem) => {
+  //             if (singleitem._id === item._id) {
+  //               singleitem.name = item.name
+  //               singleitem.username = item.name
+  //               singleitem.description = item.description
+  //               singleitem.location = this.state.location
+  //               singleitem.image =item.image
+  //               singleitem.available=item.available
+  //             } 
+  //           return singleitem
+  //         })
+            
+  //           this.setState({
+  //             items: [updateItem, ...items]       
+  //           }, () => {
+  //               this.props.history.push('/')
+  //           })      
+  //     })
+
+  //     .catch(() => {
+  //         console.log('Edit failed')
+  //     })
+  // }
+
   getLocation = ()=> {
     let position = ''
     if (navigator.geolocation){
@@ -57,18 +93,14 @@ class App extends Component {
         this.setState({
           items: response.data
         })
-
-
-
         let userResponse = await axios.get(`${API_URL}/api/user`, {withCredentials: true})
         this.setState({
           user: userResponse.data,
           fetchingUser: false,
         })
-
     }  
     catch(err){
-      console.log('item fetch failed', err)
+      console.log('user fetch failed', err)
       this.setState({
         fetchingUser: false,
       })
@@ -76,12 +108,11 @@ class App extends Component {
   }
 
 
-
   handleAddItem = async (event) => {
     
     console.log('hello handleADDITEM')
     event.preventDefault()
-        
+  
     // console.log(event.target.myImage.files[0] )
     
     // let formData = new FormData()
@@ -89,7 +120,6 @@ class App extends Component {
     
     // let imgResponse = await axios.post(`${API_URL}/api/upload`, formData)
     // console.log(imgResponse)
-    
     
     let newItem = {
       username: event.target.name.value,
@@ -139,32 +169,41 @@ class App extends Component {
   
 
 
-  // handleEdititem = (event, item) => {
-  //   event.preventDefault()
+  handleEditItem = (event, item) => {
+    console.log('handle edit item hello')
 
-  //   // pass a second parameter to the patch for sending info to your server inside req.body
-  //   axios.patch(`${API_URL}/api/items/${item._id}`, item, {withCredentials: true})
-  //     .then(() => {
-  //         // also update your local state here and redirect to home page
-  //         // mapping over all the items and updating the one that was edited
-  //         let updateditems = this.state.items.map((singleitem) => {
-  //             if (singleitem._id === item._id) {
-  //               singleitem.name = item.name
-  //               singleitem.description = item.description
-  //             } 
-  //           return singleitem
-  //         })
+    // event.preventDefault()
+    console.log(this.state)
+    const [items] = this.state
+    
+    // pass a second parameter to the patch for sending info to your server inside req.body
+    axios.patch(`${API_URL}/api/items/${items._id}`, item, {withCredentials: true})
+      .then(() => {
+          // also update your local state here and redirect to home page
+          // mapping over all the items and updating the one that was edited
+          let updateItem = this.state.items.map((singleitem) => {
+              if (singleitem._id === item._id) {
+                singleitem.name = item.name
+                singleitem.username = item.name
+                singleitem.description = item.description
+                singleitem.location = this.state.location
+                singleitem.image =item.image
+                singleitem.available=item.available
+              } 
+            return singleitem
+          })
+            
+            this.setState({
+              items: [updateItem, ...items]       
+            }, () => {
+                this.props.history.push('/')
+            })      
+      })
 
-  //         this.setState({
-  //           items: updateditems
-  //         }, () => {
-  //             this.props.history.push('/')
-  //         })
-  //     })
-  //     .catch(() => {
-  //         console.log('Edit failed')
-  //     })
-  // }
+      .catch(() => {
+          console.log('Edit failed')
+      })
+  }
 
 
 
@@ -348,7 +387,7 @@ handleEditProfileDetail = async (event) => {
               return <ItemList  items={this.state.items} />
             }} />
             <Route exact path={'/items/:itemId'} render={(routeProps) => {
-              return <ItemDetail user={this.state.user} {...routeProps}  onDelete={this.handleDeleteItem}/>
+              return <ItemDetail user={this.state.user} {...routeProps} onDelete={this.handleDeleteItem}/>
             }} />
             <Route exact path={'/profile'}  render={(routeProps) => {
               return <MyProfile user={this.state.user}  {...routeProps}/>
@@ -358,6 +397,9 @@ handleEditProfileDetail = async (event) => {
             }} />
             <Route exact path={'/profile/create'}  render={(routeProps) => {
               return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />
+            }} />
+            <Route exact path={'/items/:itemId/edit'}  render={(routeProps) => {
+              return <EditItem {...routeProps} user={this.state.user} />
             }} />
             <MapView />
             <Route component= {NotFound} />
