@@ -1,11 +1,12 @@
 import React from 'react';
 import TitlebarImageList from './ImageListLanding'
-import MouseOverPopover from './AboutUs'
+
 
 function Landing() {
     return (
         <div>
-            <MouseOverPopover/>
+            {/*  */}
+         <TitlebarImageList />    
         </div>
     )
 }

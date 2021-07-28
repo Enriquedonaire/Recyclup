@@ -2,52 +2,47 @@
 import * as React from 'react';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import InfoIcon from '@material-ui/icons/Info';
 
-
-
-function MouseOverPopover() {
+function BasicPopover() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  const handlePopoverOpen = (event) => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
-  const handlePopoverClose = () => {
+  const handleClose = () => {
     setAnchorEl(null);
   };
 
   const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover1' : undefined;
 
   return (
     <div>
-      <Typography
-        aria-owns={open ? 'mouse-over-popover' : undefined}
-        aria-haspopup="true"
-        onMouseEnter={handlePopoverOpen}
-        onMouseLeave={handlePopoverClose}
-      >
-        Learn more about us!
-      </Typography>
+      
+      <InfoIcon   aria-describedby={id} variant="contained" onClick={handleClick} />
+     
+     
       <Popover
-        id="mouse-over-popover"
-        sx={{
-          pointerEvents: 'none',
-        }}
+        id={id}
         open={open}
         anchorEl={anchorEl}
+        onClose={handleClose}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'left',    
+        }} 
+        transformOrigin= {{
+
+           vertical: 'top',
+           horizontal: 'right'
+
         }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        onClose={handlePopoverClose}
-        disableRestoreFocus
       >
-        <Typography sx={{ p: 1 }}>
-        Recyclup is dedicated to make your neighbourhood more sustainable and kind.
+        <Typography sx={{ p: 2 }}>Recyclup is dedicated to make your neighbourhood a more sustainable and kind place. <br></br>
+        It does not only allow you to easily get rid of things you might no longer need, but also find nice affordable items nearby.
         </Typography>
       </Popover>
     </div>
@@ -55,4 +50,5 @@ function MouseOverPopover() {
 }
 
 
-export default MouseOverPopover;
+
+export default BasicPopover;
