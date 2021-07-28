@@ -254,20 +254,27 @@ handleProfile= async(event) =>{
   }
 }
 
-// handleEditProfileDetail = async (event) => {
-//   event.preventDefault()
-//   try {
-//     // pass a second parameter to the patch for sending info to your server inside req.body
-//     await axios.patch(`http://localhost:5005/api/user/${user._id}`, profile)
-//     // and then also filter and remove the todo from the local state
-//     // also update your local state here and redirect to home page
-//     // mapping over all the todos and updating the one that was edited
-//   }  
-//   catch(err){
-//     console.log('profile update failed', err)
-//   }
 
-// }
+handleEditProfileDetail = async (event) => {
+    event.preventDefault()
+    try {
+     // pass a second parameter to the patch for sending info to your server inside req.body
+    let response = await axios.patch(`${API_URL}/api/profile`, {withCredentials:true})
+
+    this.setState({
+      user: response.data
+    }, () => {
+      this.props.history.push(`/:profileId/edit`)
+    })
+  }
+  catch(err){
+    console.log('failed to fetch profile', err)
+  }
+     // and then also filter and remove the todo from the local state
+     // also update your local state here and redirect to home page
+//     // mapping over all the todos and updating the one that was edited
+
+}
 
 
 
@@ -336,6 +343,9 @@ handleProfile= async(event) =>{
             }} />
             <Route exact path={'/profile'}  render={(routeProps) => {
               return <MyProfile user={this.state.user}  {...routeProps}/>
+            }} />
+                <Route path={'/profile/:profileId/edit'}  render={(routeProps) => {
+              return <EditProfile {...routeProps}  onEditProfile={this.handleEditProfileDetail} />
             }} />
             <Route exact path={'/profile/create'}  render={(routeProps) => {
               return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />

@@ -40,9 +40,15 @@ class MyProfile extends Component {
                 <Avatar alt="Remy Sharp" src="someImageUrl"/>
                 <div>Hey ! I am this user {user.name}</div>
                 <div> this is my profile pic</div>
-                <Link to={`/profile/create`}>
-                    <button>post item to give away</button>
-                </Link>
+                <button> <Link to={`/profile/create`}>
+                    post item to give away
+                        </Link>
+                </button>
+                <button> <Link to={`/profile/:profileId/edit`}>
+                    Edit your Profile
+                        </Link>
+                </button>
+
             </div>
         )
     }
