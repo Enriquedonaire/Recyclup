@@ -137,7 +137,7 @@ class App extends Component {
         items: [response.data, ...this.state.items]
       }, () => {
         
-        this.props.history.push('/items')
+        this.props.history.push('/')
       })
     })
     .catch(() => {
