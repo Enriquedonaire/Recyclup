@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import ImageList from '@material-ui/core/ImageList';
@@ -9,12 +9,12 @@ import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 //import items from './itemData';    
 import axios from 'axios'
-import NavBar from './Navbar'
-import ItemList from './ItemList';
+import {API_URL} from '../config'
+//import the sclieced array here
 
 
 
-/* Whats below here if for the IMAGE LIST FROM MATERIAL UI. DO NOT DELETE PLEAAAASE
+//Whats below here if for the IMAGE LIST FROM MATERIAL UI. DO NOT DELETE PLEAAAASE
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
@@ -30,12 +30,12 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
-}));    */
+}));    
 
 /**
  * The example data is structured as follows:
  *
- * import image from 'path/to/image.jpg';
+ * import image from 'path/to/image.jpg';        
  * [etc...]
  *
  * const items = [
@@ -54,8 +54,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 //ON SERVER SIDE:
-//1. do for loop 20 times inside useEffect [] (?), then push only unique elements to initially empty randomelements array(if !randomArr.includes(randomelem)-> push, else break?) (create 2 arrays first?)
-//nach Manish: NO for loop in useEffect, stattdessen auf server seite bei der route nur 20 items fetchen
+//1. do for loop 20 times inside useEffect [] (?), 
+//then push only unique elements to initially empty randomelements array
+//(if !randomArr.includes(randomelem)-> push, else break?) (create 2 arrays first?)
+//nach Manish: NO for loop in useEffect, stattdessen auf server seite bei der route nur 20 random items fetchen
 
 //2.  then slice that new randomelements array to 12 elements //also server side
 
@@ -65,23 +67,41 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-/*
+
 function TitlebarImageList() {
+
+  //useeffect with axios call to db
+  //slice minus 12
+
+const [items, fetchItems] = useState(null)
+
+useEffect(() => {
+  async function getItems (){
+    let response = await axios.get(`${API_URL}/api`, {withCredentials: true})
+    fetchItems (response.data.slice(-12))
+    
+
+  }
+getItems()
+}, [])
+console.log(items)
+
 
   const classes = useStyles();
 
-  return (
+  return items? (
     <div className={classes.root}>
-      <ItemList/>
+     
       <ImageList rowHeight={180} className={classes.imageList}>
         <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">Find items in your neighbourhood!</ListSubheader>
         </ImageListItem>
-        {items.map((item) => (
+    
+        { items.map((item) => (
           <ImageListItem key={item.image}>
-            <img src={item.image} alt={item.title} />
+            <img src={item.image} alt='something' />
             <ImageListItemBar
-              title={item.title}
+              title={item.name}
               subtitle={<span>by: {item.username}</span>}
               actionIcon={
                 <IconButton aria-label={`info about ${item.name}`} className={classes.icon}>
@@ -93,9 +113,9 @@ function TitlebarImageList() {
         ))}
       </ImageList>
     </div>
-  );
+  ) : <p> Loading...</p>
 }   
 
 
-export default TitlebarImageList;    */
+export default TitlebarImageList;    
 
