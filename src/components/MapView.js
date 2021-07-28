@@ -1,5 +1,5 @@
-import React from  'react'
-import {MapContainer, TileLayer, Marker, Popup} from  'react-leaflet'
+import React ,{ useState} from  'react'
+import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leaflet'
 import { Link } from 'react-router-dom'
 import  'leaflet/dist/leaflet.css'
 import L from 'leaflet';
@@ -18,7 +18,33 @@ const MyIcon = L.icon({
 
 
 
-function MapView() {
+
+
+
+
+function MapView(props) {
+	
+	function LocationMarker() {
+		const [position, setPosition] = useState(null)
+		const map = useMapEvents({
+		  click(e) {
+		console.log(e.latlng)
+			props.onMapClick(e.latlng)
+			map.locate()
+		  },
+		  locationfound(e) {
+			setPosition(e.latlng)
+			map.flyTo(e.latlng, map.getZoom())
+		  },
+		})
+	  
+		return position === null ? null : (
+		  <Marker position={position}>
+			<Popup>You are here</Popup>
+		  </Marker>
+		)
+	  }
+
 	
     //Some random co-ordinate
 	const position = [37.18339180230675, -3.590014870182515]
@@ -39,51 +65,7 @@ function MapView() {
 				attribution='&copy; <a href="http://osm.org/copyright">Recyclup-Map</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
-			
-            <Marker places  position={position} icon={MyIcon}  >
-            <Popup>
-					<h2>Item Description </h2> <br/>
-					<img src='https://www.hastaterminarstock.com.uy/imgs/productos/productos31_67951.png'/>
-					
-                    <Button className="btn btn-primary" >
-					<Link to={`/`}>Item Details</Link>
-                    </Button>
-				</Popup>
-        
-			</Marker>
-			<Marker  position={positionTwo} icon={MyIcon}  >
-            <Popup>
-					<h2>Item Description </h2> <br/>
-					<img src='https://www.alfaventas.com/imgs/productos/productos31_4575.jpg'/>
-					<Link to={`/`}>Item Details</Link>
-                    <Button className="btn btn-primary" >
-                    <Link to={`/`}>Item Details</Link>
-                    </Button>
-				</Popup>
-        
-			</Marker>
-			<Marker  position={positionThree} icon={MyIcon}  >
-            <Popup>
-					<h2>Item Description </h2> <br/>
-					<img src='https://images-v2.rappi.com/products/2093237187-1615478847357.jpg?d=240x240'/>
-					
-                    <Button className="btn btn-primary" >
-                    <Link to={`/`}>Item Details</Link>
-                    </Button>
-				</Popup>
-        
-			</Marker>
-			<Marker  position={positionFour} icon={MyIcon}  >
-            <Popup>
-					<h2>Item Description </h2> <br/>
-					<img src='https://www.szames.com.uy/imgs/productos/productos31_2731.jpg'/>
-					
-                    <Button className="btn btn-primary" >
-                <Link to={`/`}>Item Details</Link>
-                    </Button>
-				</Popup>
-        
-			</Marker>
+		<LocationMarker/>
 		</MapContainer>
 	
 	)

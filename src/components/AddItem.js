@@ -10,9 +10,16 @@ import L from 'leaflet';
 
 class AddItem extends Component {
 
-    //state ={
-       // position: null
+
+    state ={
+       position: null
+    }
     
+    updatePosition = (position) =>{
+        this.setState({
+            position
+        })
+    }
 
     
     // getLocation(){
@@ -31,14 +38,14 @@ class AddItem extends Component {
 
         return (
             <>            
-                <form onSubmit={onAddItem}>                
+                <form onSubmit={(event) => { onAddItem(event, this.state.position) }}>                
                     <input name="name"  type="text"  placeholder="Enter your item"/>
                     <input name="username"  type="text"  placeholder="what is your username?"/>
                     <input name="description"  type="text"  placeholder="describe your item"/>
                     <input name="image"  type="text"  placeholder="upload picture"/>
                     <button type="submit"  >Submit</button>
-                </form>            
-                <MapView />
+                </form>         
+                <MapView onMapClick={this.updatePosition}/>
             
                     
                 

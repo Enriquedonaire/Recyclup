@@ -108,9 +108,9 @@ class App extends Component {
   }
 
 
-  handleAddItem = async (event) => {
+  handleAddItem = async (event, position) => {
     
-    console.log('hello handleADDITEM')
+    console.log('hello handleADDITEM', position)
     event.preventDefault()
   
     // console.log(event.target.myImage.files[0] )
@@ -125,7 +125,7 @@ class App extends Component {
       username: event.target.name.value,
       name: event.target.name.value,
       description: event.target.description.value,
-      position: this.state.position,
+      position: [position.lat, position.lng],
       available: false,
       // image: imgResponse.data.image,
     }
