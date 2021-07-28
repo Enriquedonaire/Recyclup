@@ -34,12 +34,24 @@ class App extends Component {
     user: [],
     myError: null,
     fetchingUser: true, 
+    position: null,
   }
 
+  getLocation = ()=> {
+    let position = ''
+    if (navigator.geolocation){
+        position = navigator.geolocation.getCurrentPosition((position)=>{
+          // console.log([position.coords.latitude, position.coords.longitude])
+            //this.setState({position: [position.coords.latitude, position.coords.longitude]})
+          this.setState({position: [position.coords.latitude, position.coords.longitude]})
+        })
+    }
+    this.setState({position})
+}
 
   async componentDidMount(){
     try {
-
+        this.getLocation()
         let response = await axios.get(`${API_URL}/api/items`, {withCredentials: true})
         console.log(response.data)
         this.setState({
@@ -63,6 +75,8 @@ class App extends Component {
     }
   }
 
+
+
   handleAddItem = async (event) => {
     
     console.log('hello handleADDITEM')
@@ -81,7 +95,7 @@ class App extends Component {
       username: event.target.name.value,
       name: event.target.name.value,
       description: event.target.description.value,
-      position: event.target.location.value,
+      position: this.state.position,
       available: false,
       // image: imgResponse.data.image,
     }
