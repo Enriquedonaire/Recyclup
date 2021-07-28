@@ -37,8 +37,8 @@ function Navbar(props) {
                   <MenuIcon />
                 </IconButton>
                <Typography variant="h6" className={classes.title}>
-                {/*RECYCLUP   */}
-                <image src={Logo}/>
+                RECYCLUP   
+               
                 <BasicPopover />
                 </Typography>
                
