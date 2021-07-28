@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import BasicPopover from './AboutUs';
+import Logo from '../assets/logo.png.png'
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,8 +36,9 @@ function Navbar(props) {
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                   <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" className={classes.title}>
-                RECYCLUP
+               <Typography variant="h6" className={classes.title}>
+                RECYCLUP   
+               
                 <BasicPopover />
                 </Typography>
               

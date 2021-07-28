@@ -77,8 +77,8 @@ const [items, fetchItems] = useState(null)
 
 useEffect(() => {
   async function getItems (){
-    let response = await axios.get(`${API_URL}/api`, {withCredentials: true})
-    fetchItems (response.data.slice(-1))
+    let response = await axios.get(`${API_URL}/api/items`, {withCredentials: true})
+    fetchItems (response.data.slice(-12))
     
 
   }
