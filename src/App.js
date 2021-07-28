@@ -37,6 +37,42 @@ class App extends Component {
     position: null,
   }
 
+  // handleEditItem = (event, item) => {
+  //   console.log('handle edit item hello')
+
+  //   // event.preventDefault()
+
+  //   const [items] = this.state
+
+  //   // pass a second parameter to the patch for sending info to your server inside req.body
+  //   axios.patch(`${API_URL}/api/items/${item._id}`, item, {withCredentials: true})
+  //     .then(() => {
+  //         // also update your local state here and redirect to home page
+  //         // mapping over all the items and updating the one that was edited
+  //         let updateItem = this.state.items.map((singleitem) => {
+  //             if (singleitem._id === item._id) {
+  //               singleitem.name = item.name
+  //               singleitem.username = item.name
+  //               singleitem.description = item.description
+  //               singleitem.location = this.state.location
+  //               singleitem.image =item.image
+  //               singleitem.available=item.available
+  //             } 
+  //           return singleitem
+  //         })
+            
+  //           this.setState({
+  //             items: [updateItem, ...items]       
+  //           }, () => {
+  //               this.props.history.push('/')
+  //           })      
+  //     })
+
+  //     .catch(() => {
+  //         console.log('Edit failed')
+  //     })
+  // }
+
   getLocation = ()=> {
     let position = ''
     if (navigator.geolocation){
@@ -64,7 +100,7 @@ class App extends Component {
         })
     }  
     catch(err){
-      console.log('item fetch failed', err)
+      console.log('user fetch failed', err)
       this.setState({
         fetchingUser: false,
       })
@@ -137,11 +173,11 @@ class App extends Component {
     console.log('handle edit item hello')
 
     // event.preventDefault()
-
+    console.log(this.state)
     const [items] = this.state
-
+    
     // pass a second parameter to the patch for sending info to your server inside req.body
-    axios.patch(`${API_URL}/api/items/${item._id}`, item, {withCredentials: true})
+    axios.patch(`${API_URL}/api/items/${items._id}`, item, {withCredentials: true})
       .then(() => {
           // also update your local state here and redirect to home page
           // mapping over all the items and updating the one that was edited
@@ -335,7 +371,7 @@ handleProfile= async(event) =>{
               return <ItemList  items={this.state.items} />
             }} />
             <Route exact path={'/items/:itemId'} render={(routeProps) => {
-              return <ItemDetail user={this.state.user} {...routeProps} onDelete={this.handleDeleteItem} onEditItem={this.handleEditItem}/>
+              return <ItemDetail user={this.state.user} {...routeProps} onDelete={this.handleDeleteItem}/>
             }} />
             <Route exact path={'/profile'}  render={(routeProps) => {
               return <MyProfile user={this.state.user}  {...routeProps}/>
@@ -344,7 +380,7 @@ handleProfile= async(event) =>{
               return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />
             }} />
             <Route exact path={'/items/:itemId/edit'}  render={(routeProps) => {
-              return <EditItem {...routeProps} user={this.state.user}  onEditItem={this.handleEditItem} />
+              return <EditItem {...routeProps} user={this.state.user} />
             }} />
             <MapView />
             <Route component= {NotFound} />

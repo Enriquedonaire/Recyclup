@@ -27,7 +27,7 @@ class AddItem extends Component {
     
     render() {
         const {onAddItem} = this.props
-        console.log('edit item props', this.props)
+        console.log('add item props', this.props)
 
         return (
             <>            

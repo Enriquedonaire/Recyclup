@@ -61,7 +61,6 @@ function MapView() {
 			/>			    
 			{/* <LocationMarker /> */}
 		</MapContainer>
-	
 	)
 }
 
