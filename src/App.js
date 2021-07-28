@@ -257,14 +257,23 @@ handleProfile= async(event) =>{
 
 handleEditProfileDetail = async (event) => {
     event.preventDefault()
+    const {username, name, email, password} = event.target
+
+      let userProfile = {
+        username: username.value,
+        name: name.value,
+        email: email.value,
+        password: password.value
+      }
+    
     try {
      // pass a second parameter to the patch for sending info to your server inside req.body
-    let response = await axios.patch(`${API_URL}/api/profile`, {withCredentials:true})
+    let response = await axios.patch(`${API_URL}/api/profile/${userProfile._id}`,userProfile,  {withCredentials:true})
 
     this.setState({
       user: response.data
     }, () => {
-      this.props.history.push(`/:profileId/edit`)
+      this.props.history.push(`/profile`)
     })
   }
   catch(err){
@@ -344,7 +353,7 @@ handleEditProfileDetail = async (event) => {
             <Route exact path={'/profile'}  render={(routeProps) => {
               return <MyProfile user={this.state.user}  {...routeProps}/>
             }} />
-                <Route path={'/profile/:profileId/edit'}  render={(routeProps) => {
+                <Route path={'/profile/:id/edit'}  render={(routeProps) => {
               return <EditProfile {...routeProps}  onEditProfile={this.handleEditProfileDetail} />
             }} />
             <Route exact path={'/profile/create'}  render={(routeProps) => {
