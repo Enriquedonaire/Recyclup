@@ -46,7 +46,7 @@ function MapView() {
 					<img src='https://www.hastaterminarstock.com.uy/imgs/productos/productos31_67951.png'/>
 					
                     <Button className="btn btn-primary" >
-					<Link to={`/`}>Item Details</Link>
+					<Link to={`/items`}>Item Details</Link>
                     </Button>
 				</Popup>
         
@@ -55,9 +55,9 @@ function MapView() {
             <Popup>
 					<h2>Item Description </h2> <br/>
 					<img src='https://www.alfaventas.com/imgs/productos/productos31_4575.jpg'/>
-					<Link to={`/`}>Item Details</Link>
+					<Link to={`/items`}>Item Details</Link>
                     <Button className="btn btn-primary" >
-                    <Link to={`/`}>Item Details</Link>
+                    <Link to={`/items`}>Item Details</Link>
                     </Button>
 				</Popup>
         
@@ -68,7 +68,7 @@ function MapView() {
 					<img src='https://images-v2.rappi.com/products/2093237187-1615478847357.jpg?d=240x240'/>
 					
                     <Button className="btn btn-primary" >
-                    <Link to={`/`}>Item Details</Link>
+                    <Link to={`/items`}>Item Details</Link>
                     </Button>
 				</Popup>
         
@@ -79,7 +79,7 @@ function MapView() {
 					<img src='https://www.szames.com.uy/imgs/productos/productos31_2731.jpg'/>
 					
                     <Button className="btn btn-primary" >
-                <Link to={`/`}>Item Details</Link>
+                <Link to={`/items`}>Item Details</Link>
                     </Button>
 				</Popup>
         
