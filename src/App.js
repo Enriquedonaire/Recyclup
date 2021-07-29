@@ -23,7 +23,7 @@ import NotFound from './components/NotFound'
 import { responsiveFontSizes } from "@material-ui/core";
 // import dotenv from 'dotenv'??
 
-// import './App.css'
+import './App.css'
 
 
 class App extends Component {

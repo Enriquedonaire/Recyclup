@@ -6,6 +6,8 @@ import {
 } from "@stripe/react-stripe-js";
 
 import { API_URL } from "../config";
+import axios from 'axios'
+
 
 export default function CheckoutForm() {
   const [succeeded, setSucceeded] = useState(false);
@@ -18,16 +20,10 @@ export default function CheckoutForm() {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    window
-      .fetch(`${API_URL}/api/create-payment-intent`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({items: [{ id: "xl-tshirt" }]})
-      })
+
+    axios.post(`${API_URL}/api/create-payment-intent`, {items: [{ id: "xl-tshirt" }]}, {withCredentials: true})
       .then(res => {
-        return res.json();
+        return res.data;
       })
       .then(data => {
         setClientSecret(data.clientSecret);
@@ -62,6 +58,8 @@ export default function CheckoutForm() {
   const handleSubmit = async ev => {
     ev.preventDefault();
     setProcessing(true);
+   
+
 
     const payload = await stripe.confirmCardPayment(clientSecret, {
       payment_method: {
@@ -76,11 +74,12 @@ export default function CheckoutForm() {
       setError(null);
       setProcessing(false);
       setSucceeded(true);
+      axios.post(`${API_URL}/api/createdonation`, {}, {withCredentials: true})
     }
   };
 
   return (
-    <form id="payment-form" onSubmit={handleSubmit}>
+    <form id="payment-form" className ="form1" onSubmit={handleSubmit}>
       <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
       <button
         disabled={processing || disabled || succeeded}
@@ -90,7 +89,7 @@ export default function CheckoutForm() {
           {processing ? (
             <div className="spinner" id="spinner"></div>
           ) : (
-            "Make a small donation"
+            "Make a small 5 $ donation"
           )}
         </span>
       </button>
