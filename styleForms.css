@@ -108,7 +108,7 @@ button:hover {
   left: 0;
 } */
 
-.brand-logo-main {
+.brand-logo-main {      
   display: flex;
   justify-content: center;
   align-items: center;
