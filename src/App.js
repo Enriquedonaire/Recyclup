@@ -324,7 +324,10 @@ handleEditProfileDetail = async (event) => {
 }
 
 
-                           
+
+//________________________________________________________-
+            
+                                
   render(){
       console.log('App props', this.props)
       
@@ -363,7 +366,7 @@ handleEditProfileDetail = async (event) => {
             <Route exact path={'/items/:itemId/edit'}  render={(routeProps) => {
               return <EditItem {...routeProps} user={this.state.user} />
             }} />
-            <MapView />
+           
             <Route component= {NotFound} />
             
           </Switch>

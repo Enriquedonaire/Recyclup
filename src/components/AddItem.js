@@ -15,7 +15,7 @@ class AddItem extends Component {
     
     updatePosition = (position) =>{
         this.setState({
-            position
+            position: [position.lat, position.lng]
         })
     }
 
