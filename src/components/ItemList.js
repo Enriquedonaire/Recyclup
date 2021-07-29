@@ -16,14 +16,14 @@ class ItemList extends Component {
               // console.log([position.coords.latitude, position.coords.longitude])
                 //this.setState({position: [position.coords.latitude, position.coords.longitude]})
                 console.log('position',position)
-              this.setState({position: [position.coords.latitude, position.coords.longitude]})
+            this.setState({position: [position.coords.latitude, position.coords.longitude]})
             })
         } console.log(position)
         this.setState({position})
     }; 
 
     componentDidMount = () => {
-      this.getLocation()  
+        this.getLocation()  
     } 
 
     state = {
