@@ -2,19 +2,29 @@ import React from 'react'
 import {Component} from 'react'
 import {API_URL} from '../config'
 import {Link} from 'react-router-dom'
+import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leaflet'
 import MapView from './MapView'
 // import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leaflet'
 import  'leaflet/dist/leaflet.css'
 import L from 'leaflet';
 import axios from 'axios'
 
-
 class EditItem extends Component {
 
     state ={
-        item: null
+       item: null,
+       position: null
     }
-    
+     
+     updatePosition = (position) =>{
+         this.setState({
+             position
+         })
+     }
+
+
+
+
     componentDidMount() {
         console.log('component mounted')
         const myItem = this.props.match.params.itemId 
@@ -61,14 +71,12 @@ class EditItem extends Component {
     
     render() {
 
-
-
         // const {onEditItem} = this.props
         console.log('edit item props', this.props)
 
         if (!this.state.item) {
             return (
-                <p>L O A D I N G  . . .. . . . .</p>
+                <p>L O A D I N G  . . . . . . .</p>
             )
         }
         
@@ -84,11 +92,11 @@ class EditItem extends Component {
                     <label>
                             available? 
                     </label>
-                    <input name="available" type="checkbox" label="is this item still available ??"/>
+                    <input name="available" type="checkbox" label="is this item still available ?"/>
                     {/* PUT CHECK BOX WITH YES AND NO  */}
                     <button type="submit">Submit</button>
                 </form> 
-                <MapView />                
+                <MapView  onMapClick={this.updatePosition}/>                
             </>
             
         )

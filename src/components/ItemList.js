@@ -7,12 +7,40 @@ import {Button} from  'react-bootstrap'
 
 
 class ItemList extends Component {
-
     
+    getLocation = () => {
+        let position = [37.18339180230675, -3.590014870182515]
+        
+        if (navigator.geolocation){
+            navigator.geolocation.getCurrentPosition((position)=>{
+              // console.log([position.coords.latitude, position.coords.longitude])
+                //this.setState({position: [position.coords.latitude, position.coords.longitude]})
+                console.log('position',position)
+              this.setState({position: [position.coords.latitude, position.coords.longitude]})
+            })
+        } console.log(position)
+        this.setState({position})
+    }; 
+
+    componentDidMount = () => {
+      this.getLocation()  
+    } 
+
+    state = {
+        position: []
+    }
 
 
     render() {
+
+        const {items} = this.props
+
         
+        if (!items) {
+            return <p> L O A D I N G   . . . . .</p>
+        }
+        
+
         const MyIcon = L.icon({
             iconUrl: 'https://img.icons8.com/pastel-glyph/64/000000/marker.png',
             iconSize: [25, 41],
@@ -20,8 +48,12 @@ class ItemList extends Component {
             popupAnchor: [0, -41],
             
         })
-        const {items} = this.props
-        const position = [37.18339180230675, -3.590014870182515]
+
+    
+
+        const {position} = this.state
+        console.log('ItemList props are', this.props)
+        // const position = [37.18339180230675, -3.590014870182515]
 
         return (
             <div>
@@ -41,7 +73,6 @@ class ItemList extends Component {
                     {
                     items.map((item, i) => {
                         return (
-                        
                             <Marker  key={i}  position={item.position} icon={MyIcon}  >
                                 <Popup>
                                         <h2>Item Description </h2> <br/>
@@ -50,14 +81,13 @@ class ItemList extends Component {
                                         <Button className="btn btn-primary" >
                                         Item Details
                                         </Button>
-                                    </Popup>
-                            
-                                </Marker>
+                                </Popup>                            
+                            </Marker>
                         )
-                        
-                    })
-                }
-    
+                           
+                        })
+                    }
+       
                 </MapContainer>
             </div>
         )

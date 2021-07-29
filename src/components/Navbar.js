@@ -45,8 +45,13 @@ function Navbar(props) {
                 {
                   props.user ? (
                     <>
-                      <button onClick={props.onHandleProfile}>My Profile</button>
-                      <button onClick={props.onLogOut}>Logout</button>
+                      <div>
+                        <Link to="/items"> Maps</Link>
+                        <Link onClick={props.onHandleProfile}>My Profile</Link>
+                      </div>
+                      <div>
+                        <button onClick={props.onLogOut}>Logout</button>
+                      </div>
                     </>
                     ) : (
                     <>

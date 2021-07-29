@@ -244,7 +244,7 @@ class App extends Component {
           user: response.data
         }, () => {
 
-            this.props.history.push('/mapview')
+            this.props.history.push('/items')
         })        
       }
       catch(err) {
@@ -324,44 +324,7 @@ handleEditProfileDetail = async (event) => {
 }
 
 
-
-//________________________________________________________-
-              
-// return (
-
-//   <div className="App">
-//     <NavBar/>
-//     <Switch>
-//       <Route exact path= {"/"} render= {()=> {
-//       return <Landing items = {items}/>
-//        }}/>
-//       <Route  path="/signin"  render={(routeProps) => {
-//       return  <Signin  onSignIn={handleSignIn} {...routeProps}/>
-//       }}/>
-//       <Route  path="/signup"  render={(routeProps) => {
-//       return  <SignUp onSignUp={handleSignUp} {...routeProps}/>         
-//       }}/>
-//       <Route path={'/profile/:profileId'}  render={(routeProps) => {
-//       return <ProfileDetail {...routeProps}  onEdit={handleProfileDetail} />
-//       }} />
-//       <Route path={'/profile/:profileId/edit'}  render={(routeProps) => {
-//       return <EditProfile {...routeProps}  onEdit={handleEditProfileDetail} />
-//       }} />
-//       <Route path={'/items/:itemId'}  render={(routeProps) => {
-//       return <ItemDetail {...routeProps}  onAdd={handleItem} />
-//       }} />
-//       <Route path={'/items/newitem'}  render={(routeProps) => {
-//       return <AddItem {...routeProps}  onAdd={handleAddItem} />
-//       }} />
-//       <Route path={'/items/:itemId/edit'}  render={(routeProps) => {
-//       return <EditItem {...routeProps}  onAdd={handleEditItem} />
-//       }} />
-//      <Route component= {NotFound} />
-//       <MapView />
-//     </Switch>
-//   </div>
-// );
-                                
+                           
   render(){
       console.log('App props', this.props)
       

@@ -13,33 +13,28 @@ const MyIcon = L.icon({
 	iconSize: [25, 41],
 	iconAnchor: [12.5, 41 ],
 	popupAnchor: [0, -41],
-	
 })
-
-
-
-
-
 
 
 function MapView(props) {
 	
-	function LocationMarker() {
-		const [position, setPosition] = useState(null)
+	function LocationMarker(myProps) {
+	
 		const map = useMapEvents({
-		click(e) {
-		console.log(e.latlng)
-			props.onMapClick(e.latlng)
-			map.locate()
-},
+			click(e) {
+				console.log(e.latlng)
+				
+				props.onMapClick(e.latlng)
+				map.locate()
+			},
 			locationfound(e) {
-			setPosition(e.latlng)
-			map.flyTo(e.latlng, map.getZoom())
-},
+				
+				map.flyTo(e.latlng, map.getZoom())
+			},
 		})
-
-			return position === null ? null : (
-			<Marker position={position} icon={MyIcon} >
+	
+			return myProps.position === null ? null : (
+			<Marker position={myProps.position} icon={MyIcon} >
 				<Popup>You are here</Popup>
 			</Marker>
 			)
@@ -47,8 +42,7 @@ function MapView(props) {
 
 	
     //Some random co-ordinate
-	const position = [37.18339180230675, -3.590014870182515]
-
+	const position = props.position 
     
 	//Do not forget to set a width and height style to your map. Else it won't show up
 	return (
@@ -63,7 +57,7 @@ function MapView(props) {
 				attribution='&copy; <a href="http://osm.org/copyright">Recyclup-Map</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
-		<LocationMarker icon={MyIcon}/>
+		<LocationMarker icon={MyIcon} position={position}/>
 		</MapContainer>
 	
 	)

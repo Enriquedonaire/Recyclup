@@ -10,7 +10,7 @@ class AddItem extends Component {
 
 
     state ={
-       position: null
+       position: [37.18339180230675, -3.590014870182515]
     }
     
     updatePosition = (position) =>{
@@ -19,14 +19,6 @@ class AddItem extends Component {
         })
     }
 
-    getLocation(){
-        if (navigator.geolocation){
-            navigator.geolocation.getCurrentPosition((position)=>{
-                //this.setState({position: [position.coords.latitude, position.coords.longitude]})
-                console.log( `[${position.coords.latitude}, ${position.coords.longitude}]`)
-            })
-        }
-    }
 
     
 
@@ -43,13 +35,9 @@ class AddItem extends Component {
                     <input type="file" name="imageUrl" accept="image/png, image/jpg" placeholder="Insert image URL"/>
                     <Button type="submit"> 
                         Add 
-                    </Button>
-                    
+                    </Button>                    
                 </form>         
-                <MapView onMapClick={this.updatePosition}/>
-            
-                    
-                
+                <MapView onMapClick={this.updatePosition} position={this.state.position}/>
             </>
             
         )
