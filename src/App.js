@@ -327,10 +327,10 @@ handleEditProfileDetail = async (event) => {
 }
 
 
-                           
+                          
   render(){
       console.log('App props', this.props)
-     
+    
       if (this.state.fetchingUser) {
         return <p>Loading . . . </p>
       }
@@ -354,9 +354,13 @@ handleEditProfileDetail = async (event) => {
             <Route exact path={'/items'}  render={() => {
               return <ItemList  items={this.state.items} />
             }} />
+          
             <Route exact path={'/items/:itemId'} render={(routeProps) => {
               return <ItemDetail user={this.state.user} {...routeProps} onDelete={this.handleDeleteItem}/>
             }} />
+              <Route exact path={'/items/:itemId/edit'}  render={(routeProps) => {
+              return <EditItem  user={this.state.user} {...routeProps}/> 
+            }}/>
             <Route exact path={'/profile'}  render={(routeProps) => {
               return <MyProfile user={this.state.user}  {...routeProps}/>
             }} />

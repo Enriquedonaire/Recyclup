@@ -3,7 +3,7 @@ import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leafl
 import { Link } from 'react-router-dom'
 import  'leaflet/dist/leaflet.css'
 import L from 'leaflet';
-import {Button} from  'react-bootstrap'
+import Button from '@material-ui/core/Button';
 
 
 class ItemList extends Component {
@@ -16,14 +16,14 @@ class ItemList extends Component {
               // console.log([position.coords.latitude, position.coords.longitude])
                 //this.setState({position: [position.coords.latitude, position.coords.longitude]})
                 console.log('position',position)
-              this.setState({position: [position.coords.latitude, position.coords.longitude]})
+                this.setState({position: [position.coords.latitude, position.coords.longitude]})
             })
         } console.log(position)
         this.setState({position})
     }; 
 
     componentDidMount = () => {
-      this.getLocation()  
+        this.getLocation()  
     } 
 
     state = {
@@ -77,9 +77,8 @@ class ItemList extends Component {
                                 <Popup>
                                         <h2>Item Description </h2> <br/>
                                         <img src={item.image}/>
+                                        <Button variant="contained" color="secondary">
                                         <Link to={`/items/${item._id}`}>{item.name}</Link>
-                                        <Button className="btn btn-primary" >
-                                        Item Details
                                         </Button>
                                 </Popup>                            
                             </Marker>

@@ -12,15 +12,15 @@ import axios from 'axios'
 class EditItem extends Component {
 
     state ={
-       item: null,
-       position: null
-    }
-     
-     updatePosition = (position) =>{
-         this.setState({
-             position
-         })
-     }
+        item: null,
+        position: null
+        }
+        
+        updatePosition = (position) =>{
+            this.setState({
+                position
+            })
+        }
 
 
 
