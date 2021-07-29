@@ -3,7 +3,7 @@ import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leafl
 import { Link } from 'react-router-dom'
 import  'leaflet/dist/leaflet.css'
 import L from 'leaflet';
-import {Button} from  'react-bootstrap'
+
 
 
 
@@ -13,44 +13,36 @@ const MyIcon = L.icon({
 	iconSize: [25, 41],
 	iconAnchor: [12.5, 41 ],
 	popupAnchor: [0, -41],
-	
 })
-
-
-
-
-
 
 
 function MapView(props) {
 	
-	function LocationMarker() {
-		const [position, setPosition] = useState(null)
+	function LocationMarker(myProps) {
+	
 		const map = useMapEvents({
-		  click(e) {
-		console.log(e.latlng)
-			props.onMapClick(e.latlng)
-			map.locate()
-		  },
-		  locationfound(e) {
-			setPosition(e.latlng)
-			map.flyTo(e.latlng, map.getZoom())
-		  },
+			click(e) {
+				console.log(e.latlng)
+				
+				props.onMapClick(e.latlng)
+				map.locate()
+			},
+			locationfound(e) {
+				
+				map.flyTo(e.latlng, map.getZoom())
+			},
 		})
-	  
-		return position === null ? null : (
-		  <Marker position={position}>
-			<Popup>You are here</Popup>
-		  </Marker>
-		)
-	  }
+	
+			return myProps.position === null ? null : (
+			<Marker position={myProps.position} icon={MyIcon} >
+				<Popup>You are here</Popup>
+			</Marker>
+			)
+}
 
 	
     //Some random co-ordinate
-	const position = [37.18339180230675, -3.590014870182515]
-	const positionTwo = [48.136104987921655, 11.582689579256405]
-	const positionThree = [37.19642565106683, -3.635752072085296]
-	const positionFour = [37.18937597538319, -3.7195308903238926]
+	const position = props.position 
     
 	//Do not forget to set a width and height style to your map. Else it won't show up
 	return (
@@ -65,7 +57,7 @@ function MapView(props) {
 				attribution='&copy; <a href="http://osm.org/copyright">Recyclup-Map</a> contributors'
 				url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
 			/>
-		<LocationMarker/>
+		<LocationMarker icon={MyIcon} position={position}/>
 		</MapContainer>
 	
 	)

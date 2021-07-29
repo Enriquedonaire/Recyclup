@@ -12,8 +12,10 @@ class MyProfile extends Component {
 
     state = {
         user: this.props.user,
-        // items: this.props.user.itemsId
+        items: this.props.user.itemsId
     }
+
+    // cnosole.log('userprops?', this.props.user)
 
     // async componentDidMount(){
     //     try {
@@ -50,7 +52,7 @@ class MyProfile extends Component {
                         </Link>
                 </button>
                 <div>Items added are here </div>
-                <ItemList/>
+                <ItemList />
             </div>
         )
     }

@@ -59,7 +59,11 @@ class ItemDetail extends Component {
                 <h6>
                     Description: {itemDetail.description}
                 </h6>
-                <h6>Item holder profile link </h6>
+                {
+                    itemDetail.image &&(
+                        <img src={itemDetail.image} alt={itemDetail.name} />
+                    )
+                }
                 <Button onClick={() => {  this.props.onDelete( itemDetail._id ) } } className="btn btn-primary">
                     Delete
                 </Button> 

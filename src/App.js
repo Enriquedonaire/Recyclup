@@ -112,14 +112,14 @@ class App extends Component {
     
     console.log('hello handleADDITEM', position)
     event.preventDefault()
-  
-    // console.log(event.target.myImage.files[0] )
+
+
     
-    // let formData = new FormData()
-    // formData.append('imageUrl', event.target.myImage.files[0])
+    let formData = new FormData()
+    formData.append('imageUrl', event.target.imageUrl.files[0])
     
-    // let imgResponse = await axios.post(`${API_URL}/api/upload`, formData)
-    // console.log(imgResponse)
+    let imgResponse = await axios.post(`${API_URL}/api/upload`, formData)
+      console.log(imgResponse)
     
     let newItem = {
       username: event.target.name.value,
@@ -127,7 +127,7 @@ class App extends Component {
       description: event.target.description.value,
       position: [position.lat, position.lng],
       available: false,
-      // image: imgResponse.data.image,
+      image: imgResponse.data.image,
     }
     console.log(newItem)
     axios.post(`${API_URL}/api/create`, newItem, {withCredentials: true})
@@ -137,7 +137,7 @@ class App extends Component {
         items: [response.data, ...this.state.items]
       }, () => {
         
-        this.props.history.push('/')
+        this.props.history.push('/items')
       })
     })
     .catch(() => {
@@ -400,7 +400,7 @@ handleEditProfileDetail = async (event) => {
             <Route exact path={'/items/:itemId/edit'}  render={(routeProps) => {
               return <EditItem {...routeProps} user={this.state.user} />
             }} />
-            <MapView />
+           
             <Route component= {NotFound} />
             
           </Switch>

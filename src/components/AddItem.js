@@ -3,16 +3,14 @@ import {Component} from 'react'
 import {API_URL} from '../config'
 import {Link} from 'react-router-dom'
 import MapView from './MapView'
-import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leaflet'
-import  'leaflet/dist/leaflet.css'
-import L from 'leaflet';
-
+import {Button} from  'react-bootstrap'
+import {Redirect} from 'react-router-dom'
 
 class AddItem extends Component {
 
 
     state ={
-       position: null
+       position: [37.18339180230675, -3.590014870182515]
     }
     
     updatePosition = (position) =>{
@@ -21,34 +19,25 @@ class AddItem extends Component {
         })
     }
 
-    
-    // getLocation(){
-    //     if (navigator.geolocation){
-    //         navigator.geolocation.getCurrentPosition((position)=>{
-    //             //this.setState({position: [position.coords.latitude, position.coords.longitude]})
-    //             console.log( `[${position.coords.latitude}, ${position.coords.longitude}]`)
-    //         })
-    //     }
-    // }
 
     
+
     render() {
         const {onAddItem} = this.props
-        console.log('add item props', this.props)
+        console.log('add ite props', this.props)
 
         return (
             <>            
-                <form onSubmit={(event) => { onAddItem(event, this.state.position) }}>                
+                <form onSubmit={(event) => {onAddItem(event, this.state.position) }}  encType="multipart/form-data"  >                
                     <input name="name"  type="text"  placeholder="Enter your item"/>
                     <input name="username"  type="text"  placeholder="what is your username?"/>
                     <input name="description"  type="text"  placeholder="describe your item"/>
-                    <input name="image"  type="text"  placeholder="upload picture"/>
-                    <button type="submit"  >Submit</button>
+                    <input type="file" name="imageUrl" accept="image/png, image/jpg" placeholder="Insert image URL"/>
+                    <Button type="submit"> 
+                        Add 
+                    </Button>                    
                 </form>         
-                <MapView onMapClick={this.updatePosition}/>
-            
-                    
-                
+                <MapView onMapClick={this.updatePosition} position={this.state.position}/>
             </>
             
         )
