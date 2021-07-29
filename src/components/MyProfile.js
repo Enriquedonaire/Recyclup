@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Avatar} from '@material-ui/core';
+import ItemList from './ItemList'
 import axios from 'axios'
 import {API_URL} from '../config'
 
@@ -34,7 +35,7 @@ class MyProfile extends Component {
     render() {
 
         const {user} = this.props
-        
+        console.log('profile props', this.props)        
         return (
             <div>
                 <Avatar alt="Remy Sharp" src="someImageUrl"/>
@@ -48,7 +49,8 @@ class MyProfile extends Component {
                     Edit your Profile
                         </Link>
                 </button>
-
+                <div>Items added are here </div>
+                <ItemList/>
             </div>
         )
     }
