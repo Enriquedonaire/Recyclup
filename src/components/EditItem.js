@@ -12,13 +12,12 @@ import axios from 'axios'
 class EditItem extends Component {
 
     state ={
-    item: null
+        item: null
     }
     
     componentDidMount() {
         console.log('component mounted')
         const myItem = this.props.match.params.itemId 
-
         axios.get(`${API_URL}/api/items/${myItem}`, {withCredentials: true})
         // console.log('axios.get response = ', response.data)
         .then((response) => {
@@ -53,12 +52,12 @@ class EditItem extends Component {
         // pass a second parameter to the patch for sending info to your server inside req.body
         axios.patch(`${API_URL}/api/items/${this.state.item._id}`, editedItem, {withCredentials: true})
             .then(() => {              
-                this.props.history.push('/')
+                this.props.history.push('/profile')
                 })   
             .catch((err) => {
                 console.log('Edit failed', err)
             })
-}
+        }
     
     render() {
 
@@ -77,13 +76,13 @@ class EditItem extends Component {
         console.log('this.state.item in edit item component is ', this.state.item)
         return (
             <>            
-                <form onSubmit={(event)=>{this.onEditItem(event)}}>                
+                <form onSubmit={(event)=>{this.onEditItem(event)}} encType="multipart/form-data">                
                     <input name="name" type="text" placeholder= {name}/>
                     <input name="username" type="text" placeholder={username}/>
                     <input name="description" type="text" placeholder={description}/>
-                    <input name="image" type="text" placeholder={image}/>
+                    <input type="file" name="imageUrl" accept="image/png, image/jpg" placeholder="Insert image URL"/>
                     <label>
-                        available? 
+                            available? 
                     </label>
                     <input name="available" type="checkbox" label="is this item still available ??"/>
                     {/* PUT CHECK BOX WITH YES AND NO  */}

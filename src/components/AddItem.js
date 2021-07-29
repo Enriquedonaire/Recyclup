@@ -3,13 +3,21 @@ import {Component} from 'react'
 import {API_URL} from '../config'
 import {Link} from 'react-router-dom'
 import MapView from './MapView'
-
+import {Button} from  'react-bootstrap'
+import {Redirect} from 'react-router-dom'
 
 class AddItem extends Component {
 
-    //state ={
-       // position: null
+
+    state ={
+       position: null
+    }
     
+    updatePosition = (position) =>{
+        this.setState({
+            position
+        })
+    }
 
     getLocation(){
         if (navigator.geolocation){
@@ -28,15 +36,17 @@ class AddItem extends Component {
 
         return (
             <>            
-                <form onSubmit={onAddItem}>                
+                <form onSubmit={(event) => {onAddItem(event, this.state.position) }}  encType="multipart/form-data"  >                
                     <input name="name"  type="text"  placeholder="Enter your item"/>
                     <input name="username"  type="text"  placeholder="what is your username?"/>
                     <input name="description"  type="text"  placeholder="describe your item"/>
                     <input type="file" name="imageUrl" accept="image/png, image/jpg" placeholder="Insert image URL"/>
-                    <input name="location" type="text" value={this.getLocation()}/>
-                    <button type="submit"  >Add </button>
-                </form>            
-                <MapView />
+                    <Button type="submit"> 
+                        Add 
+                    </Button>
+                    
+                </form>         
+                <MapView onMapClick={this.updatePosition}/>
             
                     
                 

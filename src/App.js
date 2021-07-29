@@ -108,9 +108,9 @@ class App extends Component {
   }
 
 
-  handleAddItem = async (event) => {
+  handleAddItem = async (event, position) => {
     
-    console.log('hello handleADDITEM')
+    console.log('hello handleADDITEM', position)
     event.preventDefault()
 
 
@@ -125,7 +125,7 @@ class App extends Component {
       username: event.target.name.value,
       name: event.target.name.value,
       description: event.target.description.value,
-      position: this.state.position,
+      position: [position.lat, position.lng],
       available: false,
       image: imgResponse.data.image,
     }
@@ -137,7 +137,7 @@ class App extends Component {
         items: [response.data, ...this.state.items]
       }, () => {
         
-        this.props.history.push('/')
+        this.props.history.push('/items')
       })
     })
     .catch(() => {
@@ -400,7 +400,7 @@ handleEditProfileDetail = async (event) => {
             <Route exact path={'/items/:itemId/edit'}  render={(routeProps) => {
               return <EditItem {...routeProps} user={this.state.user} />
             }} />
-            <MapView />
+           
             <Route component= {NotFound} />
             
           </Switch>
