@@ -16,12 +16,15 @@ import Lottie from './components/LottieControl'
 // import NotFound from "./components/NotFound";
 
 import {API_URL} from './config.js';
-import "./App.css";
+
 import MapView from './components/MapView'
 import Landing from './components/Landing'; 
 import NotFound from './components/NotFound'
 import { responsiveFontSizes } from "@material-ui/core";
 // import dotenv from 'dotenv'??
+
+// import './App.css'
+
 
 class App extends Component {
 
@@ -125,7 +128,7 @@ class App extends Component {
       username: event.target.name.value,
       name: event.target.name.value,
       description: event.target.description.value,
-      position: [position.lat, position.lng],
+      position,
       available: false,
       image: imgResponse.data.image,
     }
@@ -327,13 +330,16 @@ handleEditProfileDetail = async (event) => {
                            
   render(){
       console.log('App props', this.props)
-      
+     
       if (this.state.fetchingUser) {
         return <p>Loading . . . </p>
       }
             
       return (
-        <div >        
+        <div >  
+
+            
+
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />
           <Switch>
             <Route exact path='/' render={(routeProps) => { 
@@ -360,12 +366,7 @@ handleEditProfileDetail = async (event) => {
             <Route exact path={'/profile/create'}  render={(routeProps) => {
               return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />
             }} />
-            <Route exact path={'/items/:itemId/edit'}  render={(routeProps) => {
-              return <EditItem {...routeProps} user={this.state.user} />
-            }} />
-            <MapView />
             <Route component= {NotFound} />
-            
           </Switch>
       </div>
     )

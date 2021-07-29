@@ -5,6 +5,8 @@
   "dependencies": {
     "@material-ui/core": "^4.12.2",
     "@material-ui/icons": "^4.11.2",
+    "@stripe/react-stripe-js": "^1.4.1",
+    "@stripe/stripe-js": "^1.16.0",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "connect-mongo": "^4.4.1",
