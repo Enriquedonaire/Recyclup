@@ -12,7 +12,7 @@ class ItemList extends Component {
 
 
     render() {
-
+        
         const MyIcon = L.icon({
             iconUrl: 'https://img.icons8.com/pastel-glyph/64/000000/marker.png',
             iconSize: [25, 41],
@@ -29,7 +29,7 @@ class ItemList extends Component {
                     Items 
 
                 </h1>
-               
+            
                 <MapContainer  
                     style={{width: '800px', height: '500px'}} 
                     center={position}  zoom={13}  
@@ -38,10 +38,10 @@ class ItemList extends Component {
                         attribution='&copy; <a href="http://osm.org/copyright">Recyclup-Map</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     />
-                     {
+                    {
                     items.map((item, i) => {
                         return (
-                           
+                        
                             <Marker  key={i}  position={item.position} icon={MyIcon}  >
                                 <Popup>
                                         <h2>Item Description </h2> <br/>
@@ -54,10 +54,10 @@ class ItemList extends Component {
                             
                                 </Marker>
                         )
-                           
+                        
                     })
                 }
-       
+    
                 </MapContainer>
             </div>
         )
