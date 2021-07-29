@@ -16,14 +16,14 @@ class ItemList extends Component {
               // console.log([position.coords.latitude, position.coords.longitude])
                 //this.setState({position: [position.coords.latitude, position.coords.longitude]})
                 console.log('position',position)
-            this.setState({position: [position.coords.latitude, position.coords.longitude]})
+              this.setState({position: [position.coords.latitude, position.coords.longitude]})
             })
         } console.log(position)
         this.setState({position})
     }; 
 
     componentDidMount = () => {
-        this.getLocation()  
+      this.getLocation()  
     } 
 
     state = {
@@ -36,7 +36,7 @@ class ItemList extends Component {
         const {items} = this.props
 
         
-        if (!items) {
+        if (!items || this.state.position.length ==0) {
             return <p> L O A D I N G   . . . . .</p>
         }
         
@@ -84,10 +84,10 @@ class ItemList extends Component {
                                 </Popup>                            
                             </Marker>
                         )
-                           
+                        
                         })
                     }
-       
+    
                 </MapContainer>
             </div>
         )
