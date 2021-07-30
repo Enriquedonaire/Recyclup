@@ -8,7 +8,33 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import BasicPopover from './AboutUs';
-import Logo from '../assets/logo.png.png'
+import AccountCircle from '@material-ui/icons/AccountCircle';
+
+import { ThemeProvider } from '@material-ui/core/styles';
+
+import { createTheme } from '@material-ui/core/styles';
+
+const themeStyles = createTheme({
+    palette: {
+    primary: {
+      main: '#004d40',
+    },
+    secondary: {
+      main: '#ffd54f',
+    },
+  },
+});
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#1b5e20',
+    },
+    secondary: {
+      main: '#01579b',
+    },
+  },
+});
 
 
 const useStyles = makeStyles((theme) => ({
@@ -26,41 +52,43 @@ const useStyles = makeStyles((theme) => ({
 function Navbar(props) {
 
     const classes = useStyles()
-
+    
     
     return (
 
         <div className={classes.root}>
-            <AppBar position="static">
-              <Toolbar>
+          <ThemeProvider theme={theme, themeStyles}>
+            <AppBar  position="static">
+              <Toolbar >
+                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                
+                </IconButton>
                 <Typography variant="h6" className={classes.title} justifyContent="center">
-                  RECYCLUP 
+                RECYCLUP
                 <BasicPopover />
                 </Typography>
                 {
                   props.user ? (
-                    <>
-                      <div>
-                        <Link to="/items"> Maps</Link>
-                        <Link onClick={props.onHandleProfile}>My Profile</Link>
-                      </div>
-                      <div>
-                        <button onClick={props.onLogOut}>Logout</button>
-                      </div>
+                    <>    <IconButton>
+                    <AccountCircle />
+                
+                      <Button onClick={props.onHandleProfile}>Profile</Button> </IconButton>
+                      <Button variant="contained" color="secondary" onClick={props.onLogOut}>Logout</Button>
                     </>
                     ) : (
                     <>
-                      <Link to = {'/signin'}>
-                        <Button color="inherit"> Sign in</Button>
-                      </Link> 
+                
                       
-                      <Link to = {'/signup'}>
-                        <Button color="inherit">Sign up</Button>
-                      </Link>
+            <Link to={'/signin'}><Button variant="contained" color="secondary" >SignIn</Button></Link>
+                      
+                      
+                      
+            <Link to={'/signup'}><Button  variant="contained" color="secondary">SignUp</Button></Link>
                     </>
                 )}
               </Toolbar>
             </AppBar>
+            </ThemeProvider>
         </div>
     )  
 }

@@ -1,10 +1,9 @@
 import React from 'react'
 import {Component} from 'react'
-import {API_URL} from '../config'
-import {Link} from 'react-router-dom'
 import MapView from './MapView'
-import {Button} from  'react-bootstrap'
-import {Redirect} from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import { Helmet } from 'react-helmet';
 
 class AddItem extends Component {
 
@@ -27,17 +26,24 @@ class AddItem extends Component {
         console.log('add ite props', this.props)
 
         return (
-            <>            
+            <>    
+            <Grid container justify = "center"> 
+            <div className="application">
+                <Helmet>
+                <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
+                </Helmet>
                 <form onSubmit={(event) => {onAddItem(event, this.state.position) }}  encType="multipart/form-data"  >                
                     <input name="name"  type="text"  placeholder="Enter your item"/>
                     <input name="username"  type="text"  placeholder="Please enter your contact details"/>
                     <input name="description"  type="text"  placeholder="describe your item"/>
-                    <input type="file" name="imageUrl" accept="image/png, image/jpg" placeholder="Insert image URL"/>
-                    <Button type="submit"> 
+                    <input type="file" name="imageUrl" accept="image/png, image/jpg" placeholder="Insert image URL" variant="contained" color="secondary"/>
+                    <Button type="submit"  variant="contained" color="secondary"> 
                         Add 
                     </Button>                    
                 </form>         
                 <MapView onMapClick={this.updatePosition} position={this.state.position}/>
+                </div>
+                </Grid>    
             </>
             
         )

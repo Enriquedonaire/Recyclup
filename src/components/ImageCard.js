@@ -1,16 +1,40 @@
-import React, { Component } from 'react'
-import {MapContainer, TileLayer, Marker, Popup} from  'react-leaflet'
-import { Link } from 'react-router-dom'
-import  'leaflet/dist/leaflet.css'
-import L from 'leaflet';
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Typography from '@material-ui/core/Typography';
+import { Collapse } from '@material-ui/core';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-import { Helmet } from 'react-helmet';
 
 
 
-class ItemList extends Component {
-    
+const useStyles = makeStyles({
+    root: {
+        maxWidth: 645,
+        background: 'rgba(0,0,0,0.5)',
+        margin: '20px',
+        },
+        media: {
+        height: 440,
+        },
+        title: {
+        fontFamily: 'Nunito',
+        fontWeight: 'bold',
+        fontSize: '2rem',
+        color: '#fff',
+        },
+        desc: {
+        fontFamily: 'Nunito',
+        fontSize: '1.1rem',
+        color: '#ddd',
+        },
+    });
+
+function ImageCard() {
+    const classes = useStyles();
     getLocation = () => {
         let position = [37.18339180230675, -3.590014870182515]
         
@@ -32,7 +56,6 @@ class ItemList extends Component {
     state = {
         position: []
     }
-
 
     render() {
 
@@ -56,14 +79,12 @@ class ItemList extends Component {
 
         const {position} = this.state
         console.log('ItemList props are', this.props)
-        // const position = [37.18339180230675, -3.590014870182515]
 
-        return (
-            <Grid container justify = "center">
-            <div className="application">
-        <Helmet>
-        <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
-        </Helmet>
+        
+    return (
+       
+      <Grid container justify = "center">
+            <div>
                 <h1 text-align="center" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif;">
                     Items 
 
@@ -97,8 +118,10 @@ class ItemList extends Component {
                 </MapContainer>
             </div>
             </Grid>
-        )
-    }
+       
+    );
+
 }
 
-export default ItemList;
+
+export default ImageCard;

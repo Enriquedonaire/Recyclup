@@ -7,9 +7,11 @@ import ImageListItemBar from '@material-ui/core/ImageListItemBar';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
-//import items from './itemData';    
+import Grid from '@material-ui/core/Grid';    
 import axios from 'axios'
 import {API_URL} from '../config'
+import {Helmet} from "react-helmet";
+
 //import the sclieced array here
 
 
@@ -35,40 +37,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));    
 
-/**
- * The example data is structured as follows:
- *
- * import image from 'path/to/image.jpg';        
- * [etc...]
- *
- * const items = [
- *   {
- *     image: image,
- *     name: '',
- *     username: '',
- *   },
- *   {
- *     [etc...]
- *   },
- * ];
- */
-
-//TODO: show 12 random items with no doubles. avoid having less than 12
-
-
-//ON SERVER SIDE:
-//1. do for loop 20 times inside useEffect [] (?), 
-//then push only unique elements to initially empty randomelements array
-//(if !randomArr.includes(randomelem)-> push, else break?) (create 2 arrays first?)
-//nach Manish: NO for loop in useEffect, stattdessen auf server seite bei der route nur 20 random items fetchen
-
-//2.  then slice that new randomelements array to 12 elements //also server side
-
-//ON CLient side (here)
-//map over 12 elems & render properties
-//make them clickable --> wrap link to around?? if user loggedIn, redirect to /map, else: redirect /signin
-
-
 
 
 function TitlebarImageList() {
@@ -81,7 +49,7 @@ const [items, fetchItems] = useState(null)
 useEffect(() => {
   async function getItems (){
     let response = await axios.get(`${API_URL}/api/items`, {withCredentials: true})
-    fetchItems (response.data.slice(-12))
+    fetchItems (response.data.slice(-1))
     
 
   }
@@ -91,16 +59,21 @@ console.log(items)
 
   const classes = useStyles();
 
-  return items? (    <div className={classes.root}>
+  return items? (
+    <Grid container justify = "center">
+    <div className="application">
+        <Helmet>
+        <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true')}"}</style>
+        </Helmet>
     
       <ImageList  rowHeight={180} className={classes.imageList}>
         <ImageListItem display="flex"  flex-wrap="wrap"  key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">Find items in your neighbourhood!</ListSubheader>
         </ImageListItem>
-        <div flexWrap={classes.images}>
-        {items.map((item) => (
+    {/* wrap Link around to mao view if not logged in: res.redirect/signin else: show map accordning to location */}
+        { items.map((item) => (
           <Link to="/items">                     {/*link here???? */}
-          <ImageListItem key={item.image}>
+          <ImageListItem >
             <img src='https://www.hastaterminarstock.com.uy/imgs/productos/productos31_67951.png' alt='something' />
             <img src='http://www.elcopion.com/tbfth.php?w=256&h=256&src=http://www.starplus.es/media/images/fotosAC/ARC5030PT_2.jpg'/>
             <img src='https://www.szames.com.uy/imgs/productos/productos31_2731.jpg'/>
@@ -124,9 +97,10 @@ console.log(items)
           </ImageListItem>
           </Link>       
         ))}
-        </div>
+     
       </ImageList>
     </div>
+    </Grid>
   ) : <p> Loading...</p>
 }   
 

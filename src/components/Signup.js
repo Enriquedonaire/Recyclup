@@ -1,30 +1,64 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import { ThemeProvider } from '@material-ui/core/styles';
+import { createTheme } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField'
+import Grid from '@material-ui/core/Grid';
+import { Helmet } from 'react-helmet';
+
+
+
+const theme = createTheme({
+    palette: {
+            primary: {
+            main: '#2e7d32',
+            },
+            secondary: {
+            main: '#c0ca33',
+            },
+        },
+});
+
+
 
 function Signup(props){
+    
+    
+
     
     const {onSignup} = props 
 
     return (
-        <form onSubmit={onSignup}>
+        
+        <Grid container justify = "center">
+        <div className="application">
+        <Helmet>
+        <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
+        </Helmet>
+        <ThemeProvider theme={theme}>
+        <form onSubmit={onSignup} style={{justifyContent: 'center'}}>
             <div className="form-group">
-                <label htmlFor="InputName">Name</label>
-                <input type="text" className="form-control" id="InputName" name="name" placeholder="Fill in your name."/><br></br>
+                <label htmlFor="InputName"></label>
+                <TextField type="text" className="form-control" id="InputName" name="name" placeholder="Fill in your name." id="outlined-basic"variant="outlined"/><br></br>
             </div>
             <div className="form-group">
-                <label htmlFor="InputName">Username</label>
-                <input type="text" className="form-control" id="InputUserName" name="username" placeholder="Please chose username."/><br></br>
+                <label htmlFor="InputName"></label>
+                <TextField id="outlined-basic"variant="outlined" name="username" placeholder="Please chose username." id="outlined-basic"variant="outlined"/><br/>
             </div>
             <div className="form-group">
-                <label htmlFor="InputEmail">Email address</label>
-                <input type="email" className="form-control" id="InputEmail" name="email" placeholder="Fill in your email address."/><br></br> 
-                <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small><br></br>
+                <label htmlFor="InputEmail"></label>
+                <TextField type="email" className="form-control" id="InputEmail" name="email" placeholder="Fill in your email address." id="outlined-basic"variant="outlined"/><br></br> 
+            
             </div>
             <div className="form-group">
-                <label htmlFor="InputPassword">Password</label>
-                <input name="password" type="password" className="form-control" id="InputPassword" placeholder="Choose your password."/>
+                <label htmlFor="InputPassword"></label>
+                <TextField name="password" type="password" className="form-control" id="InputPassword" placeholder="Choose your password." id="outlined-basic"variant="outlined"/>
             </div>
-            <button type="submit" className="btn btn-primary">Sign up!</button>
+            <Button type="submit"  variant="contained" color="secondary">Sign up!</Button>
         </form>
+        </ThemeProvider>
+        </div>
+        </Grid>
     )
 }
 

@@ -5,8 +5,9 @@ import { Avatar} from '@material-ui/core';
 import ItemList from './ItemList'
 import axios from 'axios'
 import {API_URL} from '../config'
-
-
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import { Helmet } from 'react-helmet';
 
 class MyProfile extends Component {
 
@@ -40,21 +41,26 @@ class MyProfile extends Component {
         }
         const {user} = this.state
         return (
-            <div>
+            <Grid  container justify = "center" >
+            <div className="application">
+                <Helmet>
+                <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
+                </Helmet>
                 <Avatar alt="Remy Sharp" src="someImageUrl"/>
-                <div>Hey ! I am this user {user.name}</div>
-                <div> this is my profile pic</div>
-                <button> <Link to={`/profile/create`}>
-                    post item to give away
-                        </Link>
-                </button>
-                <button> <Link to={`/profile/:profileId/edit`}>
+                <div>Hey ! {user.username}</div>
+                
+                <Button variant="contained" color="secondary"> <Link to={`/profile/create`}>
+                    +Add Item+</Link>
+                        
+                </Button>
+                <Button variant="contained" color="secondary"> <Link to={`/profile/:profileId/edit`}>
                     Edit your Profile
                         </Link>
-                </button>
-                <div>Items added are here </div>
+                </Button>
+                
                 <ItemList items={user.itemsId}/>
             </div>
+            </Grid>
         )
     }
 }

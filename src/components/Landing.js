@@ -12,13 +12,13 @@ function Landing(props) {
       
     return (
         <div>
-            <Box display="flex" alignContent="flex-start" >         
+                
                 <TitlebarImageList display="flex" alignContent="flex-start" user= {props.user}/>   
                     {/*define dimensions with className ?*/}
                 <Elements width="50px" stripe={promise}>
                     <CheckoutForm />
                 </Elements>  
-            </Box>
+            
         </div>
     )
 }
