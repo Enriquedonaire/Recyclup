@@ -20,9 +20,8 @@ function BasicPopover() {
   const id = open ? 'simple-popover1' : undefined;
 
   return (
-    <div>
-      
-      <InfoIcon   aria-describedby={id} variant="contained" onClick={handleClick} />
+    <div>      
+      <InfoIcon aria-describedby={id} variant="contained" onClick={handleClick} />
     
       <Popover
         id={id}

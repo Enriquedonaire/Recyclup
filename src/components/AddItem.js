@@ -15,11 +15,7 @@ class AddItem extends Component {
     
     updatePosition = (position) =>{
         this.setState({
-<<<<<<< HEAD
-            position: [position.lat, position.lng]
-=======
-            position:[ position.lat, position.lng]
->>>>>>> 65cdaeb0c894a233c7d21b87fef2729b517b738c
+            position:[position.lat, position.lng]
         })
     }
 
@@ -34,7 +30,7 @@ class AddItem extends Component {
             <>            
                 <form onSubmit={(event) => {onAddItem(event, this.state.position) }}  encType="multipart/form-data"  >                
                     <input name="name"  type="text"  placeholder="Enter your item"/>
-                    <input name="username"  type="text"  placeholder="what is your username?"/>
+                    <input name="username"  type="text"  placeholder="Please enter your contact details"/>
                     <input name="description"  type="text"  placeholder="describe your item"/>
                     <input type="file" name="imageUrl" accept="image/png, image/jpg" placeholder="Insert image URL"/>
                     <Button type="submit"> 

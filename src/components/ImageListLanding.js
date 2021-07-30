@@ -16,13 +16,13 @@ import {API_URL} from '../config'
 
 //Whats below here if for the IMAGE LIST FROM MATERIAL UI. DO NOT DELETE PLEAAAASE
 const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
-  },
+  // root: {
+  //   display: 'flex',
+  //   flexWrap: 'wrap',
+  //   justifyContent: 'space-around',
+  //   overflow: 'hidden',
+  //   backgroundColor: theme.palette.background.paper,
+  // },
   imageList: {
     width: 500,
     height: 450,
@@ -30,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
+  images: {
+    flexWrap: 'wrap',
+  }
 }));    
 
 /**
@@ -86,19 +89,17 @@ getItems()
 }, [])
 console.log(items)
 
-
   const classes = useStyles();
 
-  return items? (
-    <div className={classes.root}>
+  return items? (    <div className={classes.root}>
     
-      <ImageList rowHeight={180} className={classes.imageList}>
-        <ImageListItem key="Subheader" cols={2} style={{ height: 'auto' }}>
+      <ImageList  rowHeight={180} className={classes.imageList}>
+        <ImageListItem display="flex"  flex-wrap="wrap"  key="Subheader" cols={2} style={{ height: 'auto' }}>
           <ListSubheader component="div">Find items in your neighbourhood!</ListSubheader>
         </ImageListItem>
-    {/* wrap Link around to mao view if not logged in: res.redirect/signin else: show map accordning to location */}
-        { items.map((item) => (
-          <Link to="/mapview">                     {/*link here???? */}
+        <div flexWrap={classes.images}>
+        {items.map((item) => (
+          <Link to="/items">                     {/*link here???? */}
           <ImageListItem key={item.image}>
             <img src='https://www.hastaterminarstock.com.uy/imgs/productos/productos31_67951.png' alt='something' />
             <img src='http://www.elcopion.com/tbfth.php?w=256&h=256&src=http://www.starplus.es/media/images/fotosAC/ARC5030PT_2.jpg'/>
@@ -110,20 +111,20 @@ console.log(items)
             <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGtym1Sfbq8zZ_q2lFUk9Gx_lC7lv3VtttNQ&usqp=CAU'/>
             <img src='https://statics.glamit.com.ar/media/catalog/product/cache/82/base/256x256/9df78eab33525d08d6e5fb8d27136e95/d/s/dsc02849.jpg'/>
             <img src='https://pbs.twimg.com/profile_images/655846477407920128/DdiwvLLD_400x400.jpg'/>
-            <img src='https://cdn.shopify.com/s/files/1/0311/9398/9260/products/Basic-T-shirt-b-01_256x.png?v=1618870363'/>
-            
+            <img src='https://cdn.shopify.com/s/files/1/0311/9398/9260/products/Basic-T-shirt-b-01_256x.png?v=1618870363'/>            
             <ImageListItemBar
               title={item.name}
               subtitle={<span>by: {item.username}</span>}
               actionIcon={
                 <IconButton aria-label={`info about ${item.name}`} className={classes.icon}>
-                  <InfoIcon />
+                  <InfoIcon />=
                 </IconButton>
               }
             />
           </ImageListItem>
           </Link>       
         ))}
+        </div>
       </ImageList>
     </div>
   ) : <p> Loading...</p>

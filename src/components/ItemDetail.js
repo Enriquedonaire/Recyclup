@@ -57,16 +57,17 @@ class ItemDetail extends Component {
                     Name: {itemDetail.name}
                 </h4>
                 <h6>
-                    Description: {itemDetail.description}
+                    Contact details : {itemDetail.description}
                 </h6>
                 {
                     itemDetail.image &&(
                         <img src={itemDetail.image} alt={itemDetail.name} />
                     )
                 }
+                if ({this.props.user._id !== itemDetail.userId._id})
                 <Button onClick={() => {  this.props.onDelete( itemDetail._id ) } } className="btn btn-primary">
                     Delete
-                </Button> 
+                </Button>
                 <Button >
                     <Link to={`/items/${itemDetail._id}/edit`}> Edit Item </Link>
                 </Button >

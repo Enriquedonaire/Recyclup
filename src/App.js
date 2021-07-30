@@ -339,14 +339,11 @@ handleEditProfileDetail = async (event) => {
       }
             
       return (
-        <div >  
-
-            
-
+        <div >     
         <Navbar user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />
           <Switch>
             <Route exact path='/' render={(routeProps) => { 
-                return <Landing items={this.state.items} user= {this.state.user}/>
+              return <Landing items={this.state.items} user= {this.state.user}/>
             }} />
             <Route  path="/signup"  render={(routeProps) => {
               return  <Signup onSignup={this.handleSignup} {...routeProps}  />
@@ -363,11 +360,14 @@ handleEditProfileDetail = async (event) => {
             <Route exact path={'/profile'}  render={(routeProps) => {
               return <MyProfile user={this.state.user}  {...routeProps}/>
             }} />
-                <Route path={'/profile/:id/edit'}  render={(routeProps) => {
+            <Route path={'/profile/:id/edit'}  render={(routeProps) => {
               return <EditProfile {...routeProps}  onEditProfile={this.handleEditProfileDetail} />
             }} />
             <Route exact path={'/profile/create'}  render={(routeProps) => {
               return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />
+            }} />
+             <Route exact path={'/items/:itemid/edit"'}  render={(routeProps) => {
+              return <EditItem {...routeProps} user={this.state.user} />
             }} />
             <Route component= {NotFound} />
           </Switch>
