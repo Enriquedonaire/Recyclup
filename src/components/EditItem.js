@@ -1,13 +1,16 @@
 import React from 'react'
 import {Component} from 'react'
 import {API_URL} from '../config'
-import {Link} from 'react-router-dom'
-import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leaflet'
+import Button from '@material-ui/core/Button';
 import MapView from './MapView'
-// import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leaflet'
 import  'leaflet/dist/leaflet.css'
 import L from 'leaflet';
 import axios from 'axios'
+import Grid from '@material-ui/core/Grid';
+import { Helmet } from 'react-helmet';
+
+
+
 
 class EditItem extends Component {
 
@@ -83,6 +86,11 @@ class EditItem extends Component {
         const {name, username, description, image, location, available} = this.state.item
         console.log('this.state.item in edit item component is ', this.state.item)
         return (
+            <Grid container justify = "center">
+            <div className="application">
+            <Helmet>
+            <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
+            </Helmet>
             <>            
                 <form onSubmit={(event)=>{this.onEditItem(event)}} encType="multipart/form-data">                
                     <input name="name" type="text" placeholder= {name}/>
@@ -94,10 +102,13 @@ class EditItem extends Component {
                     </label>
                     <input name="available" type="checkbox" label="is this item still available ?"/>
                     {/* PUT CHECK BOX WITH YES AND NO  */}
-                    <button type="submit">Submit</button>
+                    <Button variant="contained" color="secondary" type="submit">Edited</Button>
                 </form> 
                 <MapView  onMapClick={this.updatePosition}/>                
             </>
+            </div>
+             </Grid >
+            
             
         )
     }

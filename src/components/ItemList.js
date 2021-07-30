@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leaflet'
+import {MapContainer, TileLayer, Marker, Popup} from  'react-leaflet'
 import { Link } from 'react-router-dom'
 import  'leaflet/dist/leaflet.css'
 import L from 'leaflet';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import { Helmet } from 'react-helmet';
+
 
 
 class ItemList extends Component {
@@ -56,12 +59,16 @@ class ItemList extends Component {
         // const position = [37.18339180230675, -3.590014870182515]
 
         return (
-            <div>
-                <h1>
+            <Grid container justify = "center">
+            <div className="application">
+        <Helmet>
+        <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
+        </Helmet>
+                <h1 text-align="center" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif;">
                     Items 
 
                 </h1>
-            
+
                 <MapContainer  
                     style={{width: '800px', height: '500px'}} 
                     center={position}  zoom={13}  
@@ -89,6 +96,7 @@ class ItemList extends Component {
     
                 </MapContainer>
             </div>
+            </Grid>
         )
     }
 }

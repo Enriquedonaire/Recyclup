@@ -8,8 +8,11 @@ import {
 import { API_URL } from "../config";
 import axios from 'axios'
 
+import Grid from '@material-ui/core/Grid';
+
 
 export default function CheckoutForm() {
+
   const [succeeded, setSucceeded] = useState(false);
   const [error, setError] = useState(null);
   const [processing, setProcessing] = useState('');
@@ -58,7 +61,7 @@ export default function CheckoutForm() {
   const handleSubmit = async ev => {
     ev.preventDefault();
     setProcessing(true);
-   
+
 
 
     const payload = await stripe.confirmCardPayment(clientSecret, {
@@ -75,10 +78,13 @@ export default function CheckoutForm() {
       setProcessing(false);
       setSucceeded(true);
       axios.post(`${API_URL}/api/createdonation`, {}, {withCredentials: true})
-    }
+    } 
   };
 
   return (
+    <Grid container justify = "center" margin top = "1125px">
+      <br/>
+
     <form id="payment-form" className ="form1" onSubmit={handleSubmit}>
       <CardElement id="card-element" options={cardStyle} onChange={handleChange} />
       <button
@@ -110,6 +116,7 @@ export default function CheckoutForm() {
         </a> Refresh the page to pay again.
       </p>
     </form>
+    </Grid>
   );
 }
 

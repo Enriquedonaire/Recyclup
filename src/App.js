@@ -4,8 +4,6 @@ import axios from 'axios'
 import Signin from './components/Signin'
 import Signup from "./components/Signup";
 import Navbar from "./components/Navbar";
-// import Landing from './components/Landing'; 
-
 import MyProfile from "./components/MyProfile";
 import ItemDetail from './components/ItemDetail'
 import ItemList from './components/ItemList'
@@ -13,24 +11,23 @@ import EditProfile from './components/EditProfile'
 import AddItem from './components/AddItem'
 import EditItem from './components/EditItem';
 import Lottie from './components/LottieControl'
-// import NotFound from "./components/NotFound";
-
 import {API_URL} from './config.js';
-
 import MapView from './components/MapView'
 import Landing from './components/Landing'; 
 import NotFound from './components/NotFound'
 import { responsiveFontSizes } from "@material-ui/core";
-// import dotenv from 'dotenv'??
+import {Helmet} from "react-helmet";
+import BackGround from "./components/BackGround";
+import Header from './components/Header'
 
-// import './App.css'
+
+
+
+
 
 
 class App extends Component {
 
-  // const [user,updateUser] = useState(null)
-  // console.log(user, updateUser)
-  // const [items, updateItems] = useState(null)
   
   state = {
     items: [],
@@ -40,41 +37,6 @@ class App extends Component {
     position: null,
   }
 
-  // handleEditItem = (event, item) => {
-  //   console.log('handle edit item hello')
-
-  //   // event.preventDefault()
-
-  //   const [items] = this.state
-
-  //   // pass a second parameter to the patch for sending info to your server inside req.body
-  //   axios.patch(`${API_URL}/api/items/${item._id}`, item, {withCredentials: true})
-  //     .then(() => {
-  //         // also update your local state here and redirect to home page
-  //         // mapping over all the items and updating the one that was edited
-  //         let updateItem = this.state.items.map((singleitem) => {
-  //             if (singleitem._id === item._id) {
-  //               singleitem.name = item.name
-  //               singleitem.username = item.name
-  //               singleitem.description = item.description
-  //               singleitem.location = this.state.location
-  //               singleitem.image =item.image
-  //               singleitem.available=item.available
-  //             } 
-  //           return singleitem
-  //         })
-            
-  //           this.setState({
-  //             items: [updateItem, ...items]       
-  //           }, () => {
-  //               this.props.history.push('/')
-  //           })      
-  //     })
-
-  //     .catch(() => {
-  //         console.log('Edit failed')
-  //     })
-  // }
 
   getLocation = ()=> {
     let position = ''
@@ -336,11 +298,11 @@ handleEditProfileDetail = async (event) => {
       }
             
       return (
-        <div >  
-
-            
-
-        <Navbar user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />
+          <div className="application">
+          <Helmet>
+          <style>{"body { background-color: #3e423e; }"}</style>
+        </Helmet> 
+        <Header user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />
           <Switch>
             <Route exact path='/' render={(routeProps) => { 
                 return <Landing items={this.state.items} user= {this.state.user}/>
@@ -370,6 +332,7 @@ handleEditProfileDetail = async (event) => {
             <Route exact path={'/profile/create'}  render={(routeProps) => {
               return <AddItem {...routeProps} user={this.state.user}  onAddItem={this.handleAddItem} />
             }} />
+          
             <Route component= {NotFound} />
           </Switch>
       </div>

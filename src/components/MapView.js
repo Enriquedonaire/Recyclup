@@ -3,7 +3,7 @@ import {MapContainer, TileLayer, Marker, Popup, useMapEvents} from  'react-leafl
 import { Link } from 'react-router-dom'
 import  'leaflet/dist/leaflet.css'
 import L from 'leaflet';
-
+import Grid from '@material-ui/core/Grid';
 
 
 
@@ -48,7 +48,9 @@ function MapView(props) {
 	return (
 		
 
-	
+		<Grid container justify = "center">
+        
+
 		<MapContainer  
 			style={{width: '800px', height: '500px'}} 
 			center={position}  zoom={13}  
@@ -59,6 +61,7 @@ function MapView(props) {
 			/>
 		<LocationMarker icon={MyIcon} position={position}/>
 		</MapContainer>
+		</Grid>
 	
 	)
 }

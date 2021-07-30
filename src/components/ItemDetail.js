@@ -1,11 +1,12 @@
 import axios from 'axios'
 import React, { Component } from 'react'
 import {Spinner} from 'react-bootstrap'
-
+import Button from '@material-ui/core/Button';
 import {Redirect} from 'react'
 import { Link } from 'react-router-dom'
 import {API_URL} from '../config'
-import {Button} from  'react-bootstrap'
+import { Helmet } from 'react-helmet';
+import { Grid } from '@material-ui/core';
 
 
 
@@ -49,28 +50,33 @@ class ItemDetail extends Component {
         console.log('item detail this.state', itemDetail)
         console.log('item detail this.props = ', this.props)
         return (
-            <div>
+            <Grid container justify = "center">
+            <div className="application">
+            <Helmet>
+            <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
+            </Helmet>
                 <h4>
                     Username: {itemDetail.username}
                 </h4>
                 <h4>
                     Name: {itemDetail.name}
                 </h4>
-                <h6>
+                <h5>
                     Description: {itemDetail.description}
-                </h6>
+                </h5>
                 {
                     itemDetail.image &&(
                         <img src={itemDetail.image} alt={itemDetail.name} />
                     )
                 }
-                <Button onClick={() => {  this.props.onDelete( itemDetail._id ) } } className="btn btn-primary">
+                <Button  onClick={() => {  this.props.onDelete( itemDetail._id ) } } variant="contained" color="secondary">
                     Delete
                 </Button> 
-                <Button >
+                <Button type="submit" variant="contained" color="secondary">
                     <Link to={`/items/${itemDetail._id}/edit`}> Edit Item </Link>
                 </Button >
             </div>
+            </Grid>
         )
     }
 }
