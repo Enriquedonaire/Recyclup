@@ -61,7 +61,7 @@ console.log(items)
     <Grid container justify = "center">
     <div className="application">
         <Helmet>
-        <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
+        <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true')}"}</style>
         </Helmet>
     
       <ImageList rowHeight={180} className={classes.imageList}>
@@ -72,7 +72,7 @@ console.log(items)
         { items.map((item) => (
           <Link to="/items">                     {/*link here???? */}
           <ImageListItem >
-            <img src='https://media.v2.siweb.es/uploaded_thumb_icon/3b077e59bd6ac79fb27ea402974869ba/1046_2.png' alt='something' />
+            <img src='https://www.hastaterminarstock.com.uy/imgs/productos/productos31_67951.png' alt='something' />
             <img src='http://www.elcopion.com/tbfth.php?w=256&h=256&src=http://www.starplus.es/media/images/fotosAC/ARC5030PT_2.jpg'/>
             <img src='https://www.szames.com.uy/imgs/productos/productos31_2731.jpg'/>
             <img src='https://images-v2.rappi.com/products/2093237187-1615478847357.jpg?d=240x240'/>

@@ -86,6 +86,11 @@ function Header(props) {
                 Welcome to <br />
                 Re<span className={classes.colorText}>Cyclup.</span>
             </h1>
+            <Scroll to="place-to-visit" smooth={true}>
+            <IconButton>
+            <ExpandMoreIcon className={classes.goDown} />
+            </IconButton>
+        </Scroll>
             </div>
         </Collapse>
         </div>

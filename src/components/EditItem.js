@@ -89,7 +89,7 @@ class EditItem extends Component {
             <Grid container justify = "center">
             <div className="application">
             <Helmet>
-            <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
+            <style>{"body { background-color: #60756f; }"}</style>
             </Helmet>
             <>            
                 <form onSubmit={(event)=>{this.onEditItem(event)}} encType="multipart/form-data">                
@@ -107,7 +107,7 @@ class EditItem extends Component {
                 <MapView  onMapClick={this.updatePosition}/>                
             </>
             </div>
-             </Grid >
+            </Grid >
             
             
         )
