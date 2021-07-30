@@ -36,7 +36,7 @@ export default function CheckoutForm() {
   const cardStyle = {
     style: {
       base: {
-        color: "#32325d",
+        color: "white",
         fontFamily: 'Arial, sans-serif',
         fontSmoothing: "antialiased",
         fontSize: "20px",
@@ -107,7 +107,7 @@ export default function CheckoutForm() {
       )}
       {/* Show a success message upon completion */}
       <p className={succeeded ? "result-message" : "result-message hidden"}>
-        Payment succeeded, see the result in your
+      
         <a
           href={`https://dashboard.stripe.com/test/payments`}
         >

@@ -13,9 +13,10 @@ function Landing(props) {
             <div>
                 {/*  */}
             <TitlebarImageList user= {props.user}/>   
-
-            <Elements stripe={promise} width="50px" 
->
+            <br/>
+            <br/>
+            
+            <Elements stripe={promise} width="50px">
                 <CheckoutForm />
             </Elements>  
         </div>
