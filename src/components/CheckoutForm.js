@@ -39,9 +39,9 @@ export default function CheckoutForm() {
         color: "#32325d",
         fontFamily: 'Arial, sans-serif',
         fontSmoothing: "antialiased",
-        fontSize: "16px",
+        fontSize: "20px",
         "::placeholder": {
-          color: "#32325d"
+          color: "white"
         }
       },
       invalid: {
