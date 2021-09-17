@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom'
 import {API_URL} from '../config'
 import { Helmet } from 'react-helmet';
 import { Grid } from '@material-ui/core';
-
-
+import ChatBot from './ChatBot'
 
 class ItemDetail extends Component {
 
@@ -53,7 +52,7 @@ class ItemDetail extends Component {
             <Grid container justify = "center">
             <div className="application">
             <Helmet>
-            <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
+            <style>{"body { background-image: url('./assets/bg.jpg'); }"}</style>
             </Helmet>
                 <h4>
                     Username: {itemDetail.username}
@@ -75,6 +74,9 @@ class ItemDetail extends Component {
                 <Button type="submit" variant="contained" color="secondary">
                     <Link to={`/items/${itemDetail._id}/edit`}> Edit Item </Link>
                 </Button >
+                <div>
+                    <ChatBot/>
+                </div>
             </div>
             </Grid>
         )

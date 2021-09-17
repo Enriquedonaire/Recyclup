@@ -33,7 +33,7 @@ function Signup(props){
         <Grid container justify = "center">
         <div className="application">
         <Helmet>
-        <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
+        <style>{"body { background-image: url('./assets/bg.jpg'); }"}</style>
         </Helmet>
         <ThemeProvider theme={theme}>
         <form onSubmit={onSignup} style={{justifyContent: 'center'}}>

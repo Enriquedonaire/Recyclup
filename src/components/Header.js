@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { AppBar, IconButton, Toolbar, Collapse } from '@material-ui/core';
+import { AppBar, IconButton, Toolbar, Collapse, Card } from '@material-ui/core';
 import SortIcon from '@material-ui/icons/Sort';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { Link as Scroll } from 'react-scroll';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-
+import Cards from './Cards';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
         color: '#5AFF3D',
         fontSize: '4rem',
     },
-    }));
+}));
 
 
 
@@ -55,47 +55,59 @@ function Header(props) {
         setChecked(true);
     }, []);
     return (
+
         <div className={classes.root} id="header">
-        <AppBar className={classes.appbar} elevation={0}>
-            <Toolbar className={classes.appbarWrapper}>
-            <h1 className={classes.appbarTitle}>
-                Re<span className={classes.colorText}>Cyclup.</span>
-            </h1>
-            {
-            props.user ? (
-                        <>    <IconButton>
-                        <Button onClick={props.onHandleProfile}>Profile</Button> </IconButton>
-                        <Button variant="contained" color="secondary" onClick={props.onLogOut}>Logout</Button>
-                        </>
+            <AppBar className={classes.appbar} elevation={0}>
+                <Toolbar className={classes.appbarWrapper}>
+                    <h1 className={classes.appbarTitle} fontFamily='Nunito'>
+                        Re<span className={classes.colorText} fontFamily='Nunito'>Cyclup.</span>
+
+                    </h1>
+
+                    {
+                        !props.user ? (
+                            <>
+                                <Link to={'/signin'}><Button variant="contained" color="secondary" >SignIn</Button></Link>
+                                <Link to={'/signup'}><Button variant="contained" color="secondary">SignUp</Button></Link>
+                            </>
                         ) : (
-                        <>
-                <Link to={'/signin'}><Button variant="contained" color="secondary" >SignIn</Button></Link>
-                <Link to={'/signup'}><Button  variant="contained" color="secondary">SignUp</Button></Link>
-                    </>
-                )}
-            
-            </Toolbar>
-        </AppBar>
-        <Collapse
-            in={checked}
-            {...(checked ? { timeout: 1000 } : {})}
-            collapsedHeight={50}
-        >
-            <div className={classes.container}>
-            <h1 className={classes.title}>
-                Welcome to <br />
-                Re<span className={classes.colorText}>Cyclup.</span>
-            </h1>
-            <Scroll to="place-to-visit" smooth={true}>
-            <IconButton>
-            <ExpandMoreIcon className={classes.goDown} />
-            </IconButton>
-        </Scroll>
-            </div>
-        </Collapse>
+                            <>
+                                <IconButton>
+                                    <Button onClick={props.onHandleProfile}>Profile</Button> </IconButton>
+                                <Button variant="contained" color="secondary" onClick={props.onLogOut}>Logout</Button>
+
+                            </>
+                        )}
+
+                </Toolbar>
+            </AppBar>
+            <Collapse
+                in={checked}
+                {...(checked ? { timeout: 1000 } : {})}
+                collapsedHeight={10}
+            >
+                <div className={classes.container}>
+                    <h1 className={classes.title}>
+                        Welcome to <br />
+                        Re<span className={classes.colorText}>Cyclup.
+                        </span>
+
+                    </h1>
+                    <br />
+
+                    {/* <Scroll to="place-to-visit" smooth={true}>
+                        <IconButton>
+                            <ExpandMoreIcon className={classes.goDown} />
+                        </IconButton>
+
+                    </Scroll> */}
+                </div>
+                {/* <Cards /> */}
+            </Collapse>
+
         </div>
     );
-    }
+}
 
 
-    export default Header;
+export default Header;

@@ -1,6 +1,10 @@
-
+.aplication{
+    color: #ffffff;
+    overflow: auto;
+}
 .body-background{
     background-color:#2a302b;
+    color:antiquewhite;
 }
 
 
@@ -8,7 +12,7 @@
     justify-content: center;
     background-color: darkgreen;
     width: 100vw;
-    height: 100vh;
+    height: 45vh;
 
 }
 .myMap {
@@ -18,17 +22,23 @@
 }
 
 
-
+#header{
+    font-family: 'Nunito';
+    margin-bottom: 0;
+}
 
 
 
 #root {
         display: flex;
         align-items: center;
+        overflow:auto;
+        color: #ffffff;
     }
     
-    /*body {
-        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    body {
+        font-family: Nunito;
+        color: #ffffff;
         font-size: 16px;
         -webkit-font-smoothing: antialiased;
         display: flex;
@@ -36,7 +46,7 @@
         align-content: center;
         height: 100vh;
         width: 100vw;  
-    } */
+    }
     
     form {
         width: 30vw;
@@ -54,8 +64,9 @@
         border: 1px solid rgba(50, 50, 93, 0.1);
         max-height: 44px;
         font-size: 16px;
+        color: #ffffff;
         width: 100%;
-        background: white;
+        background: rgb(174, 208, 155);
         box-sizing: border-box;
     }
     
@@ -191,4 +202,3 @@
         width: 80vw;
         }
     }
-    

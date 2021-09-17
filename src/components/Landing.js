@@ -1,9 +1,10 @@
 import React from 'react';
-import TitlebarImageList from './ImageListLanding'
-import CheckoutForm from './CheckoutForm';
 
+import CheckoutForm from './CheckoutForm';
+import Header from './Header';
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import Cards from './Cards';
 
 function Landing(props) {
     const promise = loadStripe("pk_test_51JII5pGg1ODUJ9EWMy7M1ezwET1h3BmiBnpyhdGRUHf307kleb3uSprms860qvDW89OVqfYe1wT2XorqaSJPDJMA00NQ9twcfL");
@@ -11,8 +12,7 @@ function Landing(props) {
         
         return (
             <div>
-                {/*  */}
-            <TitlebarImageList user= {props.user}/>   
+            <Cards user= {props.user}/>   
             <br/>
             <br/>
             

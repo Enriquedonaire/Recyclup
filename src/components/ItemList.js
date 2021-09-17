@@ -62,17 +62,17 @@ class ItemList extends Component {
             <Grid container justify = "center">
             <div className="application">
         <Helmet>
-        <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
+        <style>{"body { background-image: url('./assets/bg.jpg'); }, {color: #ffffff}"}</style>
         </Helmet>
-                <h1 text-align="center" fontFamily="-apple-system, BlinkMacSystemFont, sans-serif;">
+                <h1 >
                     Items 
 
                 </h1>
 
                 <MapContainer  
-                    style={{width: '800px', height: '500px'}} 
+                    style={{width: '800px', height: '500px', padding:'0px', margin:'0px'}} 
                     center={position}  zoom={13}  
-                    scrollWheelZoom={false} className="myMap" >
+                    scrollWheelZoom={false} className="myMap">
                     <TileLayer 
                         attribution='&copy; <a href="http://osm.org/copyright">Recyclup-Map</a> contributors'
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

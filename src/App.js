@@ -20,7 +20,7 @@ import {Helmet} from "react-helmet";
 import BackGround from "./components/BackGround";
 import Header from './components/Header'
 
-
+import Card from './components/Card'
 
 
 
@@ -298,15 +298,17 @@ handleEditProfileDetail = async (event) => {
       }
             
       return (
-          <div className="application">
+          <div className="application" >
           <Helmet>
-          <style>{"body { background-color: #3e423e; }"}</style>
+          <style>{"body { background-image: url('./assets/bg.jpg'); }, {color: #ffffff}"}</style>
         </Helmet> 
         <Header user={this.state.user} onLogOut={this.handleLogOut} onHandleProfile={this.handleProfile} />
           <Switch>
+
             <Route exact path='/' render={(routeProps) => { 
                 return <Landing items={this.state.items} user= {this.state.user}/>
             }} />
+        
             <Route  path="/signup"  render={(routeProps) => {
               return  <Signup onSignup={this.handleSignup} {...routeProps}  />
             }}/>
