@@ -16,9 +16,7 @@ function Card({title, imageSource, url}) {
                         lorem ipsum dolor sit amet, consectetur adip
                         lorem ipsum dolor sit amet, consectetur adip
                         lorem ipsum dolor sit amet, consectetur adip
-                        lorem ipsum dolor sit amet, consectetur adip
-                        lorem ipsum dolor sit amet, consectetur adip
-                        lorem ipsum dolor sit amet, consectetur adip
+                        
                     </p>
                     <a href={url} className="btn btn-outline-secondary rounded-0" target="_blank" rel="noreferrer">
                         Go to this Website!
