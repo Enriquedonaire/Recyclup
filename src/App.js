@@ -3,24 +3,19 @@ import React, { Component } from 'react'
 import axios from 'axios'
 import Signin from './components/Signin'
 import Signup from "./components/Signup";
-import Navbar from "./components/Navbar";
 import MyProfile from "./components/MyProfile";
 import ItemDetail from './components/ItemDetail'
 import ItemList from './components/ItemList'
 import EditProfile from './components/EditProfile'
 import AddItem from './components/AddItem'
 import EditItem from './components/EditItem';
-import Lottie from './components/LottieControl'
 import {API_URL} from './config.js';
-import MapView from './components/MapView'
 import Landing from './components/Landing'; 
 import NotFound from './components/NotFound'
 import { responsiveFontSizes } from "@material-ui/core";
 import {Helmet} from "react-helmet";
-import BackGround from "./components/BackGround";
 import Header from './components/Header'
 
-import Card from './components/Card'
 
 
 
@@ -204,9 +199,9 @@ class App extends Component {
       }
   
       try {
-        let response = await axios.post(`${API_URL}/api/signin`, myUser, {withCredentials: true})
+        let userResponse = await axios.post(`${API_URL}/api/signin`, myUser, {withCredentials: true})
         this.setState({
-          user: response.data
+          user: userResponse.data
         }, () => {
 
             this.props.history.push('/items')

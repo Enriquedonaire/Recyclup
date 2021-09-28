@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -9,45 +10,45 @@ import { Helmet } from 'react-helmet';
 
 const theme = createTheme({
     palette: {
-            primary: {
+        primary: {
             main: '#2e7d32',
-            },
-            secondary: {
-            main: '#c0ca33',
-            },
         },
+        secondary: {
+            main: '#c0ca33',
+        },
+    },
 });
 
-function Signin(props){
+function Signin(props) {
     return (
 
-        
-        <Grid container justify = "center">
-        <div className="application">
-        <Helmet>
-        <style>{"body { background-image: url('./assets/bg.jpg'); }"}</style>
-        </Helmet>
-        <ThemeProvider theme={theme}>
-        <form onSubmit={props.onSignin}>
-            <div className="form-group">
-                <label htmlFor="InputEmail"></label>
-                <TextField type="email" className="form-control" id="InputEmail" name="email" placeholder="Email" id="outlined-basic"variant="outlined"/>
-            </div>
-            <div className="form-group">
-                <label htmlFor="InputPassword"></label>
-                <TextField name="password" type="password" className="form-control" id="InputPassword" placeholder="Password" id="outlined-basic"variant="outlined"/>
-            </div>
-            <br></br>
-            <Button type="submit" variant="contained" color="primary">Login</Button>
-            {
-                props.error ? (
-                    <p>{props.error}</p>
-                ) : ''
-            } 
 
-        </form>
-        </ThemeProvider>
-        </div>
+        <Grid container justifyContent="center" >
+            <div className="application">
+                <Helmet>
+                    <style>{"body { background-image: url('./assets/bg.jpg'); }"}</style>
+                </Helmet>
+                <ThemeProvider theme={theme}>
+                    <form onSubmit={props.onSignin} style={{ marginTop: '-550px' }}>
+                        <div className="form-group" >
+                            <label htmlFor="InputEmail"></label>
+                            <TextField type="email" className="form-control" id="InputEmail" name="email" placeholder="Email" id="outlined-basic" variant="outlined" />
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="InputPassword"></label>
+                            <TextField name="password" type="password" className="form-control" id="InputPassword" placeholder="Password" id="outlined-basic" variant="outlined" />
+                        </div>
+                        <br></br>
+                        <Button type="submit" variant="contained" color="primary">Login</Button>
+                        {
+                            props.error ? (
+                                <p>{props.error}</p>
+                            ) : ''
+                        }
+
+                    </form>
+                </ThemeProvider>
+            </div>
         </Grid>
     )
 }

@@ -42,18 +42,18 @@ class MyProfile extends Component {
         const {user} = this.state
         return (
             <Grid  container justify = "center" >
-            <div className="application">
+            <div className="application" >
                 <Helmet>
                 <style>{"body { background-image: url('https://github.com/Chensokheng/island/blob/master/public/assets/bg.jpg?raw=true');; }"}</style>
                 </Helmet>
-                <Avatar alt="Remy Sharp" src="someImageUrl"/>
+                {/* <Avatar alt="Remy Sharp" src="someImageUrl"/> */}
                 <div>Hey ! {user.username}</div>
                 
-                <Button variant="contained" color="secondary"> <Link to={`/profile/create`}>
+                <Button variant="contained" color="secondary"style={{ marginTop:'-165px'}}> <Link to={`/profile/create`}>
                     +Add Item+</Link>
                         
                 </Button>
-                <Button variant="contained" color="secondary"> <Link to={`/profile/:profileId/edit`}>
+                <Button variant="contained" color="secondary" style={{ marginTop:'-165px'}}> <Link to={`/profile/:profileId/edit`}>
                     Edit your Profile
                         </Link>
                 </Button>

@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React from 'react';
 import Button from '@material-ui/core/Button';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -36,14 +37,15 @@ function Signup(props){
         <style>{"body { background-image: url('./assets/bg.jpg'); }"}</style>
         </Helmet>
         <ThemeProvider theme={theme}>
-        <form onSubmit={onSignup} style={{justifyContent: 'center'}}>
+        <form onSubmit={onSignup} style={{marginTop: '-550px'}}>
             <div className="form-group">
                 <label htmlFor="InputName"></label>
                 <TextField type="text" className="form-control" id="InputName" name="name" placeholder="Fill in your name." id="outlined-basic"variant="outlined"/><br></br>
             </div>
             <div className="form-group">
                 <label htmlFor="InputName"></label>
-                <TextField id="outlined-basic"variant="outlined" name="username" placeholder="Please chose username." id="outlined-basic"variant="outlined"/><br/>
+                
+                <TextField id="outlined-basic"variant="outlined" name="username" placeholder="Please chose username." id="outlined-basic"variant="outlined" style={{backgroundColor:'white'}}/><br/>
             </div>
             <div className="form-group">
                 <label htmlFor="InputEmail"></label>

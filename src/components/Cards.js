@@ -9,19 +9,19 @@ const cards = [
         id: 1,
         title: 'Free Items',
         image: image1,
-        url: 'https://donaireq2.wixsite.com/website'
+        url: '/signup'
     },
     {
         id: 2,
         title: 'Recyclup Donations',
         image: image2,
-        url: 'https://donaireq2.wixsite.com/website'
+        url: '/signup'
     },
     {
         id: 3,
         title: 'More',
         image: image3,
-        url: 'https://donaireq2.wixsite.com/website'
+        url: '/signup'
     }
 ]
 

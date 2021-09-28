@@ -12,11 +12,8 @@ function Card({title, imageSource, url}) {
             <div className="card-body text-light">
                 <h4 className="card-title">{title}</h4>
                     <p className="card-text text-secondary">
-                        lorem ipsum dolor sit amet, consectetur adip
-                        lorem ipsum dolor sit amet, consectetur adip
-                        lorem ipsum dolor sit amet, consectetur adip
-                        lorem ipsum dolor sit amet, consectetur adip
-                        
+                        The most Amazing Free Items for you!
+                        check it out ours Stuff
                     </p>
                     <a href={url} className="btn btn-outline-secondary rounded-0" target="_blank" rel="noreferrer">
                         Go to this Website!

@@ -7,7 +7,7 @@ import Signin from './Signin';
 import Signup from './Signup';
 import MyProfile from './MyProfile';
 import EditItem from './EditItem';
-
+import ItemDetail from './ItemDetail';
 
 
 
@@ -35,6 +35,7 @@ function BackGround() {
         <Signup />
         <Signin/>
         <MyProfile/>
+        <ItemDetail/>
         <EditItem/>
         
 

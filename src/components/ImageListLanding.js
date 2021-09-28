@@ -1,17 +1,9 @@
 import React, {useEffect, useState} from 'react'
-import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
-import ImageList from '@material-ui/core/ImageList';
-import ImageListItem from '@material-ui/core/ImageListItem';
-import ImageListItemBar from '@material-ui/core/ImageListItemBar';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
 import Grid from '@material-ui/core/Grid';    
 import axios from 'axios'
 import {API_URL} from '../config'
 import {Helmet} from "react-helmet";
-import Cards from './Cards';
 //import the sclieced array here
 
 

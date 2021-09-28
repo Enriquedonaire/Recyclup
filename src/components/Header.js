@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     title: {
         color: '#fff',
         fontSize: '4.5rem',
+        marginTop: '-350px',
     },
     goDown: {
         color: '#5AFF3D',
