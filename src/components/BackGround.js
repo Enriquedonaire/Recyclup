@@ -14,7 +14,7 @@ import ItemDetail from './ItemDetail';
 const useStyles = makeStyles((theme) => ({
     root: {
         minHeight: '100vh',
-        backgroundImage: `url(${process.env.REACT_APP_SERVER_URL + './assets/bg.jpg'})`,
+        backgroundImage: `url(${'./assets/bg.jpg'})`,
         backgroundRepeat: 'no-repeat',
         backgroundSize: 'cover',
     },
